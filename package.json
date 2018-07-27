@@ -1,0 +1,103 @@
+{
+  "name": "orion-admin-seed",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "cross-env PORT=6086 PLATFORM=workspace_admin node scripts/start.js",
+    "build": "node scripts/build.js",
+    "setVersion": "./setversion.sh; node setversion.js",
+    "autoZip": "npm run setVersion; npm run build; npm run zipBuild; ",
+    "update": "yarn add fe-deploy orion-admin-web-template ukelli-ui -W",
+    "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
+  },
+  "dependencies": {
+    "babel-runtime": "6.26.0",
+    "basic-helper": "^1.3.1",
+    "fe-deploy": "^2.4.2",
+    "mousetrap": "^1.6.2",
+    "object-assign": "4.1.1",
+    "orion-admin-web-template": "^0.3.4",
+    "orion-request": "^2.1.6",
+    "promise": "8.0.1",
+    "prop-types": "^15.5.10",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "ukelli-ui": "^2.4.19",
+    "unistore": "^3.0.6",
+    "whatwg-fetch": "2.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "7.1.2",
+    "babel-core": "6.25.0",
+    "babel-jest": "20.0.3",
+    "babel-loader": "7.1.1",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-app": "^3.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "chalk": "1.1.3",
+    "cross-env": "^5.1.6",
+    "css-loader": "0.28.4",
+    "cssnano": "^3.10.0",
+    "dotenv": "4.0.0",
+    "extract-text-webpack-plugin": "3.0.0",
+    "file-loader": "0.11.2",
+    "fs-extra": "3.0.1",
+    "glob": "^7.1.2",
+    "html-webpack-plugin": "2.29.0",
+    "husky": "^0.14.3",
+    "jest": "20.0.4",
+    "node-sass": "^4.5.3",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "postcss-loader": "2.0.9",
+    "react-dev-utils": "^4.0.1",
+    "react-transform-hmr": "^1.0.4",
+    "react-transition-group": "^2.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "0.18.2",
+    "sw-precache-webpack-plugin": "0.11.4",
+    "url-loader": "0.5.9",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.7.1",
+    "webpack-manifest-plugin": "1.2.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.js?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ]
+  }
+}

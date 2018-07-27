@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta keyword="赞" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="stylesheet" href="/css/loading.css">
+  <title>赞！后台管理系统</title>
+</head>
+
+<body>
+  <div id="Main"></div>
+  <div class="sk-folding-cube" id="loadingBg">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+  </div>
+  <script>
+    // Hank
+    window.PLATFORM = "hh2";
+    window.ManagerURL = ["//hh2beta.99safe.org:27777"];
+  </script>
+  <!-- 平台配置文件 -->
+  <script id="processScript">
+    (function (window) {
+      window.onloadBundle = function onloadBundle() {
+        setTimeout(function () {
+          document.body.removeChild(document.querySelector('#processScript'));
+        }, 800);
+      }
+
+      window.FEManagerURL = "http://52.193.86.156:40014/manager/fe/___fe___/"
+      window.watchUrl = "https://gbak.01ssc.net/watch/___watch___/"
+
+      function loadScript(srcouce, callback) {
+        var times = 0;
+        function load() {
+          if (times > 2) return 0;
+          times++;
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          document.body.appendChild(script);
+          script.src = (!!window.SCRIPT_CND_URL ? window.SCRIPT_CND_URL : '') + srcouce;
+          script.onload = function () {
+            if (typeof callback === 'function') callback();
+          };
+          script.onerror = load;
+        }
+        load();
+      }
+      function loadLink(srcouce) {
+        var times = 0;
+        function load() {
+          if (times > 2) return 0;
+          times++;
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          document.body.appendChild(link);
+          link.href = srcouce;
+          link.onerror = load;
+        }
+        load();
+      }
+      window.DefaultAdmin = 'alex';
+      window.DefaultPW = '123456';
+      onloadBundle();
+    })(window);
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/flatpickr/light.css">
+</body>
+</html>
