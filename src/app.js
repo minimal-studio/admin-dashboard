@@ -22,7 +22,7 @@ import * as AllManagerPages from './pages';
  */
 import './app.scss';
 
-import {ManagerAPP} from 'orion-admin-web-template';
+import {ManagerAPP} from 'orion-admin-web-scaffold';
 import LoginSelector from './login-selector';
 import {authStore, authActions} from './login-actions';
 
