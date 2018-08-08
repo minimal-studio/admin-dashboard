@@ -30,6 +30,5 @@ git clone https://github.com/SANGET/orion-admin-seed.git
 ## TODO
 
 - 实现通过命令生成对应的组件
-- 实现权限管理
 - 实现与之配套的 web server 支持
 - 完善对应的开发文档
