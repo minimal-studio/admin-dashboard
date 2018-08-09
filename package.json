@@ -19,7 +19,7 @@
     "fe-deploy": "^2.4.3",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
-    "orion-admin-web-scaffold": "^0.5.0",
+    "orion-admin-web-scaffold": "^0.6.0",
     "orion-request": "^2.1.8",
     "promise": "8.0.1",
     "prop-types": "^15.5.10",

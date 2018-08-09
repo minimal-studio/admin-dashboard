@@ -25,6 +25,7 @@ import './app.scss';
 import {ManagerAPP} from 'orion-admin-web-scaffold';
 import LoginSelector from './login-selector';
 import {authStore, authActions} from './login-actions';
+import VersionInfo from './version/version';
 
 const pageComponents = AllManagerPages;
 
@@ -44,6 +45,7 @@ class LoginFilter extends React.Component {
           isLogin ? (
             <ManagerAPP
               {...this.props}
+              versionInfo={VersionInfo}
               menuMappers={{
                 child: 'child',
                 code: 'code',

@@ -29,3 +29,6 @@ public/js/version.txt
 package-lock.json
 
 yarn.lock
+public/posts/
+public/images/
+version.js
