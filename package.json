@@ -8,7 +8,8 @@
   "scripts": {
     "start": "cross-env PORT=6086 PLATFORM=workspace_admin node scripts/start.js",
     "build": "node scripts/build.js",
-    "init": "node ./init-workspace",
+    "initWrokspace": "node ./scripts/init-workspace",
+    "init": "git init; npm i; npm run setVersion",
     "setVersion": "./setversion.sh; node setversion.js",
     "autoZip": "npm run setVersion; npm run build; npm run zipBuild; ",
     "update": "yarn add fe-deploy orion-admin-web-scaffold ukelli-ui -W",
