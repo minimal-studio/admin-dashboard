@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {FormLayout, Loading} from 'ukelli-ui';
 import {ActionTestForm} from '../action-refs';
 
-
 /**
  * 说明
  * submiting 是否提交中

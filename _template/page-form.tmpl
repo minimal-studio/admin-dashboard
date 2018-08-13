@@ -1,0 +1,12 @@
+{%comment%}
+
+import React, {Component} from 'react';
+import {ActionForm{%pageName%}} from '../action-refs';
+
+import {FormRender} from '../../components/form-layout-template';
+
+const {%pageName%} = FormRender(ActionForm{%pageName%});
+
+export {
+  {%pageName%}
+}

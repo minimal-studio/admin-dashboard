@@ -8,7 +8,6 @@ import {
   ReportRenderNormal, ReportRenderWithQueryUser
 } from '../components/report-layout-template';
 import {FormRender} from '../components/form-layout-template';
-import { Tabs, Tab } from 'ukelli-ui';
 
 import {
   ActionTestReport, ActionTestForm
@@ -17,10 +16,12 @@ import {
 // export * from './home-page';
 import HomePage from './home-page';
 import TestForm from './test-form';
-import FEDeploy from 'fe-deploy';
+import FEDeploy from 'orion-admin-web-scaffold/fe-deploy';
 
 const TestReport = ReportRenderNormal(ActionTestReport);
 const TestFormWithTMPL = FormRender(ActionTestForm);
+
+export * from './generate-pages-refs';
 
 export {
   TestReport,

@@ -1,7 +1,10 @@
+import generateNavConfig from './generate-nav-config';
+
 const NAV_MENU_CONFIG = [
+  generateNavConfig,
   {
-    title: '层级菜单1',
-    icon: 'home',
+    title: '范例菜单',
+    icon: 'demo',
     child: [
       {
         title: '首页',
@@ -22,9 +25,15 @@ const NAV_MENU_CONFIG = [
     ]
   },
   {
-    title: '前端资源发布管理',
-    code: 'FEDeploy'
-  }
+    title: '系统管理',
+    icon: 'system',
+    child: [
+      {
+        title: '前端资源管理',
+        code: 'FEDeploy'
+      }
+    ]
+  },
 ]
 
 export default NAV_MENU_CONFIG;
