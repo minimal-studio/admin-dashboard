@@ -1,47 +1,20 @@
 /**
  * 公用的 fields
  * 定义所有的报表的字段的属性
+ * 提供给 ActionsReport 类的字段配置，有共同的配置可以写在这里
  */
 
 let namesMapper = [
   'TransferType',
-  'Unit',
-  'Status',
 ];
 let moneyMapper = [
   'RealCost',
-  'Award',
-  'TransferAmt',
-  'BetAmount',
-  'NetAmount',
-  'Profit',
-  'Salary',
-  'Deposit',
-  'Withdraw',
-  'Ret',
-  'Activity',
-  'Adjust',
-  'SlotBet',
-  'SlotAward',
-  'SlotProfit',
-  'SscProfit',
-  'TotalProfit',
-  'ValidBetAmount',
-  'TotalCost',
-  'AfterBalance',
-  'AfterBonus',
 ];
 let abvMoneyMapper = [
   'Bet',
-  'Amount',
 ];
 let datetimeMapper = [
   'OrderTime',
-  'AddTime',
-  'UpdTime',
-  'PayTime',
-  'BetTime',
-  'ActionTime',
 ];
 let dateMapper = [
   // 'CalcEndDate',
@@ -49,21 +22,6 @@ let dateMapper = [
 ];
 let normalFields = [
   'Account',
-  'OrderId',
-  'LottType',
-  'PlayType',
-  'Issue',
-  'BillNo',
-  'Cagent',
-  'ErrMsg',
-  'ApplyId',
-  'ReportDate',
-  'Currency',
-  'GameName',
-  'Flag',
-  'SubtypeCnName',
-  'Remark',
-  'FundChangeId',
 ];
 
 /**
@@ -109,9 +67,11 @@ function getFields(options) {
   let result = [];
   let currScopeFieldGroup = scopeFields[scope];
 
-  _configNames.forEach(name => {
-    if(!name) return;
-    let currConfig = currScopeFieldGroup[name];
+  _configNames.forEach(nameConfig => {
+    if(!nameConfig) return;
+    let isString = typeof nameConfig == 'string';
+    let currConfig = isString ? currScopeFieldGroup[nameConfig] : nameConfig;
+    let name = isString ? nameConfig : currConfig.key;
     let currCommonField = scopeFields.common[name];
     result.push(Object.assign({}, {
       key: name,
@@ -120,6 +80,7 @@ function getFields(options) {
   if(extend) result.push(extend);
   return result;
 }
+
 function getFieldsConfig(scope) {
   return scope ? Object.assign({}, scopeFields[scope]) : scopeFields;
 }

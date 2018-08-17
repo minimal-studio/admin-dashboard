@@ -4,7 +4,25 @@ import React, {Component} from 'react';
 import {ActionReport{%pageName%}} from '../action-refs';
 import {ReportRenderNormal} from '../../components/report-layout-template';
 
-const {%pageName%} = ReportRenderNormal(ActionReport{%pageName%});
+class Middleware extends ActionReport{%pageName%} {
+  getActionBtn(...args) {
+    return (
+      <span className="link-btn" onClick={e => this.showDetail(...args)}>详情</span>
+    )
+  }
+  showDetail(item) {
+    console.log(item)
+    let ModalId = ShowGlobalModal({
+      title: '详情',
+      width: 700,
+      children: (
+        <h1 className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</h1>
+      )
+    })
+  }
+}
+
+const {%pageName%} = ReportRenderNormal(Middleware);
 
 export {
   {%pageName%}

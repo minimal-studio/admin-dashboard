@@ -16,17 +16,18 @@ import {
 // export * from './home-page';
 import HomePage from './home-page';
 import TestForm from './test-form';
+import TestReport from './test-report';
 import FEDeploy from 'orion-admin-web-scaffold/fe-deploy';
 
-const TestReport = ReportRenderNormal(ActionTestReport);
-const TestFormWithTMPL = FormRender(ActionTestForm);
+// const TestReport = ReportRenderNormal(ActionTestReport);
+const FormWithTMPL = FormRender(ActionTestForm);
 
 export * from './generate-pages-refs';
 
 export {
   TestReport,
   TestForm,
-  TestFormWithTMPL,
+  FormWithTMPL,
   HomePage,
   FEDeploy
 }

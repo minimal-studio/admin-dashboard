@@ -1,6 +1,6 @@
 # Orion admin web seed
 
-## 介绍
+## [介绍](./docs/intro.md)
 
 - 基于 orion-admin-web-scaffold, 声明式的表单与表格构建应用，快速实现业务流程开发
 - 拥有完善的页面导航机制，统一的 UI 体验，开发人员只需要关注应用的业务流程控制，不需要关注 html/css

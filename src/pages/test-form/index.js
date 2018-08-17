@@ -10,38 +10,36 @@ import {ActionTestForm} from '../action-refs';
  */
 export default class TestForm extends ActionTestForm {
   render() {
-    const {hasErr, resDesc, submiting, querying = false} = this.state;
+    const {querying = false} = this.state;
 
     return (
       <div>
-        {/* 如果是异步获取表单初始化数据，需要 Loading */}
-        <Loading loading={querying}>
-          {
-            querying ? null : (
-              <FormLayout
-                tipInfo={{
-                  title: '如果是异步获取表单初始化数据，需要 Loading'
-                }}
-                loading={submiting}
-                hasErr={hasErr}
-                resDesc={resDesc}
-                formOptions={this.formOptions}
-                btnText="提交"
-                onSubmit={this.onSubmit.bind(this)}/>
-            )
-          }
-        </Loading>
-        {/* 如果是已经定义好的数据，则不需要 Loading */}
-        <FormLayout
-          tipInfo={{
-            title: '如果是已经定义好的数据，则不需要 Loading'
-          }}
-          loading={submiting}
-          hasErr={hasErr}
-          resDesc={resDesc}
-          formOptions={this.formOptions}
-          btnText="提交"
-          onSubmit={this.onSubmit.bind(this)}/>
+        <div className="card mb10">
+          {/* 如果是异步获取表单初始化数据，需要 Loading */}
+          <Loading loading={querying}>
+            {
+              querying ? null : (
+                <FormLayout
+                  tipInfo={{
+                    title: '如果是异步获取表单初始化数据，需要 Loading'
+                  }}
+                  {...this.state}
+                  btnConfig={this.btnConfig}
+                  formOptions={this.formOptions}/>
+              )
+            }
+          </Loading>
+        </div>
+        <div className="card">
+          {/* 如果是已经定义好的数据，则不需要 Loading */}
+          <FormLayout
+            tipInfo={{
+              title: '如果是已经定义好的数据，则不需要 Loading'
+            }}
+            {...this.state}
+            formOptions={this.formOptions}
+            btnConfig={this.btnConfig}/>
+        </div>
       </div>
     )
   }

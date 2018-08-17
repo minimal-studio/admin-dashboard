@@ -20,7 +20,7 @@ const NAV_MENU_CONFIG = [
       },
       {
         title: '测试表单with tmpl',
-        code: 'TestFormWithTMPL',
+        code: 'FormWithTMPL',
       },
     ]
   },
