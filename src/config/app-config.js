@@ -3,7 +3,7 @@ import FrontEndNameMappers from './key-mappers';
 import {iconMapper, iconPrefix} from './icon-mapper';
 
 import {setUkelliConfig} from 'ukelli-ui';
-import {initFields} from '../actions/lib/fields';
+import {initFields} from '../lib/fields';
 
 import {
   GateResSpeedTesterClass,
@@ -12,7 +12,6 @@ import {
 import {$request, PollingEntity} from './req-filter';
 
 import { APIS } from './interface.js';
-
 
 function getAllGateUrls() {
   return window.ManagerURL || [];
