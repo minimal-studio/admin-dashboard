@@ -9,12 +9,12 @@
 import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import {GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass} from 'basic-helper';
 import {
   PagingBtn, RecordItemsHelper,
   Loading, Button, Toast,
   TableBody, ConditionGenerator
 } from 'ukelli-ui';
-import {DebounceClass} from 'basic-helper';
 
 const delayExec = new DebounceClass();
 
@@ -51,16 +51,17 @@ export default class ReportTableLayout extends Component {
 
     this.state = {
       checkedItems: {},
-      displayFloat: $GH.GetFloatLen() != 0
+      displayFloat: GetFloatLen() != 0
     };
   }
 
   componentWillUnmount() {
     this.restoreBasicFloatLen();
   }
+
   restoreBasicFloatLen() {
-    if($GH.GetFloatLen() == 0) {
-      $GH.ToggleBasicFloatLen();
+    if(GetFloatLen() == 0) {
+      ToggleBasicFloatLen();
     }
   }
 
@@ -68,17 +69,17 @@ export default class ReportTableLayout extends Component {
     /**
      * 在管理中心的时候可以用，但是关闭管理中心后必须设置回去
      */
-    let isDisplay = $GH.ToggleBasicFloatLen();
+    let isDisplay = ToggleBasicFloatLen();
     this.setState({
       displayFloat: isDisplay
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if((this.props.loading !== nextProps.loading && nextProps.hasErr && !nextProps.loading) || this.props.hasErr !== nextProps.hasErr) {
-      this.toast.show(nextProps.resDesc, nextProps.hasErr ? 'error' : 'success');
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if((this.props.loading !== nextProps.loading && nextProps.hasErr && !nextProps.loading) || this.props.hasErr !== nextProps.hasErr) {
+  //     this.toast.show(nextProps.resDesc, nextProps.hasErr ? 'error' : 'success');
+  //   }
+  // }
 
   getQueryData(conditionData) {
     return {
@@ -136,11 +137,21 @@ export default class ReportTableLayout extends Component {
 
   whenMountedQuery = (data) => {
     if(this.didMountQueried) return;
-    const {onQueryData} = this.props;
     delayExec.exec(() => {
-      onQueryData(this.getQueryData(data));
+      this.handleQueryData(data);
     }, 100);
     this.didMountQueried = true;
+  }
+
+  handleQueryData(val) {
+    this.props.onQueryData({
+      ...this.getQueryData(val),
+      onGetResInfo: this.handleRes
+    });
+  }
+
+  handleRes = ({resDesc, hasErr}) => {
+    this.toast.show(resDesc, hasErr ? 'error' : 'success');
   }
 
   render() {
@@ -211,15 +222,10 @@ export default class ReportTableLayout extends Component {
           }
         }}
         onChange={(val, ref) => {
-          let self = this;
-          // if (this.conditionHelper) {
-          //   if (this.conditionHelper.refs[ref].state.showTitle !== undefined) return
-          // }
-
-          if(!autoQuery || !$GH.HasValue(val[ref])) return;
+          if(!autoQuery || !HasValue(val[ref])) return;
 
           delayExec.exec(() => {
-            onQueryData(self.getQueryData(val));
+            this.handleQueryData(val);
           }, 200);
         }}
         conditionConfig={conditionOptions || []}
@@ -231,7 +237,7 @@ export default class ReportTableLayout extends Component {
         <Button
           text="查询"
           loading={loading}
-          onClick={e => onQueryData(this.getQueryData())}/>
+          onClick={e => this.handleQueryData()}/>
         <Button
           text={displayFloat ? '隐藏小数点' : '显示小数点'}
           className="default ml10"

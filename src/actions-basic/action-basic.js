@@ -13,49 +13,73 @@ export default class ActionBasic extends Component {
   getFields = getFields;
   setFields = setFields;
   getFieldsConfig = getFieldsConfig;
+  defaultActingRef = 'loading';
+  apis = MANAGER_APIS;
   constructor(props) {
     super(props);
+
+    // const {defaultActingRef} = this;
+
     this.state = {
       loading: false,
       hasErr: false,
       resDesc: '',
+      // fetching: false,
+      // resStates: {
+      //   /**
+      //    * 用于记录一个 action 多种请求的状态的情况
+      //    * 例如
+      //    * 1. 获取表格的条件的状态
+      //    * 2. 提交表格时的 submit 的状态
+      //    */
+      //   [defaultActingRef]: {
+      //     err: null,
+      //     desc: '',
+      //     actingRef: defaultActingRef,
+      //     fetching: false,
+      //     showTip: true
+      //   }
+      // },
       resData: {},
       records: [],
       pagingInfo: $MN.DefaultPaging,
     };
-    this.apis = MANAGER_APIS;
   }
-  setModal(modalSetting) {
-    const {onAppResponse} = this.props;
-    onAppResponse && onAppResponse({
-      type: 'OPEN_TOP_MODAL',
-      modalSetting
-    });
-  }
-  closeModal() {
-    const {onAppResponse} = this.props;
-    onAppResponse && onAppResponse({
-      type: 'CLOSE_TOP_LV_MODAL'
-    });
-  }
+  // getResState(actingRef) {
+  //   return this.state.resStates[actingRef];
+  // }
+  // wrapResState(actingRef, resHeader, acting, showTip) {
+  //   let {hasErr, resDesc} = this.getResDescInfo(resHeader);
+  //   let {resStates} = this.state;
+  //   return {
+  //     ...resStates,
+  //     [actingRef]: {
+  //       err: hasErr,
+  //       desc: resDesc,
+  //       actingRef,
+  //       acting
+  //     }
+  //   }
+  // }
   toBasicUnitMoney(money) {
     return ToBasicUnitMoney(money);
   }
-  getResDescInfo(resErrCode) {
+  getResDescInfo(resHeader = {}) {
     const resInfo = {
-      hasErr: resErrCode.Code != '0',
-      resDesc: resErrCode.Desc
+      hasErr: resHeader.Code != '0',
+      resDesc: resHeader.Desc
     };
-    this.showResDesc(resInfo)
+    // this.showResDesc(resInfo)
     return resInfo;
   }
   defaultStateAfterPost(res, actingRef, recordsRef) {
     let resData = res.Data || {};
     let records = resData.Results || [];
     let pagingInfo = resData.Paging || this.state.pagingInfo || $MN.DefaultPaging;
-    let errCode = res.Header.ErrCode;
+    let resHeader = res.Header;
 
-    return Object.assign({}, this.getResDescInfo(errCode), {
+    return Object.assign({}, this.getResDescInfo(resHeader), {
+    // return Object.assign({}, this.wrapResState(actingRef, resHeader, false), {
       [actingRef]: false,
       resData,
       records,
@@ -63,6 +87,7 @@ export default class ActionBasic extends Component {
     });
   }
   getStateBeforePost(params, actingRef) {
+    // return Object.assign({}, this.wrapResState(actingRef, {}, true), {
     return Object.assign({}, {
       [actingRef]: true,
     }, params);
@@ -101,7 +126,7 @@ export default class ActionBasic extends Component {
      * onRes@Func              发起的请求成功，包括业务错误
      */
     const {
-      method, data = {},
+      method, data = {}, onGetResInfo,
       stateBeforePost = {},
       stateAfterPostHook = (res) => {},
       actingRef = 'loading', recordsRef = 'Results',
@@ -122,6 +147,7 @@ export default class ActionBasic extends Component {
     if(sendDataRes) {
       CallFunc(onRes)(sendDataRes);
       CallFunc(onSuccess)(sendDataRes.Data);
+      CallFunc(onGetResInfo)(this.getResDescInfo(sendDataRes.Header.ErrCode));
       this.stateSetter(
         Object.assign({},
           this.defaultStateAfterPost(sendDataRes, actingRef, recordsRef),

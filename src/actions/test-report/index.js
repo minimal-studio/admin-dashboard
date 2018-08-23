@@ -61,11 +61,11 @@ export class ActionTestReport extends ActionReportBasic {
       })
     ];
   }
-  queryData = (formHelper) => {
-    console.log(formHelper);
+  queryData = (reportData) => {
+    console.log(reportData);
     let sendData = {
+      ...reportData,
       method: this.apis.SOME_API,
-      formHelperRef: formHelper,
       onSuccess: res => {
         // console.log(res);
       },
@@ -73,7 +73,6 @@ export class ActionTestReport extends ActionReportBasic {
 
       },
       stateAfterPostHook: (res) => {
-        console.log(res)
         return {
           records: testRemoteData
         }

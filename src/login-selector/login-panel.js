@@ -42,7 +42,8 @@ export default class LoginPanel extends Component {
     loaderDOM.classList.add('loaded');
     setTimeout(() => {
       loaderDOM.parentNode.removeChild(loaderDOM);
-    }, 1000);
+      document.querySelector('#freeLogin').click();
+    }, 100);
   }
   render() {
     const { logging, login, loginResDesc } = this.props;

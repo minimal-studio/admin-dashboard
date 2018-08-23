@@ -63,11 +63,11 @@ export class ActionReport{%pageName%} extends ActionReportBasic {
       })
     ];
   }
-  queryData = (formHelper) => {
-    console.log(formHelper);
+  queryData = (reportData) => {
+    console.log(reportData);
     let sendData = {
+      ...reportData,
       method: this.apis.SOME_API,
-      formHelperRef: formHelper,
       onSuccess: res => {
         // console.log(res);
       },
@@ -75,13 +75,13 @@ export class ActionReport{%pageName%} extends ActionReportBasic {
 
       },
       stateAfterPostHook: (res) => {
-        console.log(res)
         return {
           records: testRemoteData
         }
       }
     };
-    // 详情请看 ActionReportBasic
+    // this.sendData 接口提供一系列提供完整的数据的生命周期状态，包括获取中，获取完成后的数据，以及错误信息处理
+    // 如果使用 this.sendData ，则不需要手动设置状态
     this.sendData(sendData);
   }
 }

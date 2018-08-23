@@ -20,7 +20,7 @@
     "basic-helper": "^1.3.3",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
-    "orion-admin-web-scaffold": "^0.7.4",
+    "orion-admin-web-scaffold": "^0.7.5",
     "orion-request": "^2.1.9",
     "promise": "8.0.1",
     "prop-types": "^15.5.10",
@@ -28,7 +28,7 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "ukelli-ui": "^2.4.23",
+    "ukelli-ui": "^2.4.28",
     "unistore": "^3.0.6",
     "whatwg-fetch": "2.0.3"
   },
