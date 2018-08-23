@@ -14,10 +14,38 @@ import {
   Loading, Button, Toast,
   TableBody, ConditionGenerator
 } from 'ukelli-ui';
+import {DebounceClass} from 'basic-helper';
 
-const delayExec = new $GH.Debounce();
+const delayExec = new DebounceClass();
 
 export default class ReportTableLayout extends Component {
+  static propTypes = {
+    onQueryData: PropTypes.func.isRequired,
+    showCondition: PropTypes.bool,
+    loadingCondition: PropTypes.bool,
+    needPaging: PropTypes.bool,
+    needCheck: PropTypes.bool,
+    autoQuery: PropTypes.bool,
+    didMountQuery: PropTypes.bool,
+    needCount: PropTypes.bool,
+  
+    keyMapper: PropTypes.array.isRequired,
+    conditionOptions: PropTypes.array,
+  
+    records: PropTypes.array.isRequired,
+    pagingInfo: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
+    template: PropTypes.string,
+    hasErr: PropTypes.bool,
+    resDesc: PropTypes.string
+  };
+  static defaultProps = {
+    autoQuery: false,
+    didMountQuery: true,
+    needCount: false,
+    showCondition: true,
+    needPaging: true,
+  }
   constructor(props) {
     super(props);
 
@@ -108,7 +136,7 @@ export default class ReportTableLayout extends Component {
 
   whenMountedQuery = (data) => {
     if(this.didMountQueried) return;
-    const {didMountQuery = true, onQueryData} = this.props;
+    const {onQueryData} = this.props;
     delayExec.exec(() => {
       onQueryData(this.getQueryData(data));
     }, 100);
@@ -118,8 +146,8 @@ export default class ReportTableLayout extends Component {
   render() {
     const {
       records = [], pagingInfo = {}, loading = '', children, template = 'table',
-      needCount = true, autoQuery = true, showCondition = true,
-      needPaging = true, loadingCondition = false, didMountQuery = true,
+      needCount, autoQuery, showCondition,
+      needPaging, loadingCondition = false,
       conditionOptions, isMobile,
       onQueryData
     } = this.props;
@@ -196,24 +224,27 @@ export default class ReportTableLayout extends Component {
         }}
         conditionConfig={conditionOptions || []}
         className={showCondition ? undefined : 'hide'}>
-        <div className="">
-          <Button
-            text="查询"
-            loading={loading}
-            onClick={e => onQueryData(this.getQueryData())}/>
-          <Button
-            text={displayFloat ? '隐藏小数点' : '显示小数点'}
-            className="default ml10"
-            onClick={e => this.toggleFloat()}/>
-        </div>
       </ConditionGenerator>
     );
+    const actionArea = (
+      <div className="action-area">
+        <Button
+          text="查询"
+          loading={loading}
+          onClick={e => onQueryData(this.getQueryData())}/>
+        <Button
+          text={displayFloat ? '隐藏小数点' : '显示小数点'}
+          className="default ml10"
+          onClick={e => this.toggleFloat()}/>
+      </div>
+    )
 
     return (
       <div className="report-table-layout">
         <Toast ref={toast => this.toast = toast}/>
         <div className="report-fix-con" ref="fixReportCon">
           {conditionHelper}
+          {actionArea}
           {children}
         </div>
         {templateDOM}
@@ -222,24 +253,3 @@ export default class ReportTableLayout extends Component {
     )
   }
 }
-
-ReportTableLayout.propTypes = {
-  onQueryData: PropTypes.func.isRequired,
-  showCondition: PropTypes.bool,
-  loadingCondition: PropTypes.bool,
-  needPaging: PropTypes.bool,
-  needCheck: PropTypes.bool,
-  autoQuery: PropTypes.bool,
-  didMountQuery: PropTypes.bool,
-  needCount: PropTypes.bool,
-
-  keyMapper: PropTypes.array.isRequired,
-  conditionOptions: PropTypes.array,
-
-  records: PropTypes.array.isRequired,
-  pagingInfo: PropTypes.object,
-  loading: PropTypes.bool.isRequired,
-  template: PropTypes.string,
-  hasErr: PropTypes.bool,
-  resDesc: PropTypes.string
-};

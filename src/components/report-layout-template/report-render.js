@@ -10,21 +10,23 @@
  export function ReportRenderNormal(Action, passProps = {}) {
    return class C extends Action {
      getActionBtn(item) {
-       return (
-         <span className="link-btn" onClick={e => {
-             this.showDetail(item);
-           }}>
-           详情
-         </span>
-       )
+       const {actionBtnConfig} = this;
+       if(!actionBtnConfig) return '-';
+       return actionBtnConfig.map((config, idx) => {
+         const {text, action} = config;
+         return (
+          <span className="link-btn mr5" key={idx} onClick={e => {
+            action(item);
+          }}>{text}</span>
+        )
+       })
      }
      render() {
-       const {needCount = true} = this;
        return (
          <ReportLayoutRender
            keyMapper={this.keyMapper}
            conditionOptions={this.conditionOptions}
-           needCount={needCount}
+           needCount={this.needCount}
 
            {...passProps}
            {...this.state}

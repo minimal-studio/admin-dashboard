@@ -6,11 +6,14 @@ import {ActionReport{%pageName%}} from '../action-refs';
 import {ReportRenderNormal} from '../../components/report-layout-template';
 
 class Middleware extends ActionReport{%pageName%} {
-  getActionBtn(...args) {
-    return (
-      <span className="link-btn" onClick={e => this.showDetail(...args)}>详情</span>
-    )
-  }
+  actionBtnConfig = [
+    {
+      text: '编辑',
+      action: (item) => {
+        this.showDetail(item);
+      }
+    },
+  ]
   showDetail(item) {
     console.log(item)
     let ModalId = ShowGlobalModal({
