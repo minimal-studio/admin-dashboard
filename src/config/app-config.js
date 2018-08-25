@@ -48,7 +48,7 @@ function getDefaultFastestGate() {
   gateResSpeedTester.test();
   function handleRes(result) {
     const {fastestIdx, testRes} = result;
-    let fastUrl = testRes[fastestIdx];
+    let fastUrl = testRes[fastestIdx] || {};
     SetGateUrl(fastUrl.originUrl);
   }
 }
