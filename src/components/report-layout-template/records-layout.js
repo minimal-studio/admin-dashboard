@@ -151,7 +151,7 @@ export default class ReportTableLayout extends Component {
   }
 
   handleRes = ({resDesc, hasErr}) => {
-    this.toast.show(resDesc, hasErr ? 'error' : 'success');
+    hasErr && this.toast.show(resDesc, hasErr ? 'error' : 'success');
   }
 
   render() {
@@ -159,7 +159,7 @@ export default class ReportTableLayout extends Component {
       records = [], pagingInfo = {}, loading = '', children, template = 'table',
       needCount, autoQuery, showCondition,
       needPaging, loadingCondition = false,
-      conditionOptions, isMobile,
+      conditionOptions, isMobile, gm,
       onQueryData
     } = this.props;
 
@@ -201,7 +201,7 @@ export default class ReportTableLayout extends Component {
         )
     }
     if(!templateDOM) return (
-      <span>没有对应的模板</span>
+      <span>{gm('没有对应的模板')}</span>
     );
     const pagingDOM = needPaging ? (
       <PagingBtn
@@ -235,11 +235,11 @@ export default class ReportTableLayout extends Component {
     const actionArea = (
       <div className="action-area">
         <Button
-          text="查询"
+          text={gm("查询")}
           loading={loading}
           onClick={e => this.handleQueryData()}/>
         <Button
-          text={displayFloat ? '隐藏小数点' : '显示小数点'}
+          text={gm(displayFloat ? '隐藏小数点' : '显示小数点')}
           className="default ml10"
           onClick={e => this.toggleFloat()}/>
       </div>
