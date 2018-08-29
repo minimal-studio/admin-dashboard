@@ -101,8 +101,9 @@ git clone https://github.com/SANGET/orion-admin-seed.git
 
 ## 多语言支持
 
+使用了中文的 map 方式，编码时更方便，语言包在 /public/i18n/ 中
+
 ## TODO
 
 - 实现与之配套的 web server 支持
 - 实现可视化的生成操作
-- 支持多语言
