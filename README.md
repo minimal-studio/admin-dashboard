@@ -99,7 +99,10 @@ orion add xtgg
 git clone https://github.com/SANGET/orion-admin-seed.git
 ```
 
+## 多语言支持
+
 ## TODO
 
 - 实现与之配套的 web server 支持
 - 实现可视化的生成操作
+- 支持多语言
