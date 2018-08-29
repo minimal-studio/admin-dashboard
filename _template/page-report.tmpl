@@ -1,9 +1,9 @@
 {%comment%}
 
-import React, {Component} from 'react';
-import {ShowGlobalModal} from 'ukelli-ui';
-import {ActionReport{%pageName%}} from '../action-refs';
-import {ReportRenderNormal} from '../../components/report-layout-template';
+import React, { Component } from 'react';
+import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { ActionReport{%pageName%} } from '../action-refs';
+import { ReportRenderNormal } from '../../components/report-layout-template';
 
 class Middleware extends ActionReport{%pageName%} {
   actionBtnConfig = [

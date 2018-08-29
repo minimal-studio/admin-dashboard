@@ -29,6 +29,11 @@ import VersionInfo from './version/version';
 
 const pageComponents = AllManagerPages;
 
+const i18nConfig = {
+  'zh-CN': '中文',
+  'en-US': 'English',
+}
+
 function selector(state) {
   return state;
 }
@@ -52,6 +57,7 @@ class LoginFilter extends React.Component {
                 title: 'title',
                 icon: 'icon',
               }}
+              i18nConfig={i18nConfig}
               HeaderPlugin={null}
               pageComponents={pageComponents}
             />
