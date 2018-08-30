@@ -21,7 +21,7 @@
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "orion-admin-web-scaffold": "^0.8.4",
-    "orion-request": "^2.1.11",
+    "orion-request": "^2.1.12",
     "promise": "8.0.1",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
