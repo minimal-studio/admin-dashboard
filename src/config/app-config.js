@@ -20,7 +20,7 @@ function getAllGateUrls() {
 const gateResSpeedTester = new GateResSpeedTesterClass();
 gateResSpeedTester.setConfig({
   gateUrls: getAllGateUrls(),
-  suffix: '/back'
+  suffix: '/sudo'
 });
 
 function SetGateUrl(selectedGate) {

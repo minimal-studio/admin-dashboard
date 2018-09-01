@@ -31,3 +31,5 @@ package-lock.json
 yarn.lock
 public/posts/
 version.js
+
+packages/

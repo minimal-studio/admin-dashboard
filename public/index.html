@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
-  <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
-  <link rel="stylesheet" href="/css/loading.css">
+  <link rel="shortcut icon" type="image/png" href="./favicon.ico" />
+  <link rel="stylesheet" href="./css/loading.css">
   <title>Orion admin web seed</title>
 </head>
 
@@ -33,9 +33,6 @@
           document.body.removeChild(document.querySelector('#processScript'));
         }, 800);
       }
-
-      window.FEManagerURL = "http://127.0.0.1:3000/manager/fe/___fe___/"
-      window.watchUrl = "https://127.0.0.1:3000/watch/___watch___/"
 
       function loadScript(srcouce, callback) {
         var times = 0;
@@ -71,7 +68,7 @@
       onloadBundle();
     })(window);
   </script>
+  <link rel="stylesheet" href="./css/flatpickr/light.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/flatpickr/light.css">
 </body>
 </html>
