@@ -29,7 +29,7 @@ function SetGateUrl(selectedGate) {
    */
   let gateUrl = selectedGate || gateResSpeedTester.getFastestGate();
 
-  let currReqUrl = `${gateUrl}/back`;
+  let currReqUrl = `${gateUrl}/test`;
   // let currPollUrl = `${gateUrl}/back2`;
 
   /**

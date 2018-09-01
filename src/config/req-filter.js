@@ -34,15 +34,15 @@ function getCommonHeader() {
  * 设置 $request 对象的 res
  */
 function handleRes({resData, callback}) {
-  let errcode = resData.Header.ErrCode;
-  switch (errcode.Code) {
-    case '30003':
-    case '30024':
-    case '30039':
-      // TODO 处理登录错误的业务
-      // onLoginFail(errcode.Desc);
-      break;
-  }
+  // let errcode = resData.errCode;
+  // switch (errcode) {
+  //   case '1':
+  //   case '2':
+  //   case '3':
+  //     // TODO 处理登录错误的业务
+  //     // onLoginFail(errcode.Desc);
+  //     break;
+  // }
 }
 
 /**

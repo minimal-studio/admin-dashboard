@@ -1,5 +1,4 @@
 import createStore from 'unistore'
-import {$request} from 'orion-request';
 import {AUTH_APIS} from './apis';
 
 import NAV_MENU_CONFIG from '../config/nav-config';
@@ -17,8 +16,9 @@ let defaultAuthStore = {
 let authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
-  let userInfo = resData.AdminUser;
-  let username = resData.AdminUser.AdminName;
+  let userInfo = resData;
+  let username = resData.AdminName;
+  userInfo.username = username;
   // let menuStore = (userInfo.Menus || {}).Child;
   let sessID = resData.SessId;
   // delete userInfo['Menus'];
@@ -60,19 +60,17 @@ let authActions = store => ({
     }
   },
   async login(state, form) {
-   if (form.AdminName === 'alex' && form.Password === 'qwe123') {
-     return {isLogin: true}
-   } else {
-     return {isLogin: false}
-   }
-    
+    let isPass = false;
+    if (form.AdminName === 'alex' && form.Password === 'qwe123') {
+      isPass = true;
+    }
     store.setState({
       logging: true
     });
     let loginRes = await AUTH_APIS.login(form);
-    let isLogin = loginRes.Header.ErrCode.Code == '0';
+    let isLogin = isPass;
     if(isLogin) {
-      onLoginSuccess(store, loginRes.Data);
+      onLoginSuccess(store, form);
     } else {
       store.setState({
         logging: false,
