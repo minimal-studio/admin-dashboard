@@ -4,5 +4,8 @@
   "测试表单": "TestForm",
   "系统管理": "SysManager",
   "前端资源管理": "F-E-manager",
+  "范例菜单": "Demo menu",
+  "生成的菜单": "Generated menu",
+  "版本": "version",
   "查询": "Query"
 }

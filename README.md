@@ -99,9 +99,23 @@ orion add xtgg
 git clone https://github.com/SANGET/orion-admin-seed.git
 ```
 
+## 更新应用程序版本
+
+[更新版本脚本及说明](./version/README.md)
+
 ## 多语言支持
 
-使用了中文的 map 方式，编码时更方便，语言包在 /public/i18n/ 中
+支持中文的 map 反射，编码方式更友好，语言包在 /public/i18n/ 中
+
+```js
+// 向所有 page 传入 gm (getMap) 语言反射
+let i18nConfig = {
+  '值': 'key'
+}
+gm('值');
+```
+
+TODO 完善自动化调用翻译接口自动翻译基于中文的语言包
 
 ## TODO
 

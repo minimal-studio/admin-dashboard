@@ -4,7 +4,7 @@ const NAV_MENU_CONFIG = [
   generateNavConfig,
   {
     title: '范例菜单',
-    icon: 'demo',
+    icon: 'feather-alt',
     child: [
       {
         title: '首页',
@@ -26,7 +26,7 @@ const NAV_MENU_CONFIG = [
   },
   {
     title: '系统管理',
-    icon: 'system',
+    icon: 'chalkboard',
     child: [
       {
         title: '前端资源管理',

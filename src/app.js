@@ -25,7 +25,7 @@ import './app.scss';
 import {ManagerAPP} from 'orion-admin-web-scaffold';
 import LoginSelector from './login-selector';
 import {authStore, authActions} from './login-actions';
-import VersionInfo from './version/version';
+import VersionInfo from './version.json';
 
 const pageComponents = AllManagerPages;
 

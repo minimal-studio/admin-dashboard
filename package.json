@@ -10,7 +10,8 @@
     "build": "node scripts/build.js",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setVersion",
-    "setVersion": "./setversion.sh; node setversion.js",
+    "setAppVersion": "./version/set-app-version.sh",
+    "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
     "autoZip": "npm run setVersion; npm run build; npm run zipBuild;",
     "update": "yarn add orion-admin-web-scaffold ukelli-ui -W",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
