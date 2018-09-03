@@ -9,7 +9,7 @@
     "start": "cross-env PORT=6086 PLATFORM=workspace_admin node scripts/start.js",
     "build": "node scripts/build.js",
     "initWrokspace": "node ./scripts/init-workspace",
-    "init": "git init; npm i; npm run setVersion",
+    "init": "git init; npm i; npm run setAppVersion",
     "setAppVersion": "./version/set-app-version.sh",
     "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
     "autoZip": "npm run setVersion; npm run build; npm run zipBuild;",
