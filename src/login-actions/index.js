@@ -32,6 +32,7 @@ function onLoginSuccess(store, resData) {
     // menuStore
   });
 
+  $GH.EventEmitter.emit('LOGIN_SUCCESS', {userInfo});
   sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
 }
 
