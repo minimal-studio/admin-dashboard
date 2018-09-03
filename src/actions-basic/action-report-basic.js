@@ -41,10 +41,6 @@ export default class ActionReportBasic extends ActionBasic {
 
     const {StartTime, EndTime} = conditionData || data;
     let StartDate = null, EndDate = null;
-    if (conditionData.StartDate) {
-      StartDate = conditionData.StartDate.slice(0, 10)
-      EndDate = conditionData.EndDate.slice(0, 10)
-    }
     let postData = Object.assign({}, options, {
       method,
       data: Object.assign({}, conditionData, data, {
