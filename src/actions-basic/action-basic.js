@@ -24,62 +24,26 @@ export default class ActionBasic extends Component {
       loading: false,
       hasErr: false,
       resDesc: '',
-      // fetching: false,
-      // resStates: {
-      //   /**
-      //    * 用于记录一个 action 多种请求的状态的情况
-      //    * 例如
-      //    * 1. 获取表格的条件的状态
-      //    * 2. 提交表格时的 submit 的状态
-      //    */
-      //   [defaultActingRef]: {
-      //     err: null,
-      //     desc: '',
-      //     actingRef: defaultActingRef,
-      //     fetching: false,
-      //     showTip: true
-      //   }
-      // },
       resData: {},
       records: [],
       pagingInfo: $MN.DefaultPaging,
     };
   }
-  // getResState(actingRef) {
-  //   return this.state.resStates[actingRef];
-  // }
-  // wrapResState(actingRef, resHeader, acting, showTip) {
-  //   let {hasErr, resDesc} = this.getResDescInfo(resHeader);
-  //   let {resStates} = this.state;
-  //   return {
-  //     ...resStates,
-  //     [actingRef]: {
-  //       err: hasErr,
-  //       desc: resDesc,
-  //       actingRef,
-  //       acting
-  //     }
-  //   }
-  // }
   toBasicUnitMoney(money) {
     return ToBasicUnitMoney(money);
   }
-  getResDescInfo(resHeader = {}) {
+  getResDescInfo(resData = {}) {
     const resInfo = {
-      hasErr: resHeader.Code != '0',
-      resDesc: resHeader.Desc
+      hasErr: !!resData.err,
+      resDesc: resData.err
     };
-    // this.showResDesc(resInfo)
     return resInfo;
   }
-  defaultStateAfterPost(res, actingRef, recordsRef) {
-    let resData = res.Data || {};
-    let records = resData.Results || [];
-    let pagingInfo = resData.Paging || this.state.pagingInfo || $MN.DefaultPaging;
-    let resHeader = res.Header;
+  defaultStateAfterPost(resData, actingRef) {
+    let records = resData.data || [];
+    let pagingInfo = resData.paging || this.state.pagingInfo || $MN.DefaultPaging;
 
-    return Object.assign({}, this.getResDescInfo(resHeader), {
-    // return Object.assign({}, this.wrapResState(actingRef, resHeader, false), {
+    return Object.assign({}, this.getResDescInfo(resData), {
       [actingRef]: false,
       resData,
       records,
@@ -87,7 +51,6 @@ export default class ActionBasic extends Component {
     });
   }
   getStateBeforePost(params, actingRef) {
-    // return Object.assign({}, this.wrapResState(actingRef, {}, true), {
     return Object.assign({}, {
       [actingRef]: true,
     }, params);
@@ -129,7 +92,7 @@ export default class ActionBasic extends Component {
       method, data = {}, onGetResInfo,
       stateBeforePost = {},
       stateAfterPostHook = (res) => {},
-      actingRef = 'loading', recordsRef = 'Results',
+      actingRef = 'loading',
       onSuccess, onRes
     } = options;
 
@@ -146,11 +109,11 @@ export default class ActionBasic extends Component {
 
     if(sendDataRes) {
       CallFunc(onRes)(sendDataRes);
-      CallFunc(onSuccess)(sendDataRes.Data);
-      CallFunc(onGetResInfo)(this.getResDescInfo(sendDataRes.Header.ErrCode));
+      CallFunc(onSuccess)(sendDataRes.data);
+      CallFunc(onGetResInfo)(this.getResDescInfo(sendDataRes));
       this.stateSetter(
         Object.assign({},
-          this.defaultStateAfterPost(sendDataRes, actingRef, recordsRef),
+          this.defaultStateAfterPost(sendDataRes, actingRef),
           CallFunc(stateAfterPostHook)(sendDataRes)
         )
       );

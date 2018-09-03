@@ -58,7 +58,7 @@ class LoginFilter extends React.Component {
                 icon: 'icon',
               }}
               i18nConfig={i18nConfig}
-              HeaderPlugin={null}
+              pluginComponent={{}}
               pageComponents={pageComponents}
             />
           ): null

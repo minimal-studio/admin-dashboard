@@ -31,22 +31,8 @@ function getCommonHeader() {
 }
 
 /**
- * 设置 $request 对象的 res
- */
-function handleRes({resData, callback}) {
-  // let errcode = resData.errCode;
-  // switch (errcode) {
-  //   case '1':
-  //   case '2':
-  //   case '3':
-  //     // TODO 处理登录错误的业务
-  //     // onLoginFail(errcode.Desc);
-  //     break;
-  // }
-}
-
-/**
- * $request send data 前的 wrapper 函数
+ * 前端应该与服务端的接口分离
+ * 通过此方法实现对接远端需要的 request 数据
  */
 $request.wrapDataBeforeSend = (options) => {
   const {isCompress, method, data, params, Header} = options;
@@ -60,11 +46,36 @@ $request.wrapDataBeforeSend = (options) => {
 }
 
 /**
- * 当 $request 有相应时，返回
+ * 前端应该与服务端的接口分离
+ * 通过此方法实现对接 response 数据
+ * 前端统一接口
+ * resData = {
+ *   data: {} || [], // 对接远端接口的数据
+ *   paging: {},     // 分页信息
+ *   resCode: '',    // response 的业务代码，0 或者没有代指业务错误
+ *   err: null || 'description' // 对接 response 的错误描述
+ * }
  */
 $request.setResDataHook = (resData) => {
-  resData.data = resData.Data || {};
+  Object.assign(resData, {
+    data: resData.data || resData.Data,
+  });
   return resData;
+}
+
+/**
+ * 设置 $request 对象的 res
+ */
+function handleRes({resData, callback}) {
+  // let errcode = resData.errCode;
+  // switch (errcode) {
+  //   case '1':
+  //   case '2':
+  //   case '3':
+  //     // TODO 处理登录错误的业务
+  //     // onLoginFail(errcode.Desc);
+  //     break;
+  // }
 }
 
 /**

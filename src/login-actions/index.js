@@ -74,7 +74,7 @@ let authActions = store => ({
     } else {
       store.setState({
         logging: false,
-        loginResDesc: loginRes.Header.ErrCode.Desc
+        loginResDesc: loginRes.err
       });
     }
   },
