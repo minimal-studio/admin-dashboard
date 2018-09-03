@@ -4,6 +4,7 @@ import {iconMapper, iconPrefix} from './icon-mapper';
 
 import {setUkelliConfig} from 'ukelli-ui';
 import {initFields} from '../lib/fields';
+import {setFEDeployConfig} from 'orion-admin-web-scaffold/fe-deploy';
 
 import {
   GateResSpeedTesterClass,
@@ -59,6 +60,13 @@ function getDefaultFastestGate() {
     getDefaultFastestGate();
   }, 100);
 })();
+
+$GH.EventEmitter.subscribe('LOGIN_SUCCESS', ({userInfo}) => {
+  setFEDeployConfig({
+    username: userInfo.username,
+    apiUrl: window.F_E_DeploymentUrl
+  })
+});
 
 const defaultPaging = {
   UsePaging: 1,

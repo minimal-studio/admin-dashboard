@@ -17,8 +17,7 @@ import {
 import HomePage from './home-page';
 import TestForm from './test-form';
 import TestReport from './test-report';
-import FEDeploy, {setApiUrl} from 'orion-admin-web-scaffold/fe-deploy';
-setApiUrl(window.F_E_DeploymentUrl);
+import FEDeploy from 'orion-admin-web-scaffold/fe-deploy';
 
 // const TestReport = ReportRenderNormal(ActionTestReport);
 const FormWithTMPL = FormRender(ActionTestForm);
