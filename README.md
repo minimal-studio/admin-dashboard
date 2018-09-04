@@ -81,7 +81,7 @@ npm run init
 npm start
 ```
 
-浏览器打开 <a href="http://127.0.0.1:3000/dyr/test" target="_blank">http://127.0.0.1:3000/dyr/test</a>
+浏览器打开 <a href="http://127.0.0.1:28101/dyr/test" target="_blank">http://127.0.0.1:28101/dyr/test</a>
 
 -----------
 
