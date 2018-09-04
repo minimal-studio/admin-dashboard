@@ -7,6 +7,7 @@
 - ukelli-ui
 - orion-request
 - orion-admin-web-scaffold
+- orion-web-server
 
 -----------
 
@@ -69,7 +70,22 @@ orion-request 模块提供了通讯加密，消息体压缩，以及处理 req �
 
 -----------
 
-## 开始使用 orion-admin-web-seed 脚手架工程
+## 准备 web server
+
+安装到任意目录
+
+```shell
+git clone https://github.com/SANGET/orion-web-server.git yourProjName
+cd yourProjName
+npm run init
+npm start
+```
+
+浏览器打开 <a href="http://127.0.0.1:3000/dyr/test" target="_blank">http://127.0.0.1:3000/dyr/test</a>
+
+-----------
+
+## 开始使用 orion-admin-web-seed 脚手架工程（开发环境）
 
 ### 1. 推荐使用 orion-admin-generator 自动化构建工具，自动构建 action，page ，添加菜单数据
 
@@ -107,11 +123,22 @@ npm start
 
 添加功能页面，以 “系统公告 xtgg” 为例
 
+同步操作 orion addp *pageName* *pageAlias* *pageTypeFlag*
+
+```shell
+orion addp xtgg 系统公告 -r
+
+# 此处是同步操作, 创建一个 report 类型的系统公告 action 和 page
+# 页面类型 -r == report | -f == form | -i == iframe(未实现) | -m == markdown(未实现)
+```
+
+分步操作
+
 ```shell
 orion add xtgg
 
 # 此处同样是分步操作，根据提示选择页面的类型，输入页面的中文名称即可
-# 页面类型 report | form | iframe(未实现)
+# 页面类型 report | form | iframe(未实现) | markdown(未实现)
 # 后面会详细讲述不同的类型
 ```
 
