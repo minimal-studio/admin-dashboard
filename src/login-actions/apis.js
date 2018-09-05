@@ -1,18 +1,16 @@
+import { $request } from 'uke-request';
+
 export const AUTH_APIS = {
   LOGIN : 'admin_login',
-  LOGOUT: 'logout'
+  LOGOUT: 'admin_logout'
 }
 
 async function login(data) {
   let sendData = {
-    method: AUTH_APIS.LOGIN,
-    params: {
-      AdminName: data.AdminName
-    },
-    Data: data
+    data
   };
 
-  return $request.send({sendData});
+  return $request.send({sendData, path: '/auth-login'});
 }
 
 async function logout() {

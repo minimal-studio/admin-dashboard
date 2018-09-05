@@ -6,11 +6,8 @@ import {setUkelliConfig} from 'ukelli-ui';
 import {initFields} from '../lib/fields';
 import {setFEDeployConfig} from 'uke-admin-web-scaffold/fe-deploy';
 
-import {
-  GateResSpeedTesterClass,
-  openWindowUseHashUrl, PollClass
-} from 'uke-request';
-import {$request, PollingEntity} from './req-filter';
+import { GateResSpeedTesterClass } from 'uke-request';
+import { $request } from './req-filter';
 
 import { APIS } from './interface.js';
 

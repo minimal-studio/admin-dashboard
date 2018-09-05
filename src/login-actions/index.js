@@ -61,15 +61,12 @@ let authActions = store => ({
     }
   },
   async login(state, form) {
-    let isPass = false;
-    if (form.AdminName === 'alex' && form.Password === 'qwe123') {
-      isPass = true;
-    }
     store.setState({
       logging: true
     });
     let loginRes = await AUTH_APIS.login(form);
-    let isLogin = isPass;
+    let isLogin = !loginRes.err;
+    console.log(isLogin)
     if(isLogin) {
       onLoginSuccess(store, form);
     } else {

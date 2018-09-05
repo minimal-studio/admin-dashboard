@@ -35,13 +35,13 @@ function getCommonHeader() {
  * 通过此方法实现对接远端需要的 request 数据
  */
 $request.wrapDataBeforeSend = (options) => {
-  const {isCompress, method, data, params, Header} = options;
+  const {isCompress, method, data, ...params} = options;
   return {
-    Header: Object.assign({}, getCommonHeader(data), {
+    header: Object.assign({}, getCommonHeader(data), {
       Compress: isCompress ? 1 : 0,
       Method: method,
-    }, params),
-    Data: data
+    }, {...params}),
+    data
   }
 }
 
