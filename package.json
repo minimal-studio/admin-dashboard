@@ -12,7 +12,7 @@
     "init": "git init; npm i; npm run setAppVersion",
     "setAppVersion": "./version/set-app-version.sh",
     "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
-    "autoZip": "npm run setVersion; npm run build; npm run zipBuild;",
+    "autoZip": "npm run setAppVersion; npm run build; npm run zipBuild;",
     "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
   },

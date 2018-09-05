@@ -57,7 +57,7 @@ export class ActionTestForm extends ActionFormBasic {
       },
     ]
   };
-  transferIn = (formHelperRef) => {
+  action1 = (formHelperRef) => {
     let sendData = {
       method: 'api',
       formHelperRef,
@@ -67,7 +67,7 @@ export class ActionTestForm extends ActionFormBasic {
     }
     this.sendData(sendData);
   };
-  transferOut = (formHelperRef) => {
+  action2 = (formHelperRef) => {
     let sendData = {
       method: 'api',
       formHelperRef,
@@ -79,14 +79,14 @@ export class ActionTestForm extends ActionFormBasic {
   };
   btnConfig = [
     {
-      action: this.transferIn,
-      text: '转入游戏',
+      action: this.action1,
+      text: '按钮1',
       actingRef: 'INing',
       className: 'theme'
     },
     {
-      action: this.transferOut,
-      text: '转回平台',
+      action: this.action2,
+      text: '按钮2',
       actingRef: 'OUTing',
       className: 'red'
     },
