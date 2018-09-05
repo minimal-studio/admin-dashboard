@@ -63,9 +63,15 @@
         }
         load();
       }
-      window.DefaultAdmin = 'alex';
-      window.DefaultPW = 'qwe123';
       onloadBundle();
+      window.OnLuanched = function() {
+        var loaderDOM = document.querySelector('#loadingBg');
+        if(!loaderDOM) return;
+        loaderDOM.classList.add('loaded');
+        setTimeout(function() {
+          loaderDOM.parentNode.removeChild(loaderDOM);
+        }, 100);
+      }
     })(window);
   </script>
   <link rel="stylesheet" href="./css/flatpickr/light.css">

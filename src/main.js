@@ -22,6 +22,7 @@ import * as AllManagerPages from './pages';
  */
 import './app.scss';
 
+import { CallFunc } from 'basic-helper';
 import {ManagerAPP} from 'uke-admin-web-scaffold';
 import LoginSelector from './login-selector';
 import {authStore, authActions} from './login-actions';
@@ -39,9 +40,10 @@ function selector(state) {
 }
 
 class LoginFilter extends React.Component {
-  // componentDidMount() {
-  //   this.props.autoLogin();
-  // }
+  componentDidMount() {
+    // this.props.autoLogin();
+    CallFunc(window.OnLuanched)();
+  }
   render() {
     const {isLogin} = this.props;
     return (

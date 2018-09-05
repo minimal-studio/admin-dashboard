@@ -37,7 +37,7 @@ module.exports = {
     path: paths.appBuild,
     filename: 'static/js/[name].bundle.js',
     chunkFilename: 'static/js/[name].chunk.js',
-    publicPath: publicPath,
+    publicPath: './',
     devtoolModuleFilenameTemplate: info =>
       path
         .relative(paths.appSrc, info.absoluteResourcePath)
@@ -75,7 +75,7 @@ module.exports = {
           },
           {
             test: /\.(js|jsx)$/,
-            include: paths.srcPaths,
+            include: paths.workspacePath,
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,

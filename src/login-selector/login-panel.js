@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 
 import { FormGenerator, Button, TipPanel } from 'ukelli-ui';
 
+let isDev = process.env.NODE_ENV == 'development';
+
 var defaultUserInfo = {
-  AdminName: window.DefaultAdmin || '',
-  Password: window.DefaultPW || ''
+  AdminName: window.DefaultAdmin || (isDev ? 'alex' : ''),
+  Password: window.DefaultPW || (isDev ? 'qwe123' : '')
 };
 
 export default class LoginPanel extends Component {
@@ -37,12 +39,8 @@ export default class LoginPanel extends Component {
     ];
   }
   componentDidMount() {
-    let loaderDOM = document.querySelector('#loadingBg');
-    if(!loaderDOM) return;
-    loaderDOM.classList.add('loaded');
     setTimeout(() => {
-      loaderDOM.parentNode.removeChild(loaderDOM);
-      document.querySelector('#freeLogin').click();
+      // isDev && document.querySelector('#freeLogin').click();
     }, 100);
   }
   render() {
@@ -63,7 +61,9 @@ export default class LoginPanel extends Component {
             ) : null
           }
           <FormGenerator
-            // className="login"
+            className="login-form-container"
+            // inlineTitle={true}
+            showInputTitle={true}
             formOptions={this.formOptions} ref="formHelper">
             <div className="form-group">
               <button className="btn theme flat login-btn" id="freeLogin">

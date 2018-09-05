@@ -75,11 +75,22 @@ module.exports = {
           },
           {
             test: /\.(js|jsx)$/,
-            include: paths.srcPaths,
-            loader: require.resolve('babel-loader'),
-            options: {
-              cacheDirectory: true,
+            exclude: /node_modules/,
+            include: paths.workspacePath,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  "@babel/env", "@babel/preset-react"
+                ],
+                plugins: [
+                  "@babel/plugin-proposal-class-properties",
+                ]
+              }
             },
+            // options: {
+            //   cacheDirectory: true,
+            // },
           },
           {
             test: /\.scss$/,
