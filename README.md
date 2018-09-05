@@ -23,7 +23,7 @@ npm i @babel/core @babel/node @babel/cli -g
 
 -----------
 
-## 问题
+## 遇到的实际问题
 
 ### 管理后台的前端开发部分总会遇到一些问题
 
