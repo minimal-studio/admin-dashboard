@@ -6,7 +6,7 @@ export default class HomePage extends Component {
     return (
       <div className="home-page">
         <TipPanel title="Hi～" texts={[
-          '欢迎来到 orion admin web 的示例项目。',
+          '欢迎来到 uke admin web 的示例项目。',
           '这是提供了基础管理后台的脚手架、命令生成工具，以及一套完整的开发流程。',
         ]}/>
         <TipPanel title="这是什么？" texts={[

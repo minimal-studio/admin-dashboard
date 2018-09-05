@@ -5,9 +5,9 @@
 - NodeJs
 - basic-helper
 - ukelli-ui
-- orion-request
-- orion-admin-web-scaffold
-- orion-web-server
+- uke-request
+- uke-admin-web-scaffold
+- uke-web-server
 
 -----------
 
@@ -46,7 +46,7 @@
 
 ### 前端数据结构与远端数据结构分离
 
-orion-request 模块提供了通讯加密，消息体压缩，以及处理 req 和 res 数据结构的 hook 函数
+uke-request 模块提供了通讯加密，消息体压缩，以及处理 req 和 res 数据结构的 hook 函数
 
 -----------
 
@@ -75,7 +75,7 @@ orion-request 模块提供了通讯加密，消息体压缩，以及处理 req �
 安装到任意目录
 
 ```shell
-git clone https://github.com/SANGET/orion-web-server.git yourProjName
+git clone https://github.com/SANGET/uke-web-server.git yourProjName
 cd yourProjName
 npm run init
 npm start
@@ -85,22 +85,22 @@ npm start
 
 -----------
 
-## 开始使用 orion-admin-web-seed 脚手架工程（开发环境）
+## 开始使用 uke-admin-web-seed 脚手架工程（开发环境）
 
-### 1. 推荐使用 orion-admin-generator 自动化构建工具，自动构建 action，page ，添加菜单数据
+### 1. 推荐使用 uke-admin-generator 自动化构建工具，自动构建 action，page ，添加菜单数据
 
-安装 orion cli
+安装 uke cli
 
 ```shell
-npm i orion-admin-generator -g # 安装成功可以使用 orion cli
+npm i uke-admin-generator -g # 安装成功可以使用 uke cli
 
-orion -v
+uke -v
 ```
 
 生成项目，根据提示操作即可，方便轻松
 
 ```shell
-orion init
+uke init
 # 此处是分步操作，根据提示，分别输入项目的英文名称，开发者名称
 # 以下例子使用 test-proj
 # 初始化成功后会在当前目录生成 ./test-proj 项目
@@ -123,10 +123,10 @@ npm start
 
 添加功能页面，以 “系统公告 xtgg” 为例
 
-同步操作 orion addp *pageName* *pageAlias* *pageTypeFlag*
+同步操作 uke addp *pageName* *pageAlias* *pageTypeFlag*
 
 ```shell
-orion addp xtgg 系统公告 -r
+uke addp xtgg 系统公告 -r
 
 # 此处是同步操作, 创建一个 report 类型的系统公告 action 和 page
 # 页面类型 -r == report | -f == form | -i == iframe(未实现) | -m == markdown(未实现)
@@ -135,7 +135,7 @@ orion addp xtgg 系统公告 -r
 分步操作
 
 ```shell
-orion add xtgg
+uke add xtgg
 
 # 此处同样是分步操作，根据提示选择页面的类型，输入页面的中文名称即可
 # 页面类型 report | form | iframe(未实现) | markdown(未实现)
@@ -147,7 +147,7 @@ orion add xtgg
 ### 2. 手动添加页面的 action 和 page
 
 ```shell
-git clone https://github.com/SANGET/orion-admin-seed.git
+git clone https://github.com/SANGET/uke-admin-seed.git
 ```
 
 -----------

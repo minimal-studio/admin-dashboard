@@ -9,10 +9,8 @@
 
 import React, {Component, PureComponent} from 'react';
 import ActionBasic from './action-basic';
-import {wrapMapperToTextValue} from '../lib/condition-mapper';
 
 export default class ActionFormBasic extends ActionBasic {
-  wrapMapperToTextValue = wrapMapperToTextValue;
   checkForm(formHelperRef) {
     let isPass = true;
     if(!!formHelperRef) {

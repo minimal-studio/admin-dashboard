@@ -3,7 +3,7 @@
  */
 
 import {EventEmitter} from 'basic-helper';
-import {$request, PollClass} from 'orion-request';
+import {$request, PollClass} from 'uke-request';
 import {getUserInfo, onLoginFail} from '../login-actions';
 
 import {authStore} from '../login-actions';

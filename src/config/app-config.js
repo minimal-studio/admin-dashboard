@@ -4,12 +4,12 @@ import {iconMapper, iconPrefix} from './icon-mapper';
 
 import {setUkelliConfig} from 'ukelli-ui';
 import {initFields} from '../lib/fields';
-import {setFEDeployConfig} from 'orion-admin-web-scaffold/fe-deploy';
+import {setFEDeployConfig} from 'uke-admin-web-scaffold/fe-deploy';
 
 import {
   GateResSpeedTesterClass,
   openWindowUseHashUrl, PollClass
-} from 'orion-request';
+} from 'uke-request';
 import {$request, PollingEntity} from './req-filter';
 
 import { APIS } from './interface.js';
