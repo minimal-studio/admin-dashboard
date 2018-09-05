@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "cross-env PORT=6086 PLATFORM=workspace_admin node scripts/start.js",
+    "start": "PORT=6086 PLATFORM=workspace_admin node scripts/start.js",
     "build": "node scripts/build.js",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
