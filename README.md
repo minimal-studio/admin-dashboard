@@ -3,11 +3,19 @@
 ## 依赖
 
 - NodeJs
+- Babel 7
+- Webpack 4
 - basic-helper
 - ukelli-ui
 - uke-request
 - uke-admin-web-scaffold
 - uke-web-server
+
+先安装 babel cli
+
+```shell
+npm i @babel/core @babel/node @babel/cli -g
+```
 
 -----------
 
