@@ -1,6 +1,7 @@
 import createStore from 'unistore'
-import {AUTH_APIS} from './apis';
+import { CallFunc } from 'basic-helper';
 
+import {AUTH_APIS} from './apis';
 import NAV_MENU_CONFIG from '../config/nav-config';
 
 let defaultAuthStore = {
@@ -60,14 +61,14 @@ let authActions = store => ({
       onLoginSuccess(store, prevLoginData);
     }
   },
-  async login(state, form) {
+  async login(state, form, callback) {
     store.setState({
       logging: true
     });
     let loginRes = await AUTH_APIS.login(form);
     let isLogin = !loginRes.err;
-    console.log(isLogin)
     if(isLogin) {
+      CallFunc(callback)(form);
       onLoginSuccess(store, form);
     } else {
       store.setState({

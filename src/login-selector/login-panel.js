@@ -4,15 +4,24 @@ import React, { Component } from 'react';
 import { FormGenerator, Button, TipPanel } from 'ukelli-ui';
 
 let isDev = process.env.NODE_ENV == 'development';
-
-var defaultUserInfo = {
-  AdminName: window.DefaultAdmin || (isDev ? 'alex' : ''),
-  Password: window.DefaultPW || (isDev ? 'qwe123' : '')
-};
+let StoreLoginInfo = 'STORE_LOGIN_INFO';
 
 export default class LoginPanel extends Component {
   constructor(props) {
     super(props);
+
+    let preLoginFormInfo = window.Storage.getItem(StoreLoginInfo) || {};
+    try {
+      preLoginFormInfo = JSON.parse(preLoginFormInfo);
+    } catch(e) {
+      preLoginFormInfo = {};
+    }
+
+    var defaultUserInfo = {
+      AdminName: preLoginFormInfo.AdminName || (isDev ? 'alex' : ''),
+      Password: (isDev ? 'qwe123' : '')
+    };
+
     this.formOptions = [
       {
         ref: 'AdminName',
@@ -51,7 +60,10 @@ export default class LoginPanel extends Component {
         className="login-panel"
         onSubmit={e => {
           e.preventDefault();
-          login(this.refs.formHelper.value);
+          login(this.refs.formHelper.value, (userInfo) => {
+            // console.log(userInfo)
+            window.Storage.setItem(StoreLoginInfo, userInfo);
+          });
         }}>
         <div className="form-layout">
           <h3 className="title">管理系统</h3>
