@@ -17,7 +17,7 @@ export default class HomePage extends Component {
           '大概十分钟完成一个通用表单或者表格。',
           '两小时内完成一个复杂表单或者表格。',
         ]}/>
-        <TipPanel title="最后，感谢你的观看"/>
+        <TipPanel title="多谢"/>
       </div>
     )
   }
