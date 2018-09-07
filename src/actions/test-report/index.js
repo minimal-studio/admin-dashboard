@@ -51,7 +51,6 @@ export class ActionTestReport extends ActionReportBasic {
 
       },
       stateAfterPostHook: (res) => {
-        console.log(res)
         return {
           records: res.data
         }
