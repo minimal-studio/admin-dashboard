@@ -18,7 +18,7 @@ function getAllGateUrls() {
 const gateResSpeedTester = new GateResSpeedTesterClass();
 gateResSpeedTester.setConfig({
   gateUrls: getAllGateUrls(),
-  suffix: '/sudo'
+  suffix: '/dyr/sudo'
 });
 
 function SetGateUrl(selectedGate) {

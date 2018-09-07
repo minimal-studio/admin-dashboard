@@ -58,9 +58,8 @@ $request.wrapDataBeforeSend = (options) => {
  * }
  */
 $request.setResDataHook = (resData) => {
-  Object.assign(resData, {
-    data: resData.data || resData.Data,
-  });
+  if(typeof resData !== 'object') resData = {};
+  resData.data = resData.data || resData.Data || {};
   return resData;
 }
 
