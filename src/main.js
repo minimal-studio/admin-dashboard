@@ -23,9 +23,9 @@ import * as AllManagerPages from './pages';
 import './app.scss';
 
 import { CallFunc } from 'basic-helper';
-import {ManagerAPP} from 'uke-admin-web-scaffold';
+import { ManagerAPP } from 'uke-admin-web-scaffold';
 import LoginSelector from './login-selector';
-import {authStore, authActions} from './login-actions';
+import { authStore, authActions } from './login-actions';
 import VersionInfo from './version.json';
 
 const pageComponents = AllManagerPages;
