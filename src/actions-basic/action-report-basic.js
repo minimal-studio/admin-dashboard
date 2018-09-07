@@ -34,6 +34,9 @@ export default class ActionReportBasic extends ActionBasic {
   IEDateParseHook(dateStringInRange) {
     return $GH.DateParseHook(dateStringInRange);
   }
+  getActionBtn() {
+    return '-';
+  }
   sendData(options) {
     const {
       method, conditionData = {}, data = {}, nextPaging = this.state.pagingInfo,

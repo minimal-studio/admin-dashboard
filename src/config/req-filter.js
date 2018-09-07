@@ -41,6 +41,7 @@ $request.wrapDataBeforeSend = (options) => {
       Compress: isCompress ? 1 : 0,
       Method: method,
     }, {...params}),
+    // path: method,
     data
   }
 }

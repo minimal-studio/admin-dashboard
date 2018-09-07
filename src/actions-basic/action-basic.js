@@ -5,7 +5,7 @@
 
 import React, {Component, PureComponent} from 'react';
 
-import {CallFunc, ToBasicUnitMoney} from 'basic-helper';
+import {CallFunc, ToBasicUnitMoney, DebounceClass} from 'basic-helper';
 import {MANAGER_APIS} from '../lib/apis';
 import {getFields, setFields, getFieldsConfig} from '../lib/fields';
 
@@ -65,7 +65,7 @@ export default class ActionBasic extends Component {
      */
   }
   delayExec(...args) {
-    if(!this._delayExec) this._delayExec = new $GH.Debounce();
+    if(!this._delayExec) this._delayExec = new DebounceClass();
     return this._delayExec.exec(...args);
   }
   stateSetter(state) {
@@ -90,7 +90,7 @@ export default class ActionBasic extends Component {
      */
     const {
       method, data = {}, onGetResInfo,
-      stateBeforePost = {},
+      stateBeforePost = {}, path,
       stateAfterPostHook = (res) => {},
       actingRef = 'loading',
       onSuccess, onRes
@@ -105,7 +105,7 @@ export default class ActionBasic extends Component {
       }
     );
 
-    const sendDataRes = await $MN.$request.send({sendData});
+    const sendDataRes = await $MN.$request.send({sendData, path});
 
     if(sendDataRes) {
       CallFunc(onRes)(sendDataRes);

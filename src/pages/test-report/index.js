@@ -12,11 +12,14 @@ import { ActionTestReport } from '../action-refs';
 import { ReportRenderNormal } from '../../components/report-layout-template';
 
 class TestReportClass extends ActionTestReport {
-  getActionBtn(...args) {
-    return (
-      <span className="link-btn" onClick={e => this.showDetail(...args)}>详情</span>
-    )
-  }
+  actionBtnConfig = [
+    {
+      text: '详情',
+      action: (...args) => {
+        this.showDetail(...args)
+      }
+    }
+  ];
   showDetail(item) {
     console.log(item)
     let ModalId = ShowGlobalModal({

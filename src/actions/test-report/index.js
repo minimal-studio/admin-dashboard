@@ -5,19 +5,19 @@ import {ActionReportBasic} from '../actions-basic';
 
 const testRemoteData = [
   {
-    UserName: 'Alex',
+    UserName: 'Name1',
     Address: '广州',
     Phone: '99999999',
     Weight: 58,
   },
   {
-    UserName: 'Alex2',
+    UserName: 'Name2',
     Address: '香港',
     Phone: '99999998',
     Weight: 58,
   },
   {
-    UserName: 'Alex3',
+    UserName: 'Name3',
     Address: '澳门',
     Phone: '99999997',
     Weight: 58,
@@ -50,7 +50,7 @@ export class ActionTestReport extends ActionReportBasic {
       {
         key: 'action',
         filter: (str, ...other) => {
-          return this.getActionBtn && this.getActionBtn(...other);
+          return this.getActionBtn(...other);
         }
       }
     ];
@@ -62,12 +62,11 @@ export class ActionTestReport extends ActionReportBasic {
     ];
   }
   queryData = (reportData) => {
-    console.log(reportData);
     let sendData = {
       ...reportData,
-      method: this.apis.SOME_API,
+      path: this.apis.TEST_DATA,
       onSuccess: res => {
-        // console.log(res);
+        console.log(res);
       },
       onRes: () => {
 
