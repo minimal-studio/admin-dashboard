@@ -3,27 +3,6 @@ import PropTypes from 'prop-types';
 
 import {ActionReportBasic} from '../actions-basic';
 
-const testRemoteData = [
-  {
-    UserName: 'Name1',
-    Address: '广州',
-    Phone: '99999999',
-    Weight: 58,
-  },
-  {
-    UserName: 'Name2',
-    Address: '香港',
-    Phone: '99999998',
-    Weight: 58,
-  },
-  {
-    UserName: 'Name3',
-    Address: '澳门',
-    Phone: '99999997',
-    Weight: 58,
-  },
-]
-
 export class ActionTestReport extends ActionReportBasic {
   constructor(props) {
     super(props);
@@ -37,7 +16,7 @@ export class ActionTestReport extends ActionReportBasic {
     ];
 
     let keyFields = [
-      'UserName',
+      'username_for_user',
       'Address',
       'Phone',
       {
@@ -72,8 +51,9 @@ export class ActionTestReport extends ActionReportBasic {
 
       },
       stateAfterPostHook: (res) => {
+        console.log(res)
         return {
-          records: testRemoteData
+          records: res.data
         }
       }
     };

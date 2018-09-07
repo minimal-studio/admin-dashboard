@@ -19,6 +19,8 @@ import TestForm from './test-form';
 import TestReport from './test-report';
 import FEDeploy from 'uke-admin-web-scaffold/fe-deploy';
 
+import './registe-spec-fields';
+
 // const TestReport = ReportRenderNormal(ActionTestReport);
 const FormWithTMPL = FormRender(ActionTestForm);
 

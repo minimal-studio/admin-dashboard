@@ -5,9 +5,11 @@
 
 import React, {Component, PureComponent} from 'react';
 
-import {CallFunc, ToBasicUnitMoney, DebounceClass} from 'basic-helper';
-import {MANAGER_APIS} from '../lib/apis';
-import {getFields, setFields, getFieldsConfig} from '../lib/fields';
+import { CallFunc, ToBasicUnitMoney, DebounceClass } from 'basic-helper';
+import { getUrlParams } from 'uke-request';
+
+import { MANAGER_APIS } from '../lib/apis';
+import { getFields, setFields, getFieldsConfig } from '../lib/fields';
 
 export default class ActionBasic extends Component {
   getFields = getFields;
@@ -15,6 +17,8 @@ export default class ActionBasic extends Component {
   getFieldsConfig = getFieldsConfig;
   defaultActingRef = 'loading';
   apis = MANAGER_APIS;
+  getUrlParams = getUrlParams;
+  routerParams = getUrlParams();
   constructor(props) {
     super(props);
 

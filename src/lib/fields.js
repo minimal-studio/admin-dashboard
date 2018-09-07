@@ -2,6 +2,8 @@
  * 公用的 fields
  * 定义所有的报表的字段的属性
  * 提供给 ActionsReport 类的字段配置，有共同的配置可以写在这里
+ * 引用了作用域的概念
+ * 可以根据不同的作用域下相同的字段名字做对应的表现
  */
 
 let namesMapper = [
@@ -15,6 +17,8 @@ let abvMoneyMapper = [
 ];
 let datetimeMapper = [
   'OrderTime',
+  'loginTime',
+  'createTime',
 ];
 let dateMapper = [
   // 'CalcEndDate',
@@ -58,7 +62,7 @@ function setFields(fields, scope = defaultScope) {
   if(!scopeFields[scope]) scopeFields[scope] = {};
   Object.assign(scopeFields[scope], fields);
 }
-function getFields(options) {
+function getFields(options = {}) {
   /**
    * TODO 写下参数说明
    */
@@ -80,6 +84,17 @@ function getFields(options) {
   if(extend) result.push(extend);
   return result;
 }
+// setTimeout(() => {
+//   setFields({
+//     username: {
+//       ref: 'username',
+//       filter: () => {
+//         return 'qwe'
+//       }
+//     }
+//   })
+//   console.log(getFieldsConfig())
+// }, 100)
 
 function getFieldsConfig(scope) {
   return scope ? Object.assign({}, scopeFields[scope]) : scopeFields;
