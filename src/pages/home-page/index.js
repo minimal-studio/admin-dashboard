@@ -14,8 +14,6 @@ export default class HomePage extends Component {
           'Actions 专注于业务的逻辑，与远端服务器的数据交互的接口，以及继承系统提供的多个帮助函数。',
           'Pages 专注于数据的渲染，Actions 与远端准备好数据，直接可以在 Pages 中体现。',
           '两者的结合可以做到，系统的逻辑清晰，用户体验一致，快速开发。',
-          '大概十分钟完成一个通用表单或者表格。',
-          '两小时内完成一个复杂表单或者表格。',
         ]}/>
         <TipPanel title="多谢"/>
       </div>
