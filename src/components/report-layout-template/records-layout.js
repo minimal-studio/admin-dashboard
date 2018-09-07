@@ -1,9 +1,7 @@
 /**
  * 组件名    通用报表布局
  * 作者      Alex
- * 开始日期  2017-03-30
- * 修改日期  2017-03-30
- * 完成日期  2017-03-30
+ * 日期      2018-07-30
  */
 
 import React, {Component, PureComponent} from 'react';
@@ -144,10 +142,9 @@ export default class ReportTableLayout extends Component {
   }
 
   handleQueryData(val) {
-    this.props.onQueryData({
-      ...this.getQueryData(val),
+    this.props.onQueryData(Object.assign({}, this.getQueryData(val), {
       onGetResInfo: this.handleRes
-    });
+    }));
   }
 
   handleRes = ({resDesc, hasErr}) => {
