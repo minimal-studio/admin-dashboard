@@ -5,9 +5,8 @@
 
 import React from 'react';
 import {
-  ReportRenderNormal, ReportRenderWithQueryUser
-} from '../components/report-layout-template';
-import {FormRender} from '../components/form-layout-template';
+  ReportRenderNormal, ReportRenderWithQueryUser, FormRender
+} from '../template-engine';
 
 import {
   ActionTestReport, ActionTestForm

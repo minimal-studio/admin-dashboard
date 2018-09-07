@@ -1,9 +1,9 @@
 {%comment%}
 
-import React, {Component} from 'react';
-import {ActionForm{%pageName%}} from '../action-refs';
+import React, { Component } from 'react';
+import { ActionForm{%pageName%} } from '../action-refs';
 
-import {FormRender} from '../../components/form-layout-template';
+import { FormRender } from '../../template-engine';
 
 const {%pageName%} = FormRender(ActionForm{%pageName%});
 

@@ -4,10 +4,9 @@
 
  import React, {Component, PureComponent} from 'react';
 
- import ReportLayoutRender from './records-layout';
- import {Icon} from 'ukelli-ui';
+ import ReportLayoutRender from './records-template';
 
- export function ReportRenderNormal(Action, passProps = {}) {
+ export function GeneralReportRender(Action, passProps = {}) {
    return class C extends Action {
      getActionBtn(item) {
        const {actionBtnConfig} = this;

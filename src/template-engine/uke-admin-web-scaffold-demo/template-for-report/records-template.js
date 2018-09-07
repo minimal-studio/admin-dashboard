@@ -4,10 +4,10 @@
  * 日期      2018-07-30
  */
 
-import React, {Component, PureComponent} from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import {GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass} from 'basic-helper';
+import { GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass } from 'basic-helper';
 import {
   PagingBtn, RecordItemsHelper,
   Loading, Button, Toast,
@@ -16,7 +16,7 @@ import {
 
 const delayExec = new DebounceClass();
 
-export default class ReportTableLayout extends Component {
+export default class ReportTemplate extends Component {
   static propTypes = {
     onQueryData: PropTypes.func.isRequired,
     showCondition: PropTypes.bool,

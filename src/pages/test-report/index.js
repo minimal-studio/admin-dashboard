@@ -9,7 +9,7 @@ import React from 'react';
 
 import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
 import { ActionTestReport } from '../action-refs';
-import { ReportRenderNormal } from '../../components/report-layout-template';
+import { GeneralReportRender } from '../../template-engine';
 
 class TestReportClass extends ActionTestReport {
   actionBtnConfig = [
@@ -32,6 +32,6 @@ class TestReportClass extends ActionTestReport {
   }
 }
 
-const TestReport = ReportRenderNormal(TestReportClass);
+const TestReport = GeneralReportRender(TestReportClass);
 
 export default TestReport;
