@@ -45,13 +45,15 @@ class LoginFilter extends React.Component {
     CallFunc(window.OnLuanched)();
   }
   render() {
-    const {isLogin} = this.props;
+    const { isLogin, userInfo } = this.props;
     return (
       <LoginSelector {...this.props}>
         {
           isLogin ? (
             <ManagerAPP
               {...this.props}
+              // 必须填写的
+              username={userInfo.username}
               versionInfo={VersionInfo}
               menuMappers={{
                 child: 'child',

@@ -10,7 +10,7 @@
     "build": "node scripts/build.js",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
-    "setAppVersion": "./version/set-app-version.sh",
+    "setAppVersion": "sh ./version/set-app-version.sh",
     "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
     "autoZip": "npm run setAppVersion; npm run build; npm run zipBuild;",
     "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W",
