@@ -76,9 +76,18 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             include: paths.workspacePath,
-            loader: require.resolve('babel-loader'),
-            options: {
-              compact: true,
+            include: paths.workspacePath,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                "presets": [
+                  "@babel/preset-env",
+                  "@babel/preset-react"
+                ],
+                "plugins": [
+                  "@babel/plugin-proposal-class-properties"
+                ]
+              }
             },
           },
           {
