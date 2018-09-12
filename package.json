@@ -27,7 +27,7 @@
     "react-dom": "^16.4.2",
     "uke-admin-web-scaffold": "^0.11.13",
     "uke-request": "^0.10.12",
-    "ukelli-ui": "^2.5.8",
+    "ukelli-ui": "^2.5.10",
     "unistore": "^3.0.6",
     "whatwg-fetch": "2.0.3"
   },
