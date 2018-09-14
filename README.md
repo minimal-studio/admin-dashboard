@@ -17,9 +17,8 @@
 npm i @babel/core @babel/node @babel/cli -g
 ```
 
-## [更多介绍内容](./docs/intro.md)
-
-## [遇到的实际问题和解决问题的思路](./docs/resolution.md)
+- [更多介绍内容](./docs/intro.md)
+- [遇到的实际问题](./docs/resolution.md)
 
 ## 开始使用
 
