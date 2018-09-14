@@ -19,6 +19,7 @@ npm i @babel/core @babel/node @babel/cli -g
 
 - [更多介绍内容](./docs/intro.md)
 - [遇到的实际问题](./docs/resolution.md)
+- [应用程序版本机制](./version/README.md)
 
 ## 开始使用
 
@@ -85,8 +86,6 @@ git clone https://github.com/SANGET/uke-admin-seed.git
 ```
 
 -----------
-
-## [应用程序版本机制](./version/README.md)
 
 ## 多语言支持
 
