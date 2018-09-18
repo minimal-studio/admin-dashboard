@@ -25,9 +25,9 @@
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "uke-admin-web-scaffold": "^0.11.15",
+    "uke-admin-web-scaffold": "^0.11.16",
     "uke-request": "^0.10.12",
-    "ukelli-ui": "^2.5.11",
+    "ukelli-ui": "^2.5.12",
     "unistore": "^3.0.6",
     "whatwg-fetch": "2.0.3"
   },
