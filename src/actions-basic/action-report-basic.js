@@ -39,13 +39,12 @@ export default class ActionReportBasic extends ActionBasic {
   }
   sendData(options) {
     const {
-      method, conditionData = {}, data = {}, nextPaging = this.state.pagingInfo,
+      conditionData = {}, data = {}, nextPaging = this.state.pagingInfo,
     } = options;
 
     const {StartTime, EndTime} = conditionData || data;
     let StartDate = null, EndDate = null;
     let postData = Object.assign({}, options, {
-      method,
       data: Object.assign({}, conditionData, data, {
         StartTime: StartTime ? this.IEDateParseHook(StartTime) : undefined,
         EndTime: EndTime ? this.IEDateParseHook(EndTime) : undefined,

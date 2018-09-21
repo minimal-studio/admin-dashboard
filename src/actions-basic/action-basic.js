@@ -93,8 +93,8 @@ export default class ActionBasic extends Component {
      * onRes@Func              发起的请求成功，包括业务错误
      */
     const {
-      method, data = {}, onGetResInfo,
-      stateBeforePost = {}, path,
+      path, data = {}, onGetResInfo,
+      stateBeforePost = {},
       stateAfterPostHook = (res) => {},
       actingRef = 'loading',
       onSuccess, onRes
@@ -102,12 +102,7 @@ export default class ActionBasic extends Component {
 
     this.stateSetter(this.getStateBeforePost(stateBeforePost, actingRef));
 
-    const sendData = Object.assign({},
-      method ? {method} : {},
-      {
-        data: data
-      }
-    );
+    const sendData = data;
 
     const sendDataRes = await $MN.$request.send({sendData, path});
 

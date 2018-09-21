@@ -46,7 +46,7 @@ export class ActionReport{%pageName%} extends ActionReportBasic {
     console.log(reportData);
     let sendData = {
       ...reportData,
-      method: this.apis.SOME_API,
+      path: this.apis.SOME_API,
       onSuccess: res => {
         // console.log(res);
       },

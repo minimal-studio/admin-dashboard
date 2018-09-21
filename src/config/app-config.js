@@ -27,16 +27,13 @@ function SetGateUrl(selectedGate) {
    */
   let gateUrl = selectedGate || gateResSpeedTester.getFastestGate();
 
-  let currReqUrl = `${gateUrl}`;
-  // let currPollUrl = `${gateUrl}/back2`;
-
   /**
    * 设置完线路，需要把 $request 和 PollingEntity 对象中的请求地址也修改才能生效
    */
-  $request.setRequestConfig({
-    reqUrl: currReqUrl,
+  $request.setConfig({
+    baseUrl: gateUrl,
     // compressLenLimit: 1000000,
-    wallet: window.__none
+    wallet: window.__wallet
   });
   // PollingEntity.setPollUrl(currPollUrl);
 }

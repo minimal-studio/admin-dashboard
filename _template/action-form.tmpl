@@ -67,7 +67,7 @@ export class ActionForm{%pageName%} extends ActionFormBasic {
   };
   transferOut = (formHelperRef) => {
     let sendData = {
-      method: 'api',
+      path: 'api',
       formHelperRef,
       onSuccess: (res) => {
         console.log(res);

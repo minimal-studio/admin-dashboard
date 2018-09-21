@@ -27,7 +27,6 @@ export default class ActionFormBasic extends ActionBasic {
     return isPass;
   }
   sendData(options) {
-    console.log(options);
     const {
       formHelperRef, data,
     } = options;

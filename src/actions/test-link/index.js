@@ -62,7 +62,7 @@ export class ActionFormTestLink extends ActionFormBasic {
   };
   transferIn = (formHelperRef) => {
     let sendData = {
-      method: 'api',
+      path: 'api',
       formHelperRef,
       onSuccess: (res) => {
         console.log(res);
@@ -72,7 +72,7 @@ export class ActionFormTestLink extends ActionFormBasic {
   };
   transferOut = (formHelperRef) => {
     let sendData = {
-      method: 'api',
+      path: 'api',
       formHelperRef,
       onSuccess: (res) => {
         console.log(res);
