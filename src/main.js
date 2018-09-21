@@ -39,13 +39,24 @@ function selector(state) {
   return state;
 }
 
+const Status = ({onLogout}) => {
+  return (
+    <React.Fragment>
+      <span className="flex"></span>
+      <div className="actions mr10">
+        <span className="_btn" onClick={e => onLogout()}>退出登录</span>
+      </div>
+    </React.Fragment>
+  )
+}
+
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
     CallFunc(window.OnLuanched)();
   }
   render() {
-    const { isLogin, userInfo } = this.props;
+    const { isLogin, userInfo, onLogout } = this.props;
     return (
       <LoginSelector {...this.props}>
         {
@@ -62,7 +73,9 @@ class LoginFilter extends React.Component {
                 icon: 'icon',
               }}
               i18nConfig={i18nConfig}
-              pluginComponent={{}}
+              pluginComponent={{
+                Statusbar: <Status/>
+              }}
               pageComponents={pageComponents}
             />
           ): null
