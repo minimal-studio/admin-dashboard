@@ -102,9 +102,11 @@ export default class ActionBasic extends Component {
 
     this.stateSetter(this.getStateBeforePost(stateBeforePost, actingRef));
 
-    const sendData = data;
+    const sendData = {data};
 
-    const sendDataRes = await $MN.$request.send({sendData, path});
+    const sendDataRes = await $MN.$request.send({sendData, path, headers: {
+      // 'Content-Type': 'application/json; charset=utf-8'
+    }});
 
     if(sendDataRes) {
       CallFunc(onRes)(sendDataRes);
