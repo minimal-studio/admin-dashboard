@@ -1,6 +1,6 @@
 {
   "name": "uke-admin-seed",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -18,18 +18,17 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "basic-helper": "^1.3.3",
+    "basic-helper": "^1.4.0",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "uke-admin-web-scaffold": "^0.11.17",
-    "uke-request": "^0.11.3",
-    "ukelli-ui": "^2.5.12",
-    "unistore": "^3.0.6",
-    "whatwg-fetch": "2.0.3"
+    "uke-admin-web-scaffold": "^0.12.0",
+    "uke-request": "^0.12.1",
+    "ukelli-ui": "^2.5.13",
+    "unistore": "^3.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

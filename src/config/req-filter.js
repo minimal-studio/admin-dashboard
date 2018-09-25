@@ -81,7 +81,7 @@ function handleRes({resData, callback}) {
 /**
  * 监听 $request res 处理函数
  */
-$request.subscribeRes(handleRes);
+$request.on('onRes', handleRes);
 
 /**
  * 轮询对象的设置
