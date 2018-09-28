@@ -26,7 +26,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "uke-admin-web-scaffold": "^0.12.1",
-    "uke-request": "^0.12.5",
+    "uke-request": "^0.12.6",
     "ukelli-ui": "^2.5.13",
     "unistore": "^3.0.6"
   },
