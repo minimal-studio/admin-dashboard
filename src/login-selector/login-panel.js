@@ -47,9 +47,18 @@ export default class LoginPanel extends Component {
       }
     ];
   }
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     // isDev && document.querySelector('#freeLogin').click();
+  //   }, 100);
+  // }
   componentDidMount() {
+    let loaderDOM = document.querySelector('#loadingBg');
+    if(!loaderDOM) return;
+    loaderDOM.classList.add('loaded');
+    loaderDOM.parentNode.removeChild(loaderDOM);
     setTimeout(() => {
-      // isDev && document.querySelector('#freeLogin').click();
+      process.env.NODE_ENV == 'development' && document.querySelector('#freeLogin').click();
     }, 100);
   }
   render() {
