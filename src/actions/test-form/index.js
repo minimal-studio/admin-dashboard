@@ -55,8 +55,8 @@ export class ActionTestForm extends ActionFormBasic {
           val4: '单选类型4',
         }
       },
-    ]
-  };
+    ];
+  }
   action1 = (formHelperRef) => {
     let sendData = {
       path: 'api',
@@ -64,7 +64,7 @@ export class ActionTestForm extends ActionFormBasic {
       onSuccess: (res) => {
         console.log(res);
       }
-    }
+    };
     this.sendData(sendData);
   };
   action2 = (formHelperRef) => {
@@ -74,7 +74,7 @@ export class ActionTestForm extends ActionFormBasic {
       onSuccess: (res) => {
         console.log(res);
       }
-    }
+    };
     this.sendData(sendData);
   };
   btnConfig = [

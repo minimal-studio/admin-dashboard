@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {ActionReportBasic} from '../actions-basic';
+import { ActionReportBasic } from '../actions-basic';
 
 export class ActionTestReport extends ActionReportBasic {
   constructor(props) {
@@ -23,7 +23,7 @@ export class ActionTestReport extends ActionReportBasic {
         key: 'Weight',
         filter: (str, item, mapper, idx) => {
           // 这里是过滤每一条 Weight 字段的 filter 函数
-          return str + 'kg'
+          return str + 'kg';
         }
       },
       {
@@ -53,7 +53,7 @@ export class ActionTestReport extends ActionReportBasic {
       stateAfterPostHook: (res) => {
         return {
           records: res.data
-        }
+        };
       }
     };
     // this.sendData 接口提供一系列提供完整的数据的生命周期状态，包括获取中，获取完成后的数据，以及错误信息处理

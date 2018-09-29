@@ -58,8 +58,8 @@ export class ActionFormTestLink extends ActionFormBasic {
           val4: '单选类型4',
         }
       },
-    ]
-  };
+    ];
+  }
   transferIn = (formHelperRef) => {
     let sendData = {
       path: 'api',
@@ -67,7 +67,7 @@ export class ActionFormTestLink extends ActionFormBasic {
       onSuccess: (res) => {
         console.log(res);
       }
-    }
+    };
     this.sendData(sendData);
   };
   transferOut = (formHelperRef) => {
@@ -77,7 +77,7 @@ export class ActionFormTestLink extends ActionFormBasic {
       onSuccess: (res) => {
         console.log(res);
       }
-    }
+    };
     this.sendData(sendData);
   };
   btnConfig = [
