@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import FEDeploy from 'uke-admin-web-scaffold/fe-deploy';
+
 import {
   ReportRenderNormal, ReportRenderWithQueryUser, FormRender
 } from '../template-engine';
@@ -16,7 +18,6 @@ import {
 import HomePage from './home-page';
 import TestForm from './test-form';
 import TestReport from './test-report';
-import FEDeploy from 'uke-admin-web-scaffold/fe-deploy';
 
 import './registe-spec-fields';
 
@@ -31,4 +32,4 @@ export {
   FormWithTMPL,
   HomePage,
   FEDeploy
-}
+};

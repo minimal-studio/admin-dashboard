@@ -5,4 +5,4 @@ module.exports = {
     "title": "测试link",
     "code": "TestLink"
   }]
-}
+};

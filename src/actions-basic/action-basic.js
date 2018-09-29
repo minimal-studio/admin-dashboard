@@ -30,11 +30,16 @@ export default class ActionBasic extends Component {
       resDesc: '',
       resData: {},
       records: [],
-      pagingInfo: $MN.DefaultPaging,
+      pagingInfo: window.$MN.DefaultPaging,
     };
   }
-  toBasicUnitMoney(money) {
-    return ToBasicUnitMoney(money);
+  componentWillUnmount() {
+    this.__unmount = true;
+  }
+  getStateBeforePost(params, actingRef) {
+    return Object.assign({}, {
+      [actingRef]: true,
+    }, params);
   }
   getResDescInfo(resData = {}) {
     const resInfo = {
@@ -42,6 +47,9 @@ export default class ActionBasic extends Component {
       resDesc: resData.err
     };
     return resInfo;
+  }
+  toBasicUnitMoney(money) {
+    return ToBasicUnitMoney(money);
   }
   defaultStateAfterPost(resData, actingRef) {
     let records = resData.data || [];
@@ -53,14 +61,6 @@ export default class ActionBasic extends Component {
       records,
       pagingInfo,
     });
-  }
-  getStateBeforePost(params, actingRef) {
-    return Object.assign({}, {
-      [actingRef]: true,
-    }, params);
-  }
-  componentWillUnmount() {
-    this.__unmount = true;
   }
   showResDesc() {
     /**

@@ -16,12 +16,12 @@ setFields({
     key: 'UserName',
     filter: (str, item, mapper, idx) => {
       return (
-        <Link to={`TestLink`} params={{
+        <Link to="TestLink" params={{
           n: str
         }}>
           {str}
         </Link>
-      )
+      );
     }
   },
-})
+});

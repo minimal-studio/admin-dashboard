@@ -10,14 +10,14 @@ export const SYNC_CONDITION_DEMO = {
   key1: '字段1',
   key2: '字段2',
 };
-export let conditionOptionsMapper = {
+export const conditionOptionsMapper = {
   condition1: {
     type: 'radio',
     ref: 'AgentType',
     defaultValue: 'key2',
     values: SYNC_CONDITION_DEMO
   },
-}
+};
 
 /**
  * 异步获取查询条件的定义
@@ -36,7 +36,7 @@ let asyncConditions = {
     className: 'fund-change-selector',
     ref: '_subtypes'
   },
-}
+};
 
 export function getConditionOptionsMapper(optionKeys) {
   let result = Object.assign({}, conditionOptionsMapper);
@@ -67,12 +67,12 @@ async function queryRemoteCondition() {
     method: 'api',
     data: {}
   };
-  const resData = await $MN.$request.send({sendData});
+  const resData = await window.$MN.$request.send({sendData});
 
   return {
     values: resData,
     defaultValue: resData[1]
-  }
+  };
 }
 
 let remoteConditionData = {
@@ -86,12 +86,12 @@ function getChangeTypes(returnType = 'object') {
     if(!hasData) remoteConditionData = await queryRemoteCondition();
 
     switch (returnType) {
-      case 'object':
-        return remoteConditionData;
-      case 'array':
-        return remoteConditionData.values;
+    case 'object':
+      return remoteConditionData;
+    case 'array':
+      return remoteConditionData.values;
     }
-  }
+  };
 }
 
 function setChangeTypesDefaultVal() {

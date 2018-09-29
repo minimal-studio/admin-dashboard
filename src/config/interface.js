@@ -2,4 +2,4 @@ const APIS = {};
 
 export {
   APIS
-}
+};

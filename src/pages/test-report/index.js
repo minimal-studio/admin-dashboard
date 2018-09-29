@@ -16,19 +16,19 @@ class TestReportClass extends ActionTestReport {
     {
       text: '详情',
       action: (...args) => {
-        this.showDetail(...args)
+        this.showDetail(...args);
       }
     }
   ];
   showDetail(item) {
-    console.log(item)
+    console.log(item);
     let ModalId = ShowGlobalModal({
       title: '详情',
       width: 700,
       children: (
-        <h1 className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</h1>
+        <span className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</span>
       )
-    })
+    });
   }
 }
 

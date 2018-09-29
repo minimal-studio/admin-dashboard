@@ -34,6 +34,6 @@ const NAV_MENU_CONFIG = [
       }
     ]
   },
-]
+];
 
 export default NAV_MENU_CONFIG;

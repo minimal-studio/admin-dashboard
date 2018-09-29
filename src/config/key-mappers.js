@@ -56,6 +56,6 @@ const FrontEndNameMappers = {
   UN_LOCKING_SCREEN: '解锁中',
   LOGIN_FAIL: '登录错误',
   LOGOUT: '登出成功',
-}
+};
 
 export default FrontEndNameMappers;

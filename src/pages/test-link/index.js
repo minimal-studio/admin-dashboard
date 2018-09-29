@@ -29,15 +29,17 @@ class TestLink extends ActionFormTestLink {
           <div>
             <span className="link-btn" onClick={e => onNavigate({
               type: 'GO_BACK'
-            })}>返回上一层</span>
+            })}>
+              返回上一层
+            </span>
           </div>
           <Link to="HomePage">首页</Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
 export {
   TestLink
-}
+};

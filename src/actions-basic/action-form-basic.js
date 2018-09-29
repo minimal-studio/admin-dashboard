@@ -13,7 +13,7 @@ import ActionBasic from './action-basic';
 export default class ActionFormBasic extends ActionBasic {
   checkForm(formHelperRef) {
     let isPass = true;
-    if(!!formHelperRef) {
+    if(formHelperRef) {
       let checkFormResult = formHelperRef.checkForm();
 
       if(!checkFormResult.isPass) {

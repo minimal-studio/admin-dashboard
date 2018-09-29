@@ -2,8 +2,8 @@
 
 const iconPrefix = 'fa fa-';
 
-let iconMapper = {
+const iconMapper = {
   noData: 'battery-empty'
-}
+};
 
-export {iconMapper, iconPrefix}
+export {iconMapper, iconPrefix};

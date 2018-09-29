@@ -60,7 +60,7 @@ export default class LoginPanel extends Component {
         className="login-panel"
         onSubmit={e => {
           e.preventDefault();
-          login(this.refs.formHelper.value, (userInfo) => {
+          login(this.formHelper.value, (userInfo) => {
             // console.log(userInfo)
             window.Storage.setItem(StoreLoginInfo, userInfo);
           });
@@ -75,10 +75,10 @@ export default class LoginPanel extends Component {
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
-            showInputTitle={true}
-            formOptions={this.formOptions} ref="formHelper">
+            showInputTitle
+            formOptions={this.formOptions} ref={e => this.formHelper = e}>
             <div className="form-group">
-              <button className="btn theme flat login-btn" id="freeLogin">
+              <button type="submit" className="btn theme flat login-btn" id="freeLogin">
                 {logging ? '登录中...' : '登录'}
               </button>
             </div>

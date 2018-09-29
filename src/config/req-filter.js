@@ -4,8 +4,8 @@
 
 import {EventEmitter} from 'basic-helper';
 import {$request, PollClass} from 'uke-request';
-import {getUserInfo, onLoginFail} from '../login-actions';
 
+// import {getUserInfo, onLoginFail} from '../login-actions';
 import {authStore} from '../login-actions';
 
 function getUserName() {
@@ -43,8 +43,8 @@ $request.wrapDataBeforeSend = (options) => {
     }, {...params}),
     // path: method,
     data
-  }
-}
+  };
+};
 
 /**
  * 前端应该与服务端的接口分离
@@ -61,7 +61,7 @@ $request.setResDataHook = (resData) => {
   if(typeof resData !== 'object') resData = {};
   resData.data = resData.data || resData.Data || {};
   return resData;
-}
+};
 
 /**
  * 设置 $request 对象的 res

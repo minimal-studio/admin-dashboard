@@ -1,15 +1,14 @@
 import {defineGlobalScope, EventEmitter} from 'basic-helper';
-import FrontEndNameMappers from './key-mappers';
-import {iconMapper, iconPrefix} from './icon-mapper';
 
 import {setUkelliConfig} from 'ukelli-ui';
-import {initFields} from '../lib/fields';
 import {setFEDeployConfig} from 'uke-admin-web-scaffold/fe-deploy';
-
 import { GateResSpeedTesterClass } from 'uke-request';
-import { $request } from './req-filter';
 
-import { APIS } from './interface.js';
+import {initFields} from '../lib/fields';
+import FrontEndNameMappers from './key-mappers';
+import {iconMapper, iconPrefix} from './icon-mapper';
+import { $request } from './req-filter';
+import { APIS } from './interface';
 
 function getAllGateUrls() {
   return window.ManagerURL || [];
@@ -55,11 +54,11 @@ function getDefaultFastestGate() {
   }, 100);
 })();
 
-$GH.EventEmitter.subscribe('LOGIN_SUCCESS', ({userInfo}) => {
+EventEmitter.on('LOGIN_SUCCESS', ({userInfo}) => {
   setFEDeployConfig({
     username: userInfo.username,
     apiUrl: window.F_E_DeploymentUrl
-  })
+  });
 });
 
 const defaultPaging = {
@@ -76,7 +75,7 @@ function getKeyMap(key) {
 
 function getImage(imageMapperKey, extendPath) {
   if(!imageMapperKey) return console.log('Wrong parameters');
-  let result = $Config.IMAGE_MAPPER[imageMapperKey] || '';
+  let result = window.$Config.IMAGE_MAPPER[imageMapperKey] || '';
   if(extendPath) result = result.replace(/\/$/, '') + '/' + extendPath;
   return result;
 }
@@ -87,7 +86,7 @@ let commonFuncs = {
   $request,
   DefaultPaging: defaultPaging,
   isMobile: !window.IsDesktopMode,
-}
+};
 
 let ManagerConfig = commonFuncs;
 

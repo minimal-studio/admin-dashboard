@@ -102,4 +102,4 @@ function getFieldsConfig(scope) {
 
 export {
   getFieldsConfig, getFields, setFields, initFields
-}
+};

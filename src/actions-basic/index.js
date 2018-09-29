@@ -4,4 +4,4 @@ import ActionReportBasic from './action-report-basic';
 
 export {
   ActionBasic, ActionFormBasic, ActionReportBasic
-}
+};

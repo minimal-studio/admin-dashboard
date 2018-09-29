@@ -1,4 +1,4 @@
-import createStore from 'unistore'
+import createStore from 'unistore';
 import { CallFunc } from 'basic-helper';
 
 import {AUTH_APIS} from './apis';
@@ -14,7 +14,7 @@ let defaultAuthStore = {
   sessID: 'none',
   menuStore: NAV_MENU_CONFIG
 };
-let authStore = createStore(defaultAuthStore);
+const authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
   let userInfo = resData;
@@ -33,7 +33,7 @@ function onLoginSuccess(store, resData) {
     // menuStore
   });
 
-  $GH.EventEmitter.emit('LOGIN_SUCCESS', {userInfo});
+  window.$GH.EventEmitter.emit('LOGIN_SUCCESS', {userInfo});
   sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
 }
 
@@ -54,7 +54,7 @@ function getPrevLoginData() {
   return result;
 }
 
-let authActions = store => ({
+const authActions = store => ({
   async autoLogin() {
     let prevLoginData = getPrevLoginData();
     if(prevLoginData) {
@@ -89,4 +89,4 @@ let authActions = store => ({
 
 export {
   authStore, authActions
-}
+};
