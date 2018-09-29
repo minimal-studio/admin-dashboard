@@ -9,31 +9,32 @@ import React from 'react';
 import { Provider, connect } from 'unistore/react';
 import { hot } from 'react-hot-loader';
 
+import { CallFunc } from 'basic-helper';
+
 /**
  * 通用代码块
  */
 
-import './config/app-config';
+import { ManagerAPP } from 'uke-admin-web-scaffold';
 
+import './config/app-config';
 import * as AllManagerPages from './pages';
+
+import LoginSelector from './login-selector';
+import { authStore, authActions } from './login-actions';
+import VersionInfo from './version.json';
 
 /**
  * 样式文件
  */
 import './app.scss';
 
-import { CallFunc } from 'basic-helper';
-import { ManagerAPP } from 'uke-admin-web-scaffold';
-import LoginSelector from './login-selector';
-import { authStore, authActions } from './login-actions';
-import VersionInfo from './version.json';
-
 const pageComponents = AllManagerPages;
 
 const i18nConfig = {
   'zh-CN': '中文',
   'en-US': 'English',
-}
+};
 
 function selector(state) {
   return state;
@@ -42,13 +43,13 @@ function selector(state) {
 const Status = ({onLogout}) => {
   return (
     <React.Fragment>
-      <span className="flex"></span>
+      <span className="flex"/>
       <div className="actions mr10">
         <span className="_btn" onClick={e => onLogout()}>退出登录</span>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 class LoginFilter extends React.Component {
   componentDidMount() {
@@ -56,7 +57,7 @@ class LoginFilter extends React.Component {
     CallFunc(window.OnLuanched)();
   }
   render() {
-    const { isLogin, userInfo, onLogout } = this.props;
+    const { isLogin, userInfo } = this.props;
     return (
       <LoginSelector {...this.props}>
         {
@@ -81,13 +82,13 @@ class LoginFilter extends React.Component {
           ): null
         }
       </LoginSelector>
-    )
+    );
   }
 }
 const LoginFilterWithStore = connect(selector, authActions)((userStore) => {
   return (
     <LoginFilter {...userStore}/>
-  )
+  );
 });
 
 const C = () => (
