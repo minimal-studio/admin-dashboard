@@ -77,8 +77,7 @@ class LoginFilter extends React.Component {
               pluginComponent={{
                 Statusbar: <Status/>
               }}
-              pageComponents={pageComponents}
-            />
+              pageComponents={pageComponents}/>
           ): null
         }
       </LoginSelector>
