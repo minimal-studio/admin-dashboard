@@ -14,6 +14,8 @@ import {
   TableBody, ConditionGenerator
 } from 'ukelli-ui';
 
+import { getDefPagin } from "../../../utils/pagination-helper";
+
 const delayExec = new DebounceClass();
 
 export default class ReportTemplate extends Component {
@@ -81,9 +83,9 @@ export default class ReportTemplate extends Component {
 
   getQueryData(conditionData) {
     return {
-      nextPaging: $MN.DefaultPaging,
+      nextPaging: getDefPagin(),
       conditionData: conditionData || this.conditionHelper.value
-    }
+    };
   }
 
   toggleSelectItem(item, idx) {

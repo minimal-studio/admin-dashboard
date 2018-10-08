@@ -1,4 +1,4 @@
-import { $request } from 'uke-request';
+import { $request } from '../../config/req-filter';
 
 export const AUTH_APIS = {
   LOGIN : 'admin_login',

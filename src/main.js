@@ -9,7 +9,7 @@ import React from 'react';
 import { Provider, connect } from 'unistore/react';
 import { hot } from 'react-hot-loader';
 
-import { CallFunc } from 'basic-helper';
+import { Call } from 'basic-helper';
 
 /**
  * 通用代码块
@@ -20,8 +20,8 @@ import { ManagerAPP } from 'uke-admin-web-scaffold';
 import './config/app-config';
 import * as AllManagerPages from './pages';
 
-import LoginSelector from './login-selector';
-import { authStore, authActions } from './login-actions';
+import LoginSelector from './auth/selector';
+import { authStore, authActions } from './auth/actions';
 import VersionInfo from './version.json';
 
 /**
@@ -54,7 +54,7 @@ const Status = ({onLogout}) => {
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
-    CallFunc(window.OnLuanched)();
+    Call(window.OnLuanched);
   }
   render() {
     const { isLogin, userInfo } = this.props;

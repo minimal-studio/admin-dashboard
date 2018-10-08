@@ -18,8 +18,7 @@ export default class ActionFormBasic extends ActionBasic {
 
       if(!checkFormResult.isPass) {
         this.setState(this.getResDescInfo({
-          Code: -1,
-          Desc: `${checkFormResult.desc} 不正确.`
+          err: `${checkFormResult.desc} 不正确.`
         }));
         isPass = false;
       }
@@ -34,12 +33,8 @@ export default class ActionFormBasic extends ActionBasic {
     const isPass = this.checkForm(formHelperRef);
     if(!isPass) return;
 
-    const _data = data || formHelperRef.value;
-
     const postData = Object.assign({}, options, {
-      data: Object.assign({}, _data, {
-        Id: +(_data.Id) || undefined,
-      }),
+      data,
       actingRef: 'submiting'
     });
 

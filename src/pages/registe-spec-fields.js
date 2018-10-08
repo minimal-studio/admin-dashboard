@@ -9,7 +9,7 @@ import React from 'react';
 
 import { Link } from 'uke-admin-web-scaffold';
 
-import { setFields } from '../lib/fields';
+import { setFields } from '../actions-basic/fields';
 
 setFields({
   username_for_user: {

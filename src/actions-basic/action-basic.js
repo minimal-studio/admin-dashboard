@@ -5,19 +5,21 @@
 
 import React, {Component, PureComponent} from 'react';
 
-import { CallFunc, ToBasicUnitMoney, DebounceClass } from 'basic-helper';
+import { Call, ToBasicUnitMoney, DebounceClass } from 'basic-helper';
 import { getUrlParams } from 'uke-request';
 
-import { MANAGER_APIS } from '../lib/apis';
-import { getFields, setFields, getFieldsConfig } from '../lib/fields';
+import APIs from '../apis';
+import { getFields, setFields, getFieldsConfig } from './fields';
+import * as paginHelper from '../utils/pagination-helper';
 
 export default class ActionBasic extends Component {
   getFields = getFields;
   setFields = setFields;
   getFieldsConfig = getFieldsConfig;
   defaultActingRef = 'loading';
-  apis = MANAGER_APIS;
+  apis = APIs;
   getUrlParams = getUrlParams;
+  paginHelper = paginHelper;
   routerParams = getUrlParams();
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ export default class ActionBasic extends Component {
       resDesc: '',
       resData: {},
       records: [],
-      pagingInfo: window.$MN.DefaultPaging,
+      pagingInfo: paginHelper.getDefPagin(),
     };
   }
   componentWillUnmount() {
@@ -53,7 +55,7 @@ export default class ActionBasic extends Component {
   }
   defaultStateAfterPost(resData, actingRef) {
     let records = resData.data || [];
-    let pagingInfo = resData.paging || this.state.pagingInfo || $MN.DefaultPaging;
+    let pagingInfo = resData.paging || this.state.pagingInfo || paginHelper.getDefPagin();
 
     return Object.assign({}, this.getResDescInfo(resData), {
       [actingRef]: false,
@@ -104,18 +106,18 @@ export default class ActionBasic extends Component {
 
     const sendData = {data};
 
-    const sendDataRes = await $MN.$request.send({sendData, path, headers: {
+    const sendDataRes = await window.$request.send({sendData, path, headers: {
       // 'Content-Type': 'application/json; charset=utf-8'
     }});
 
     if(sendDataRes) {
-      CallFunc(onRes)(sendDataRes);
-      CallFunc(onSuccess)(sendDataRes.data);
-      CallFunc(onGetResInfo)(this.getResDescInfo(sendDataRes));
+      Call(onRes, sendDataRes);
+      Call(onSuccess, sendDataRes.data);
+      Call(onGetResInfo, this.getResDescInfo(sendDataRes));
       this.stateSetter(
         Object.assign({},
           this.defaultStateAfterPost(sendDataRes, actingRef),
-          CallFunc(stateAfterPostHook)(sendDataRes)
+          Call(stateAfterPostHook, sendDataRes)
         )
       );
     } else {

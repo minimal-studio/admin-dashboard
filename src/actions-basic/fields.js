@@ -6,6 +6,8 @@
  * 可以根据不同的作用域下相同的字段名字做对应的表现
  */
 
+import { getKeyMap } from "../config/app-config";
+
 let namesMapper = [
   'TransferType',
 ];
@@ -42,7 +44,7 @@ function initFields() {
       if(resultObj.hasOwnProperty(key)) console.log('重复配置了 ' + key + ' 请检查');
       resultObj[key] = val;
     }
-    namesMapper.map(item => setResultObj(item, {namesMapper: $MN.getKeyMap('all')}));
+    namesMapper.map(item => setResultObj(item, {namesMapper: getKeyMap('all')}));
     moneyMapper.map(item => setResultObj(item, {money: true}));
     abvMoneyMapper.map(item => setResultObj(item, {abvMoney: true}));
     dateMapper.map(item => setResultObj(item, {date: true}));

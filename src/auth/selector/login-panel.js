@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { FormGenerator, Button, TipPanel } from 'ukelli-ui';
+import { FormGenerator, TipPanel } from 'ukelli-ui';
 
 let isDev = process.env.NODE_ENV == 'development';
 let StoreLoginInfo = 'STORE_LOGIN_INFO';
 
 export default class LoginPanel extends Component {
+  static propTypes = {
+    logging: PropTypes.bool.isRequired,
+    login: PropTypes.func.isRequired,
+    loginResDesc: PropTypes.string.isRequired
+  }
   constructor(props) {
     super(props);
 
@@ -47,11 +52,6 @@ export default class LoginPanel extends Component {
       }
     ];
   }
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     // isDev && document.querySelector('#freeLogin').click();
-  //   }, 100);
-  // }
   componentDidMount() {
     let loaderDOM = document.querySelector('#loadingBg');
     if(!loaderDOM) return;

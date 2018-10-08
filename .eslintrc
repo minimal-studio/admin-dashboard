@@ -34,6 +34,7 @@
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-one-expression-per-line": 0,
     "react/sort-comp": 0,
+    "react/no-this-in-sfc": 0,
     "react/jsx-closing-bracket-location": [1, "after-props"],
     "react/jsx-filename-extension": [
       1,

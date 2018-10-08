@@ -3,10 +3,11 @@
  */
 
 import {EventEmitter} from 'basic-helper';
-import {$request, PollClass} from 'uke-request';
+import { PollClass, RequestClass } from 'uke-request';
 
-// import {getUserInfo, onLoginFail} from '../login-actions';
-import {authStore} from '../login-actions';
+import { authStore } from '../auth/actions';
+
+const $R = new RequestClass();
 
 function getUserName() {
   return authStore.getState().username;
@@ -34,7 +35,7 @@ function getCommonHeader() {
  * 前端应该与服务端的接口分离
  * 通过此方法实现对接远端需要的 request 数据
  */
-$request.wrapDataBeforeSend = (options) => {
+$R.wrapDataBeforeSend = (options) => {
   const {isCompress, method, data, ...params} = options;
   return {
     header: Object.assign({}, getCommonHeader(data), {
@@ -57,14 +58,14 @@ $request.wrapDataBeforeSend = (options) => {
  *   err: null || 'description' // 对接 response 的错误描述
  * }
  */
-$request.setResDataHook = (resData) => {
+$R.setResDataHook = (resData) => {
   if(typeof resData !== 'object') resData = {};
   resData.data = resData.data || resData.Data || {};
   return resData;
 };
 
 /**
- * 设置 $request 对象的 res
+ * 设置 $R 对象的 res
  */
 function handleRes({resData, callback}) {
   // let errcode = resData.errCode;
@@ -79,15 +80,17 @@ function handleRes({resData, callback}) {
 }
 
 /**
- * 监听 $request res 处理函数
+ * 监听 $R res 处理函数
  */
-$request.on('onRes', handleRes);
+$R.on('onRes', handleRes);
 
 /**
  * 轮询对象的设置
  */
 const PollingEntity = new PollClass(2);
-PollingEntity.setReqObj($request);
+PollingEntity.setReqObj($R);
+
+const $request = $R;
 
 export {
   $request, PollingEntity

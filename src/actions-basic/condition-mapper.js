@@ -2,6 +2,7 @@
  * 根据具体的业务制定所有的查询条件
  */
 
+import { IsFunc } from "basic-helper";
 
 /**
  * 同步获取查询条件的定义
@@ -54,7 +55,7 @@ export async function getAsyncConditions(name) {
   let asyncConfig = asyncConditions[name]._asyncConfig;
   for (var setter in asyncConfig) {
     let getDataFunc = asyncConfig[setter];
-    if($GH.IsFunc(getDataFunc)) {
+    if(IsFunc(getDataFunc)) {
       const resData = await getDataFunc();
       asyncConditions[name][setter] = resData;
     }
@@ -67,7 +68,7 @@ async function queryRemoteCondition() {
     method: 'api',
     data: {}
   };
-  const resData = await window.$MN.$request.send({sendData});
+  const resData = await window.$R.send({sendData});
 
   return {
     values: resData,
@@ -95,6 +96,6 @@ function getChangeTypes(returnType = 'object') {
 }
 
 function setChangeTypesDefaultVal() {
-  let result = Object.keys(ChangeTypesForSelect);
+  let result = Object.keys({});
   return result;
 }

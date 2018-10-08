@@ -6,9 +6,10 @@
 
 import React, {Component, PureComponent} from 'react';
 
+import { GetDefaultDateInfo, DateParseHook } from "basic-helper";
 import ActionBasic from './action-basic';
 
-import {getConditionOptionsMapper, getAsyncConditions, conditionOptionsMapper} from '../lib/condition-mapper';
+import { getConditionOptionsMapper, getAsyncConditions, conditionOptionsMapper } from './condition-mapper';
 
 export default class ActionReportBasic extends ActionBasic {
   getConditionOptionsMapper = getConditionOptionsMapper;
@@ -16,7 +17,7 @@ export default class ActionReportBasic extends ActionBasic {
   constructor(props) {
     super(props);
 
-    this.dateRange = window.$GH.GetDefaultDateInfo(0, 0);
+    this.dateRange = GetDefaultDateInfo(0, 0);
     this.conditionOptionsMapper = Object.assign({}, conditionOptionsMapper, {
       datetimeRange: {
         type: 'datetimeRange',
@@ -33,7 +34,7 @@ export default class ActionReportBasic extends ActionBasic {
     });
   }
   IEDateParseHook(dateStringInRange) {
-    return window.$GH.DateParseHook(dateStringInRange);
+    return DateParseHook(dateStringInRange);
   }
   getActionBtn() {
     return '-';

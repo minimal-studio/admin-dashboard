@@ -1,30 +1,18 @@
-import {defineGlobalScope, EventEmitter} from 'basic-helper';
-
 import {setUkelliConfig} from 'ukelli-ui';
-import {setFEDeployConfig} from 'uke-admin-web-scaffold/fe-deploy';
-import { GateResSpeedTesterClass } from 'uke-request';
 
-import {initFields} from '../lib/fields';
+// import { initFields } from '../lib/fields';
 import FrontEndNameMappers from './key-mappers';
-import {iconMapper, iconPrefix} from './icon-mapper';
+import { iconMapper, iconPrefix } from './icon-mapper';
 import { $request } from './req-filter';
 import { APIS } from './interface';
 
-function getAllGateUrls() {
-  return window.ManagerURL || [];
-}
-
-const gateResSpeedTester = new GateResSpeedTesterClass();
-gateResSpeedTester.setConfig({
-  gateUrls: getAllGateUrls(),
-  suffix: '/dyr/sudo'
-});
+import './listener';
 
 function SetGateUrl(selectedGate) {
   /**
    * 统一修改 gate url 的接口
    */
-  let gateUrl = selectedGate || gateResSpeedTester.getFastestGate();
+  let gateUrl = selectedGate;
 
   /**
    * 设置完线路，需要把 $request 和 PollingEntity 对象中的请求地址也修改才能生效
@@ -34,61 +22,30 @@ function SetGateUrl(selectedGate) {
     // compressLenLimit: 1000000,
     wallet: window.__wallet
   });
-  // PollingEntity.setPollUrl(currPollUrl);
-}
-
-function getDefaultFastestGate() {
-  gateResSpeedTester.onEnd = handleRes;
-  gateResSpeedTester.test();
-  function handleRes(result) {
-    const {fastestIdx, testRes} = result;
-    let fastUrl = testRes[fastestIdx] || {};
-    SetGateUrl(fastUrl.originUrl);
-  }
 }
 
 (function init() {
-  SetGateUrl();
-  setTimeout(() => {
-    getDefaultFastestGate();
-  }, 100);
+  SetGateUrl(window.ManagerURL);
 })();
 
-EventEmitter.on('LOGIN_SUCCESS', ({userInfo}) => {
-  setFEDeployConfig({
-    username: userInfo.username,
-    apiUrl: window.F_E_DeploymentUrl
-  });
-});
-
-const defaultPaging = {
-  UsePaging: 1,
-  AllCount: -1,
-  PageIndex: 0,
-  PageSize: 10
-};
-
-function getKeyMap(key) {
+export function getKeyMap(key) {
   let keyMapper = Object.assign({}, window.KEY_MAPPERS);
   return key === 'all' ? keyMapper : keyMapper[key] || key || '';
 }
 
-function getImage(imageMapperKey, extendPath) {
+export function getImage(imageMapperKey, extendPath) {
   if(!imageMapperKey) return console.log('Wrong parameters');
   let result = window.$Config.IMAGE_MAPPER[imageMapperKey] || '';
   if(extendPath) result = result.replace(/\/$/, '') + '/' + extendPath;
   return result;
 }
 
-let commonFuncs = {
+const commonFuncs = {
   getImage,
   getKeyMap,
   $request,
-  DefaultPaging: defaultPaging,
   isMobile: !window.IsDesktopMode,
 };
-
-let ManagerConfig = commonFuncs;
 
 setUkelliConfig(Object.assign({}, commonFuncs, {
   iconMapper,
@@ -101,6 +58,10 @@ setUkelliConfig(Object.assign({}, commonFuncs, {
  * window.$request = null，这是不起作用的
  */
 Object.defineProperties(window, {
+  $R: {
+    value: $request,
+    writable: false
+  },
   $request: {
     value: $request,
     writable: false
@@ -115,5 +76,4 @@ Object.assign(window, {
   KEY_MAPPERS: Object.assign({}, window.KEY_MAPPERS, FrontEndNameMappers),
 });
 
-defineGlobalScope('$MN', ManagerConfig);
-initFields();
+// initFields();
