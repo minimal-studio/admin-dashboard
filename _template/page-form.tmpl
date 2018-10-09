@@ -1,11 +1,57 @@
 {%comment%}
 
-import React, { Component } from 'react';
-import { ActionForm{%pageName%} } from '../action-refs';
+import React, {Component} from 'react';
 
-import { FormRender } from '../../template-engine';
+import { FormLayout, Loading } from 'ukelli-ui';
+import { Services } from "../services";
+import { FormRender } from "../../template-engine";
 
-const {%pageName%} = FormRender(ActionForm{%pageName%});
+class MiddleFormClass extends Services {
+  state = {
+    ...this.state
+  }
+  constructor(props) {
+    super(props);
+
+    this.formOptions = this.getForms('hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo');
+  }
+  btnConfig = [
+    {
+      action: async (formRef, actingRef) => {
+        if(!this.checkForm(formRef)) return;
+
+        let postData = {
+          ...formRef.value,
+        };
+        const agentOptions = {
+          actingRef
+        };
+        await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
+      },
+      text: '按钮1',
+      actingRef: 'acting1',
+      className: 'theme'
+    },
+    {
+      action: async (formRef, actingRef) => {
+        if(!this.checkForm(formRef)) return;
+
+        let postData = {
+          ...formRef.value,
+        };
+        const agentOptions = {
+          actingRef
+        };
+        await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
+      },
+      text: '按钮2',
+      actingRef: 'acting2',
+      className: 'red'
+    },
+  ];
+}
+
+const {%pageName%} = FormRender(MiddleFormClass);
 
 export {
   {%pageName%}

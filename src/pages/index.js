@@ -5,17 +5,24 @@
 
 import FEDeploy from 'uke-admin-web-scaffold/fe-deploy';
 
+import {
+  FormRender
+} from '../template-engine';
+
 import HomePage from './home-page';
-import TestForm from './test-form';
+import { TestForm, TestFormBasic } from './test-form';
 import TestReport from './test-report';
 
 import './registe-spec-fields';
 
 export * from './generate-pages-refs';
 
+const FormWithTMPL = FormRender(TestFormBasic);
+
 export {
   TestReport,
   TestForm,
+  FormWithTMPL,
   HomePage,
   FEDeploy
 };

@@ -3,4 +3,14 @@
  * uke-admin-web-scaffold 提供一个默认的表单渲染模版
  */
 
-export * from 'uke-admin-web-scaffold/template-engine';
+import {
+  FormRender,
+  ReportTemplate,
+  GeneralReportRender
+} from 'uke-admin-web-scaffold/template-engine';
+
+export {
+  FormRender,
+  ReportTemplate,
+  GeneralReportRender
+};

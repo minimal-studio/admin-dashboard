@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 
 import { FormLayout, Loading } from 'ukelli-ui';
-// import { ActionTestForm } from '../action-refs';
-import { Services } from "../action-refs";
+import { Services } from "../services";
 
 /**
  * 说明
  * submiting 是否提交中
  * querying  如果需要异步获取表单条件的，需要用 Loading 包装一层，并且 !querying 的时候渲染 FormLayout
  */
-export default class TestForm extends Services {
-  
+export class TestFormBasic extends Services {
+  state = {
+    ...this.state
+  }
   constructor(props) {
     super(props);
 
@@ -50,6 +51,9 @@ export default class TestForm extends Services {
       className: 'red'
     },
   ];
+}
+
+export class TestForm extends TestFormBasic {
   render() {
     const { querying = false } = this.state;
 

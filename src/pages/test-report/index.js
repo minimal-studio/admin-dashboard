@@ -9,7 +9,7 @@ import React from 'react';
 
 import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
 // import { ActionTestReport } from '../action-refs';
-import { Services } from '../action-refs';
+import { Services } from '../services';
 import { GeneralReportRender } from '../../template-engine';
 
 class TestReportClass extends Services {
@@ -46,6 +46,7 @@ class TestReportClass extends Services {
       })
     ];
   }
+  // 与 GeneralReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
@@ -68,6 +69,7 @@ class TestReportClass extends Services {
       )
     });
   }
+  // 与 GeneralReportRender 模版对接的按钮接口
   actionBtnConfig = [
     {
       text: '详情',
