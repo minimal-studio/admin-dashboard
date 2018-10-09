@@ -1,9 +1,8 @@
-# Hi～
-
-## 欢迎来到 uke admin web 的示例项目。
+# Uke Admin Seed 介绍
 
 uke admin web 提供了一种管理系统前端的解决方案
 
+- 数据驱动
 - 自动化构建工具
 - 与远端数据交互的方式及请求过程的数据状态管理
 - 统一开发方式，统一开发思路
@@ -18,188 +17,88 @@ uke admin web 提供了一种管理系统前端的解决方案
 
 一个流程示例
 
-Action
-
 ```js
-/**
- * 表单 Action 模版
- */
 import React from 'react';
 
-/**
- * ActionFormBasic 是内置的提供与服务器通讯的基础类库，通过 extends 的方式获取其中的功能
- */
-import {ActionFormBasic} from '../actions-basic';
+import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { Services } from '../services';
+import { GeneralReportRender } from '../../template-engine';
 
-/**
- * 定义业务 action
- */
-export class ActionTestForm extends ActionFormBasic {
+class TestReportClass extends Services {
+  state = {
+    ...this.state,
+  }
   constructor(props) {
     super(props);
 
-    // 定义表单项，如果需要异步获取表单条件，需要添加 querying 的状态判定
-    this.formOptions = [
+    // 模版 GeneralReportRender 渲染 conditions 的接口
+    this.conditionOptions = this.getConditions('datetimeRange');
+
+    // 定义表格渲染字段的过滤器
+    let keyFields = [
+      'username_for_user',
+      'Address',
+      'Phone',
       {
-        type: 'hidden',
-        value: 'hiddenID',
-        ref: 'hiddenID'
-      },
-      {
-        type: 'input',
-        ref: 'Input',
-        title: '输入',
-        required: true
-      },
-      {
-        type: 'password',
-        ref: 'Password',
-        title: '密码',
-        required: true
-      },
-      {
-        type: 'select',
-        ref: 'Select',
-        title: '下拉选择',
-        desc: '下拉选择的描述',
-        required: true,
-        values: {
-          val1: '下拉选择类型1',
-          val2: '下拉选择类型2',
-          val3: '下拉选择类型3',
-          val4: '下拉选择类型4',
+        key: 'Weight',
+        filter: (str, item, mapper, idx) => {
+          // 这里是过滤每一条 Weight 字段的 filter 函数
+          return str + 'kg';
         }
       },
       {
-        type: 'radio',
-        ref: 'Radio',
-        title: '单选',
-        desc: '单选的描述',
-        required: true, // 必填的表单验证标记
-        verify: (val) => {
-          // 验证该值的回调，统一在 formBasic 中处理
-          return true
-        },
-        values: {
-          val1: '单选类型1',
-          val2: '单选类型2',
-          val3: '单选类型3',
-          val4: '单选类型4',
+        key: 'action',
+        filter: (str, ...other) => {
+          return this.getActionBtn(...other);
         }
+      }
+    ];
+
+    // 模版 GeneralReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
+    this.keyMapper = [
+      ...this.getFields({
+        names: keyFields,
+      })
+    ];
+  }
+  // 与 GeneralReportRender 模版对接的查询接口
+  queryData = async (reportData) => {
+    // this.reportDataFilter services 提供的表格查询数据过滤器
+    const postData = this.reportDataFilter(reportData);
+    const agentOptions = {
+      actingRef: 'querying',
+      id: 'queryData',
+      // after 页面 state 生命周期，在请求返回后、 setState 之前调用，返回值作为 state 的一部分
+      after: (res) => {
+        return {
+          records: res.data
+        };
       },
-    ]
-  };
-  /**
-   * 定义与服务端交互的具体业务逻辑
-   * 如果按钮被操作了，将会回传一个完整的表单
-   */
-  action1 = (formHelperRef) => {
-    let sendData = {
-      method: 'api',
-      formHelperRef,
-      onSuccess: (res) => {
-        console.log(res);
+    };
+    // this.reqAgent services api 包装函数，用于封装页面的请求过程，state 的控制由 services 提供
+    const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
+  }
+  showDetail(item) {
+    let ModalId = ShowGlobalModal({
+      title: '详情',
+      width: 700,
+      children: (
+        <div className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</div>
+      )
+    });
+  }
+  // 与 GeneralReportRender 模版对接的按钮接口
+  actionBtnConfig = [
+    {
+      text: '详情',
+      action: (...args) => {
+        this.showDetail(...args);
       }
     }
-    this.sendData(sendData);
-  };
-  action2 = (formHelperRef) => {
-    let sendData = {
-      method: 'api',
-      formHelperRef,
-      onSuccess: (res) => {
-        console.log(res);
-      }
-    }
-    this.sendData(sendData);
-  };
-  // 定义操作按钮的逻辑
-  btnConfig = [
-    {
-      action: this.action1,
-      text: '操作1',
-      actingRef: 'Action1',
-      className: 'theme'
-    },
-    {
-      action: this.action2,
-      text: '操作2',
-      actingRef: 'Action2',
-      className: 'red'
-    },
   ];
 }
-```
 
-Page 模版的实现
+const TestReport = GeneralReportRender(TestReportClass);
 
-```js
-import {FormLayout, Loading} from 'ukelli-ui';
-
-// 引用上述的 ActionTestForm
-import {ActionTestForm} from '../action-refs';
-
-/**
- * 说明
- * submiting 是否提交中
- * querying  如果需要异步获取表单条件的，需要用 Loading 包装一层，并且 !querying 的时候渲染 FormLayout
- * 通过 extends ActionTestForm 获取表单项和对应的业务接口
- */
-export default class TestForm extends ActionTestForm {
-  render() {
-    const {querying = false} = this.state;
-
-    return (
-      <div>
-        <div className="card mb10">
-          {/* 如果是异步获取表单初始化数据，需要 Loading */}
-          <Loading loading={querying}>
-            {
-              querying ? null : (
-                <FormLayout
-                  tipInfo={{
-                    title: '如果是异步获取表单初始化数据，需要 Loading'
-                  }}
-                  {...this.state}
-                  btnConfig={this.btnConfig}
-                  formOptions={this.formOptions}/>
-              )
-            }
-          </Loading>
-        </div>
-        <div className="card">
-          {/* 如果是已经定义好的数据，则不需要 Loading */}
-          <FormLayout
-            tipInfo={{
-              title: '如果是已经定义好的数据，则不需要 Loading'
-            }}
-            {...this.state}
-            formOptions={this.formOptions}
-            btnConfig={this.btnConfig}/>
-        </div>
-      </div>
-    )
-  }
-}
-
-// 高阶模版
-
-const FormRender = (Action, ...other) => {
-  return class AdvenceComponent extends Action {
-    render() {
-      return (
-        <FormLayout
-          tipInfo={{
-            title: '高阶组件'
-          }}
-          {...this.state}
-          formOptions={this.formOptions}
-          btnConfig={this.btnConfig}/>
-      )
-    }
-  }
-}
-
-// 生成一个 page，复用 FormRender
-let FormPage = FormRender(TestForm);
+export default TestReport;
 ```

@@ -1,19 +1,31 @@
-# structure
+## 目录结构与功能
 
-## 目录结构说明
-
-- src 源文件目录
-- src/pages 页面目录，在 index.js 中注册页面
-- src/actions 业务逻辑目录，具体布局在 pages 中继承 action 并定义页面
-- src/config 配置目录，其中包含页面导航、请求过滤、中英对照、icon 对照、主程序配置等
-- src/components 通用组件模块目录
-
-## 表格的字段结构
-
-一般来说，表格有 3 个部分
-
-1. 查询条件
-2. 分页部分
-3. 数据列表
-
-将表格的逻辑抽离出来，可以看作是：查询条件是一种表单结构，提供一些过滤条件，用户进行筛选，然后点击查询获取远端数据，然后把数据展示，并且做一些数据的过滤。
+- src/ 源文件
+  - auth/ 验证相关
+  - components/ 一些通用组件
+  - config/ 项目配置
+    - app-config 主配置
+    - generate-nav-config 生成的导航配置
+    - icon-mapper icon 的配置
+    - key-mappers 内置中英对照
+    - listener 监听器
+    - nav-config 导航配置
+  - pages/ 渲染页面
+    - 具体的业务页面
+    - generate-pages-refs.js uke-cli 生成页面时注入到此文件
+    - index.js 注册所有页面
+    - registe-spec-fields.js 注册特殊的路由页面
+    - services.js 导出基础服务
+  - services/ 基础服务，提供与远端数据交互时，页面的 state 生命周期管理；提供所有表单表格注册和获取的方式；提供所有 api 接口的获取方式，下面会详细介绍此模块
+    - apis/ 业务接口
+    - forms/ 表单和查询条件注册目录
+    - fields.js 注册表格的字段和对应字段的过滤器
+    - index.js 导出配置
+    - req-filter.js 请求对象过滤器
+    - service-basic.js 基础服务类，大部分组件都继承于此
+  - style/ 样式
+  - template-engin/ 模版引擎
+    - uke-admin-web-scaffold-demo 模版 demo，可以根据实际情况编写对应的模版
+    - index.js 配置导出
+  - utils/ 辅助函数
+    - pagination-helper.js 分页辅助函数

@@ -1,5 +1,7 @@
 # Uke 管理系统的前端脚手架工程
 
+- 数据驱动
+
 ## 依赖
 
 - NodeJs
@@ -10,6 +12,7 @@
 - uke-request
 - uke-admin-web-scaffold
 - uke-web-server
+- uke-scrips
 
 先安装 babel cli
 
@@ -17,94 +20,133 @@
 npm i @babel/core @babel/node @babel/cli -g
 ```
 
-- [更多介绍内容](./docs/intro.md)
+- [安装](./docs/start.md)
 - [遇到的实际问题](./docs/resolution.md)
 - [多语言支持](./docs/i18n.md)
 - [应用程序版本机制](./version/README.md)
+- [TODO](./docs/todo.md)
+<!-- - [更多介绍](./docs/intro.md) -->
 
-## 开始使用
+## 目录结构与功能
 
-### 安装构建工具 uke-cli
+- src/ 源文件
+  - auth/ 验证相关
+  - components/ 一些通用组件
+  - config/ 项目配置
+    - app-config 主配置
+    - generate-nav-config 生成的导航配置
+    - icon-mapper icon 的配置
+    - key-mappers 内置中英对照
+    - listener 监听器
+    - nav-config 导航配置
+  - pages/ 渲染页面
+    - 具体的业务页面
+    - generate-pages-refs.js uke-cli 生成页面时注入到此文件
+    - index.js 注册所有页面
+    - registe-spec-fields.js 注册特殊的路由页面
+    - services.js 导出基础服务
+  - services/ 基础服务，提供与远端数据交互时，页面的 state 生命周期管理；提供所有表单表格注册和获取的方式；提供所有 api 接口的获取方式，下面会详细介绍此模块
+    - apis/ 业务接口
+    - forms/ 表单和查询条件注册目录
+    - fields.js 注册表格的字段和对应字段的过滤器
+    - index.js 导出配置
+    - req-filter.js 请求对象过滤器
+    - service-basic.js 基础服务类，大部分组件都继承于此
+  - style/ 样式
+  - template-engin/ 模版引擎
+    - uke-admin-web-scaffold-demo 模版 demo，可以根据实际情况编写对应的模版
+    - index.js 配置导出
+  - utils/ 辅助函数
+    - pagination-helper.js 分页辅助函数
 
-```shell
-npm i uke-cli -g
-```
+## 重要模块说明
 
-### 构建 web server
+### 基础服务 Services
 
-```shell
-uks init
-# 根据提示输入
-# 例如项目名为 yourProjName
-
-cd yourProjName
-npm start
-```
-
-浏览器打开 <a href="http://127.0.0.1:28101/dyr/test" target="_blank">http://127.0.0.1:28101/dyr/test</a>
-
-### 构建 admin web
-
-```shell
-uka init
-# 此处是分步操作，根据提示，分别输入项目的英文名称，开发者名称
-# 以下例子使用 test-proj
-# 初始化成功后会在当前目录生成 ./test-proj 项目
-
-cd ./test-proj
-
-# 准备就绪，启动项目，程序自动在浏览器中打开，并且提供 webpack react 的热更新机制
-npm start
-```
-
-添加功能页面，以 “系统公告 xtgg” 为例
-
-同步操作 uke addp *pageName* *pageAlias* *pageTypeFlag*
-
-```shell
-uke addp xtgg 系统公告 -r
-
-# 此处是同步操作, 创建一个 report 类型的系统公告 action 和 page
-# 页面类型 -r == report | -f == form | -i == iframe(未实现) | -m == markdown(未实现)
-```
-
-分步操作
-
-```shell
-uke add xtgg
-
-# 此处同样是分步操作，根据提示选择页面的类型，输入页面的中文名称即可
-# 页面类型 report | form | iframe(未实现) | markdown(未实现)
-# 后面会详细讲述不同的类型
-```
-
-系统会在项目对应的目录下创建 xtgg.js，并且添加到菜单中，菜单可以自行调整位置
-
-### 手动添加页面的 action 和 page
-
-```shell
-git clone https://github.com/SANGET/uke-admin-seed.git
-```
-
------------
-
-## 多语言支持
-
-支持中文的 map 反射，编码方式更友好，语言包在 /public/i18n/ 中
+提供一个便于编写业务的环境，封装了页面请求时的 state 的生命周期管理，表格和表单配置的接口，表格字段的接口等，以下是一个 page 的例子
 
 ```js
-// 向所有 page 传入 gm (getMap) 语言反射
-let i18nConfig = {
-  '值': 'key'
+import React from 'react';
+
+import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { Services } from '../services';
+import { GeneralReportRender } from '../../template-engine';
+
+class TestReportClass extends Services {
+  state = {
+    ...this.state,
+  }
+  constructor(props) {
+    super(props);
+
+    // 模版 GeneralReportRender 渲染 conditions 的接口
+    this.conditionOptions = this.getConditions('datetimeRange');
+
+    // 定义表格渲染字段的过滤器
+    let keyFields = [
+      'username_for_user',
+      'Address',
+      'Phone',
+      {
+        key: 'Weight',
+        filter: (str, item, mapper, idx) => {
+          // 这里是过滤每一条 Weight 字段的 filter 函数
+          return str + 'kg';
+        }
+      },
+      {
+        key: 'action',
+        filter: (str, ...other) => {
+          return this.getActionBtn(...other);
+        }
+      }
+    ];
+
+    // 模版 GeneralReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
+    this.keyMapper = [
+      ...this.getFields({
+        names: keyFields,
+      })
+    ];
+  }
+  // 与 GeneralReportRender 模版对接的查询接口
+  queryData = async (reportData) => {
+    // this.reportDataFilter services 提供的表格查询数据过滤器
+    const postData = this.reportDataFilter(reportData);
+    const agentOptions = {
+      actingRef: 'querying',
+      id: 'queryData',
+      // after 页面 state 生命周期，在请求返回后、 setState 之前调用，返回值作为 state 的一部分
+      after: (res) => {
+        return {
+          records: res.data
+        };
+      },
+    };
+    // this.reqAgent services api 包装函数，用于封装页面的请求过程，state 的控制由 services 提供
+    const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
+  }
+  showDetail(item) {
+    let ModalId = ShowGlobalModal({
+      title: '详情',
+      width: 700,
+      children: (
+        <div className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</div>
+      )
+    });
+  }
+  // 与 GeneralReportRender 模版对接的按钮接口
+  actionBtnConfig = [
+    {
+      text: '详情',
+      action: (...args) => {
+        this.showDetail(...args);
+      }
+    }
+  ];
 }
-gm('值');
+
+const TestReport = GeneralReportRender(TestReportClass);
+
+export default TestReport;
 ```
-
-TODO 完善自动化调用翻译接口自动翻译基于中文的语言包
-
------------
-
-## TODO
-
-- 完善 uke web server
-- 实现可视化的构建操作

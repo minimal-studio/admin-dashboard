@@ -8,7 +8,6 @@
 import React from 'react';
 
 import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
-// import { ActionTestReport } from '../action-refs';
 import { Services } from '../services';
 import { GeneralReportRender } from '../../template-engine';
 
