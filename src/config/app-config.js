@@ -3,8 +3,7 @@ import {setUkelliConfig} from 'ukelli-ui';
 // import { initFields } from '../lib/fields';
 import FrontEndNameMappers from './key-mappers';
 import { iconMapper, iconPrefix } from './icon-mapper';
-import { $request } from './req-filter';
-import { APIS } from './interface';
+import { $request } from '../services/req-filter';
 
 import './listener';
 
@@ -64,10 +63,6 @@ Object.defineProperties(window, {
   },
   $request: {
     value: $request,
-    writable: false
-  },
-  APIS: {
-    value: APIS,
     writable: false
   },
 });

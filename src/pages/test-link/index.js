@@ -9,9 +9,10 @@ import React, {Component} from 'react';
 import { TipPanel } from 'ukelli-ui';
 import { Link } from 'uke-admin-web-scaffold';
 
-import {ActionFormTestLink} from '../action-refs';
+// import {ActionFormTestLink} from '../action-refs';
+import { Services } from '../action-refs';
 
-class TestLink extends ActionFormTestLink {
+class TestLink extends Services {
   render() {
     const { routerParams } = this;
     const { history, onNavigate } = this.props;

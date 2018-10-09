@@ -1,16 +1,57 @@
 import React, {Component} from 'react';
 
 import { FormLayout, Loading } from 'ukelli-ui';
-import { ActionTestForm } from '../action-refs';
+// import { ActionTestForm } from '../action-refs';
+import { Services } from "../action-refs";
 
 /**
  * 说明
  * submiting 是否提交中
  * querying  如果需要异步获取表单条件的，需要用 Loading 包装一层，并且 !querying 的时候渲染 FormLayout
  */
-export default class TestForm extends ActionTestForm {
+export default class TestForm extends Services {
+  
+  constructor(props) {
+    super(props);
+
+    this.formOptions = this.getForms('hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo');
+  }
+  btnConfig = [
+    {
+      action: async (formRef, actingRef) => {
+        if(!this.checkForm(formRef)) return;
+
+        let postData = {
+          ...formRef.value,
+        };
+        const agentOptions = {
+          actingRef
+        };
+        await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
+      },
+      text: '按钮1',
+      actingRef: 'acting1',
+      className: 'theme'
+    },
+    {
+      action: async (formRef, actingRef) => {
+        if(!this.checkForm(formRef)) return;
+
+        let postData = {
+          ...formRef.value,
+        };
+        const agentOptions = {
+          actingRef
+        };
+        await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
+      },
+      text: '按钮2',
+      actingRef: 'acting2',
+      className: 'red'
+    },
+  ];
   render() {
-    const {querying = false} = this.state;
+    const { querying = false } = this.state;
 
     return (
       <div>
@@ -41,6 +82,6 @@ export default class TestForm extends ActionTestForm {
             btnConfig={this.btnConfig}/>
         </div>
       </div>
-    )
+    );
   }
 }

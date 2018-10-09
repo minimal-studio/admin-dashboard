@@ -1,4 +1,4 @@
-import { $request } from '../../config/req-filter';
+import { $R } from '../../services/req-filter';
 
 export const AUTH_APIS = {
   LOGIN : 'admin_login',
@@ -10,7 +10,7 @@ async function login(data) {
     data
   };
 
-  return $request.send({sendData, path: '/auth-login'});
+  return $R.send({sendData, path: '/auth-login'});
 }
 
 async function logout() {
@@ -18,7 +18,7 @@ async function logout() {
     method: 'admin_logout',
     data: {}
   };
-  return $request.send({sendData});
+  return $R.send({sendData});
 }
 
 Object.assign(AUTH_APIS, {

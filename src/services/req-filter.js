@@ -2,7 +2,6 @@
  * 这里是根据具体业务的处理filter
  */
 
-import {EventEmitter} from 'basic-helper';
 import { PollClass, RequestClass } from 'uke-request';
 
 import { authStore } from '../auth/actions';
@@ -93,5 +92,5 @@ PollingEntity.setReqObj($R);
 const $request = $R;
 
 export {
-  $request, PollingEntity
+  $request, $R, PollingEntity
 };

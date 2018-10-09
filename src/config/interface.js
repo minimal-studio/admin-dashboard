@@ -1,5 +1,0 @@
-const APIS = {};
-
-export {
-  APIS
-};

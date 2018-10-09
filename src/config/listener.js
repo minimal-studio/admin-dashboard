@@ -1,6 +1,6 @@
 import { EventEmitter } from 'basic-helper';
 import { setFEDeployConfig } from 'uke-admin-web-scaffold/fe-deploy';
-import { initFields } from "../actions-basic/fields";
+import { initFields } from "../services/fields";
 
 EventEmitter.on('LOGIN_SUCCESS', ({userInfo}) => {
   setFEDeployConfig({
