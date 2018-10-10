@@ -30,6 +30,10 @@ const NAV_MENU_CONFIG = [
         title: '测试表单with tmpl',
         code: 'FormWithTMPL',
       },
+      {
+        title: '404',
+        code: 'Notfound',
+      },
     ]
   },
   {
