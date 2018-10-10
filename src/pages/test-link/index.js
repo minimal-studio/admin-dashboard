@@ -9,7 +9,6 @@ import React, {Component} from 'react';
 import { TipPanel } from 'ukelli-ui';
 import { Link } from 'uke-admin-web-scaffold';
 
-// import {ActionFormTestLink} from '../action-refs';
 import { Services } from '../services';
 
 class TestLink extends Services {

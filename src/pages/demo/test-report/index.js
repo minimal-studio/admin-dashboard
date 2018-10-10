@@ -9,7 +9,7 @@ import React from 'react';
 
 import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
 import { Services } from '../services';
-import { GeneralReportRender } from '../../template-engine';
+import { GeneralReportRender } from '../template-engine';
 
 class TestReportClass extends Services {
   state = {
