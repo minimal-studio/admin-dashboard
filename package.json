@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "basic-helper": "^1.4.2",
+    "basic-helper": "^1.4.3",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
