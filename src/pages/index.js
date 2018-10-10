@@ -12,6 +12,8 @@ import {
 import HomePage from './home-page';
 import { TestForm, TestFormBasic } from './test-form';
 import TestReport from './test-report';
+import ReportAsync from './test-report-async';
+import FormAsync from './test-form-async';
 
 import './registe-spec-fields';
 
@@ -23,6 +25,8 @@ export {
   TestReport,
   TestForm,
   FormWithTMPL,
+  FormAsync,
+  ReportAsync,
   HomePage,
   FEDeploy
 };

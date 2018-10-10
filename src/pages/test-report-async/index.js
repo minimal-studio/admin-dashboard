@@ -11,14 +11,25 @@ import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
 import { Services } from '../services';
 import { GeneralReportRender } from '../../template-engine';
 
+const demoGetFormFromRemote = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        value1: '哈哈',
+        value2: '呵呵',
+        value3: '嘻嘻',
+      });
+    }, 1000);
+  });
+};
+
 class TestReportClass extends Services {
   state = {
     ...this.state,
+    loadingCondition: true
   }
   constructor(props) {
     super(props);
-
-    this.conditionOptions = this.getConditions(['datetimeRange']);
 
     let keyFields = [
       'username_for_user',
@@ -44,6 +55,26 @@ class TestReportClass extends Services {
         names: keyFields,
       })
     ];
+  }
+  componentDidMount() {
+    this.getFormOptions();
+  }
+  getFormOptions = async () => {
+    await this.reqAgent(demoGetFormFromRemote, {
+      actingRef: 'loadingCondition',
+      after: (remoteData) => {
+        const options = ['datetimeRange', 'selectDemo'];
+        const merge = {
+          selectDemo: {
+            values: remoteData
+          }
+        };
+        const conditionOptions = this.getConditions(options, merge);
+        return {
+          conditionOptions
+        };
+      }
+    })();
   }
   // 与 GeneralReportRender 模版对接的查询接口
   queryData = async (reportData) => {
@@ -79,6 +110,6 @@ class TestReportClass extends Services {
   ];
 }
 
-const TestReport = GeneralReportRender(TestReportClass);
+const TestReportAsync = GeneralReportRender(TestReportClass);
 
-export default TestReport;
+export default TestReportAsync;

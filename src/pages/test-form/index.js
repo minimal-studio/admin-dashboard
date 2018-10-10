@@ -15,7 +15,7 @@ export class TestFormBasic extends Services {
   constructor(props) {
     super(props);
 
-    this.formOptions = this.getForms('hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo');
+    this.formOptions = this.getForms(['hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo']);
   }
   btnConfig = [
     {
@@ -58,33 +58,15 @@ export class TestForm extends TestFormBasic {
     const { querying = false } = this.state;
 
     return (
-      <div>
-        <div className="card mb10">
-          {/* 如果是异步获取表单初始化数据，需要 Loading */}
-          <Loading loading={querying}>
-            {
-              querying ? null : (
-                <FormLayout
-                  tipInfo={{
-                    title: '如果是异步获取表单初始化数据，需要 Loading'
-                  }}
-                  {...this.state}
-                  btnConfig={this.btnConfig}
-                  formOptions={this.formOptions}/>
-              )
-            }
-          </Loading>
-        </div>
-        <div className="card">
-          {/* 如果是已经定义好的数据，则不需要 Loading */}
-          <FormLayout
-            tipInfo={{
-              title: '如果是已经定义好的数据，则不需要 Loading'
-            }}
-            {...this.state}
-            formOptions={this.formOptions}
-            btnConfig={this.btnConfig}/>
-        </div>
+      <div className="card">
+        {/* 如果是已经定义好的数据，则不需要 Loading */}
+        <FormLayout
+          tipInfo={{
+            title: '如果是已经定义好的数据，则不需要 Loading'
+          }}
+          {...this.state}
+          formOptions={this.formOptions}
+          btnConfig={this.btnConfig}/>
       </div>
     );
   }

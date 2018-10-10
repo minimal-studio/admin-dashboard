@@ -15,8 +15,16 @@ const NAV_MENU_CONFIG = [
         code: 'TestReport',
       },
       {
+        title: '表格异步获取查询条件',
+        code: 'ReportAsync',
+      },
+      {
         title: '测试表单',
         code: 'TestForm',
+      },
+      {
+        title: '异步获取表单数据示例',
+        code: 'FormAsync',
       },
       {
         title: '测试表单with tmpl',
