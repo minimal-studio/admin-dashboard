@@ -64,6 +64,36 @@ npm i @babel/core @babel/node @babel/cli -g
 
 ## 模块说明
 
+### 模版引擎
+
+- 默认使用 uke-admin-web-scaffold/template-engine 来渲染表格和表单
+- 可以在 src/template-engine 下注册新的模版引擎
+- uke-admin-web-scaffold/uke-admin-web-scaffold-demo 为默认模版的例子
+
+> for-report 表格模版说明
+
+主要提供组合查询条件，查询按钮及操作，其它按钮的摆放等，提供一些 api，也可以进行扩展
+
+```js
+// GeneralReportRender 提供的 API，挂在在当前页面组建的 this 下
+class Page extends Services {
+  actionBtnConfig = []; // 远端数据渲染的操作按钮
+  /**
+   * 查询按钮的接口, 传入两个参数
+   */
+  queryData({conditionData, nextPagin}) {
+    // api
+  }
+  getActionBtn() {
+    // 可以忽略
+  }
+}
+```
+
+> for-form 表格模版说明
+
+使用 Ukelli-UI 中的 FormLayout 组件进一步封装，提供表单渲染，状态管理等，暂时不提供额外接口，可以自行拓展
+
 ### 基础服务 Services
 
 > 逐步完善 src/services/services-baisc.js

@@ -14,7 +14,7 @@ export default function FormRender(FormAction) {
             )
           }
         </Loading>
-      )
+      );
     }
-  }
+  };
 }
