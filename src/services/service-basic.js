@@ -42,7 +42,11 @@ export default class Services extends ActionAgent {
    * @param {object} res 远端返回的数据
    */
   resStatus(res) {
-
+    this.showDesc && this.showDesc({
+      title: '消息提示',
+      msg: res.err,
+      type: res.err ? 'error' : 'success'
+    });
   }
   /**
    * 重写 ActionAgent 的接口
