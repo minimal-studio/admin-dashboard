@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FormLayout, Loading} from 'ukelli-ui';
+import { FormLayout, Loading } from 'ukelli-ui';
 
 export default function FormRender(FormAction) {
   return class F extends FormAction {

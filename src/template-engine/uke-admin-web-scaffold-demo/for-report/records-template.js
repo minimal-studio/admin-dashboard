@@ -14,19 +14,25 @@ import {
   TableBody, ConditionGenerator
 } from 'ukelli-ui';
 
-import { getDefPagin } from "../../../utils/pagination-helper";
+import { getDefPagin } from '../../utils/pagination-helper';
+import { getScreenInfo } from '../../utils/dom';
 
 const delayExec = new DebounceClass();
 
 export default class ReportTemplate extends Component {
   static propTypes = {
     onQueryData: PropTypes.func.isRequired,
+    gm: PropTypes.func.isRequired,
     showCondition: PropTypes.bool,
+    height: PropTypes.number,
+    children: PropTypes.any,
     loadingCondition: PropTypes.bool,
     needPaging: PropTypes.bool,
     needCheck: PropTypes.bool,
+    whenCheckAction: PropTypes.any,
     autoQuery: PropTypes.bool,
-    didMountQuery: PropTypes.bool,
+    isMobile: PropTypes.bool,
+    // didMountQuery: PropTypes.bool,
     needCount: PropTypes.bool,
   
     keyMapper: PropTypes.array.isRequired,
@@ -34,26 +40,35 @@ export default class ReportTemplate extends Component {
   
     records: PropTypes.array.isRequired,
     pagingInfo: PropTypes.object,
-    loading: PropTypes.bool.isRequired,
-    template: PropTypes.string,
-    hasErr: PropTypes.bool,
+    querying: PropTypes.bool,
+    template: PropTypes.oneOf(['table', 'RecordItemsHelper']),
+    // hasErr: PropTypes.bool,
     resDesc: PropTypes.string
   };
   static defaultProps = {
     autoQuery: false,
-    didMountQuery: true,
+    // didMountQuery: true,
     needCount: false,
+    isMobile: false,
+    needCheck: false,
+    loadingCondition: false,
     showCondition: true,
     needPaging: true,
+    template: 'table',
+    resDesc: '',
   }
   constructor(props) {
     super(props);
 
     this.state = {
       checkedItems: {},
-      displayFloat: GetFloatLen() != 0
+      displayFloat: GetFloatLen() != 0,
+      tableHeight: props.height || 200
     };
   }
+  // componentDidMount() {
+  //   this.setTableContainerHeight();
+  // }
 
   componentWillUnmount() {
     this.restoreBasicFloatLen();
@@ -114,25 +129,13 @@ export default class ReportTemplate extends Component {
     });
   }
 
-  checkTableFilter() {
-    const {
-      keyMapper = [], needCheck = false
-    } = this.props;
-
-    let checkExtend = {
-      key: 'checkbox',
-      filter: (str, item, mapper, idx) => {
-        // console.log()
-        let checked = !!this.state.checkedItems[idx];
-        return (
-          <input type="checkbox" checked={checked} onClick={e => this.toggleSelectItem(item, idx)}/>
-        );
-      }
-    };
-
-    let result = needCheck ? [checkExtend, ...keyMapper] : keyMapper;
-
-    return result;
+  setTableContainerHeight(fixGroup) {
+    delayExec.exec(() => {
+      const tableContainerHeight = getScreenInfo().screenHeight - fixGroup.offsetHeight - 200;
+      this.setState({
+        tableHeight: tableContainerHeight
+      });
+    }, 100);
   }
 
   whenMountedQuery = (data) => {
@@ -155,36 +158,39 @@ export default class ReportTemplate extends Component {
 
   render() {
     const {
-      records = [], pagingInfo = {}, loading = '', children, template = 'table',
-      needCount, autoQuery, showCondition,
-      needPaging, loadingCondition = false,
-      conditionOptions, isMobile, gm,
+      records = [], pagingInfo = {}, querying = true, children, template,
+      needCount, autoQuery, showCondition, needCheck, whenCheckAction,
+      needPaging, loadingCondition, height,
+      conditionOptions, isMobile, gm, keyMapper,
       onQueryData
     } = this.props;
 
-    const {checkedItems, displayFloat} = this.state;
+    const { checkedItems, displayFloat, tableHeight } = this.state;
 
-    const keyMapper = this.checkTableFilter();
-    const isAllCheck = Object.keys(checkedItems).length == records.length;
-
-    let _thumbKeyMapper = !isMobile ? keyMapper : keyMapper.filter(item => {
-      const itemKey = item.key;
-      return !/Remark|Time|OrderId|Id|Date|Config/.test(itemKey)
-             && !item.datetime
-             && !item.date;
-    });
+    // let _thumbKeyMapper = !isMobile ? keyMapper : keyMapper.filter(item => {
+    //   const itemKey = item.key;
+    //   return !/Remark|Time|OrderId|Id|Date|Config/.test(itemKey)
+    //          && !item.datetime
+    //          && !item.date;
+    // });
 
     let templateDOM = null;
+    let _tableH = height ? height : tableHeight;
+
     switch (template) {
     case 'table':
       templateDOM = (
         <div className="table-container" ref={e => this.renderContent = e}>
           <div className="table-scroll">
-            <Loading loading={loading} inrow>
+            <Loading loading={querying} inrow>
               <TableBody
-                onCheckAll={e => this.toggleAllItems(e)}
-                allCheck={isAllCheck}
-                keyMapper={_thumbKeyMapper}
+                height={_tableH}
+                keyMapper={keyMapper}
+                needCheck={needCheck}
+                whenCheckAction={whenCheckAction}
+                onCheck={nextItems => {
+                  this.checkedItems = nextItems;
+                }}
                 records={records}
                 needCount={needCount}/>
             </Loading>
@@ -194,7 +200,7 @@ export default class ReportTemplate extends Component {
       break;
     case 'RecordItemsHelper':
       templateDOM = (
-        <Loading loading={loading} inrow>
+        <Loading loading={querying} inrow>
           <RecordItemsHelper keyMapper={keyMapper} records={records}/>
         </Loading>
       );
@@ -234,7 +240,7 @@ export default class ReportTemplate extends Component {
       <div className="action-area">
         <Button
           text={gm("查询")}
-          loading={loading}
+          loading={querying}
           onClick={e => this.handleQueryData()}/>
         <Button
           text={gm(displayFloat ? '隐藏小数点' : '显示小数点')}
@@ -246,13 +252,22 @@ export default class ReportTemplate extends Component {
     return (
       <div className="report-table-layout">
         <Toast ref={toast => this.toast = toast}/>
-        <div className="report-fix-con" ref={e => this.fixReportCon = e}>
+        <div className="report-fix-con" ref={e => {
+          this.fixGroup = e;
+          if(this.__setHeight) return;
+          setTimeout(() => {
+            this.setTableContainerHeight(e);
+          }, 300);
+          this.__setHeight = true;
+        }}>
           {conditionHelper}
           {actionArea}
           {children}
         </div>
+        <div>
+          {pagingDOM}
+        </div>
         {templateDOM}
-        {pagingDOM}
       </div>
     );
   }

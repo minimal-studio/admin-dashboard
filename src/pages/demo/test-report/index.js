@@ -11,9 +11,42 @@ import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
 import { Services } from '../services';
 import { GeneralReportRender } from '../template-engine';
 
+const getTestData = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve([
+        {
+          UserName: 'Name1',
+          Address: '广州',
+          Phone: '99999999',
+          Weight: 58,
+        },
+        {
+          UserName: 'Name2',
+          Address: '香港',
+          Phone: '99999998',
+          Weight: 58,
+        },
+        {
+          UserName: 'Name3',
+          Address: '澳门',
+          Phone: '99999997',
+          Weight: 58,
+        },
+      ]);
+    }, 1000);
+  });
+};
+
 class TestReportClass extends Services {
   state = {
     ...this.state,
+  }
+  templateOptions = {
+    needCheck: true,
+    whenCheckAction: (
+      <div>选中后出现的 DOM</div>
+    )
   }
   constructor(props) {
     super(props);
@@ -50,14 +83,13 @@ class TestReportClass extends Services {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
       actingRef: 'querying',
-      id: 'queryData',
       after: (res) => {
         return {
-          records: res.data
+          records: res
         };
       },
     };
-    const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
+    await this.reqAgent(getTestData, agentOptions)(postData);
   }
   showDetail(item) {
     let ModalId = ShowGlobalModal({

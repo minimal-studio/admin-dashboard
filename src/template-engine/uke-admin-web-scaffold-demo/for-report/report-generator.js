@@ -14,10 +14,10 @@ export function GeneralReportRender(Action, passProps = {}) {
       return actionBtnConfig.map((config, idx) => {
         const {text, action} = config;
         return (
-          <span className="link-btn mr5" key={idx} onClick={e => {
+          <span className="link-btn mr5" key={text + idx} onClick={e => {
             action(item);
           }}>
-            {text}
+            {this.props.gm(text)}
           </span>
         );
       });
@@ -30,6 +30,7 @@ export function GeneralReportRender(Action, passProps = {}) {
           needCount={this.needCount}
 
           {...passProps}
+          {...this.templateOptions}
           {...this.state}
           {...this.props}
           onQueryData={this.queryData.bind(this)}/>
