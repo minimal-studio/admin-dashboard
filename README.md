@@ -39,11 +39,11 @@ npm i @babel/core @babel/node @babel/cli -g
     - app-config 主配置
     - generate-nav-config 生成的导航配置
     - icon-mapper icon 的配置
-    - key-mappers 内置中英对照
+    - key-mappers 内置中英对照
     - listener 监听器
     - nav-config 导航配置
   - pages/ 渲染页面
-    - 具体的业务页面
+    - 具体的业务页面
     - generate-pages-refs.js uke-cli 生成页面时注入到此文件
     - index.js 注册所有页面
     - registe-spec-fields.js 注册特殊的路由页面
