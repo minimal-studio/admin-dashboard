@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "basic-helper": "^1.4.3",
+    "basic-helper": "^1.4.4",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
@@ -27,9 +27,9 @@
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^2.2.0",
-    "uke-admin-web-scaffold": "^0.12.17",
+    "uke-admin-web-scaffold": "^0.13.1",
     "uke-request": "^0.12.8",
-    "ukelli-ui": "^2.5.22",
+    "ukelli-ui": "^2.6.2",
     "unistore": "^3.0.6"
   },
   "devDependencies": {
