@@ -10,10 +10,13 @@ import FormAsync from './test-form-async';
 
 const FormWithTMPL = FormRender(TestFormBasic);
 
+const FormWithTMPL2 = FormWithTMPL;
+
 export {
   TestReport,
   TestForm,
   FormWithTMPL,
+  FormWithTMPL2,
   FormAsync,
   ReportAsync,
   HomePage,
