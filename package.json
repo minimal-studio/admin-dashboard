@@ -13,7 +13,7 @@
     "setAppVersion": "sh ./version/set-app-version.sh",
     "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
     "autoZip": "npm run setAppVersion; npm run build; npm run zipBuild;",
-    "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W",
+    "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W; yarn start",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
   },
   "dependencies": {
@@ -27,9 +27,9 @@
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^2.2.0",
-    "uke-admin-web-scaffold": "^0.13.3",
+    "uke-admin-web-scaffold": "^0.13.4",
     "uke-request": "^0.12.10",
-    "ukelli-ui": "^2.6.5",
+    "ukelli-ui": "^2.6.7",
     "unistore": "^3.0.6"
   },
   "devDependencies": {
