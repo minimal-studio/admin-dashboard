@@ -78,6 +78,14 @@ class TestReportClass extends Services {
       })
     ];
   }
+  reportActionBtns = [
+    {
+      text: 'ForTest',
+      action: () => {
+        console.log('for test')
+      }
+    }
+  ]
   // 与 GeneralReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);

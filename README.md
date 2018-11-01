@@ -78,6 +78,7 @@ npm i @babel/core @babel/node @babel/cli -g
 // GeneralReportRender 提供的 API，挂在在当前页面组建的 this 下
 class Page extends Services {
   actionBtnConfig = []; // 远端数据渲染的操作按钮
+  reportActionBtns = []; // 用于拓展表格的操作按钮
   /**
    * 查询按钮的接口, 传入两个参数
    */
