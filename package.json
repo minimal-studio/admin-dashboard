@@ -29,7 +29,7 @@
     "react-transition-group": "^2.2.0",
     "uke-admin-web-scaffold": "^0.13.15",
     "uke-request": "^0.12.11",
-    "ukelli-ui": "^2.7.7",
+    "ukelli-ui": "^2.7.8",
     "unistore": "^3.0.6"
   },
   "devDependencies": {
