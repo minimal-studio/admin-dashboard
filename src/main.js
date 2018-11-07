@@ -51,6 +51,12 @@ const Status = ({onLogout}) => {
   );
 };
 
+const DashBoard = () => {
+  return (
+    <div>Test DashBoard</div>
+  );
+};
+
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
@@ -64,6 +70,7 @@ class LoginFilter extends React.Component {
           isLogin ? (
             <ManagerAPP
               {...this.props}
+              // DashBoard={DashBoard}
               // 必须填写的
               username={userInfo.username}
               versionInfo={VersionInfo}
