@@ -111,6 +111,42 @@ class Page extends Services {
 }
 ```
 
+#### 异步查询条件标记
+
+如果表格中的查询条件需要异步获取，需要设置一个 loadingCondition 标记，然后在 after 函数中 return false，或者 actingRef: 'loadingCondition'
+
+```js
+class AsyncConditionDemo extends Services {
+  state = {
+    ...this.state,
+    loadingCondition: true // 需要设置的标记为
+  }
+  // 实现 1
+  queryConditionData1() {
+    const options = {
+      actingRef: 'querying',
+      after: (res) => {
+        return {
+          ...yourData,
+          loadingCondition: false
+        }
+      }
+    }
+  }
+  // 实现 2
+  queryConditionData2() {
+    const options = {
+      actingRef: 'loadingCondition',
+      after: (res) => {
+        return {
+          ...yourData,
+        }
+      }
+    }
+  }
+}
+```
+
 > for-form 表格模版说明
 
 使用 Ukelli-UI 中的 FormLayout 组件进一步封装，提供表单渲染，状态管理等，暂时不提供额外接口，可以自行拓展
