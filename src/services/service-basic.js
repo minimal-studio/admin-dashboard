@@ -12,19 +12,19 @@ import ActionAgent from "uke-admin-web-scaffold/action-agent";
 import * as APIs from './apis';
 import * as paginHelper from '../utils/pagination-helper';
 import { Conditions, Forms } from "./forms";
+import { getFromMapper, getFromMapperSync } from './forms/utils';
 import { getFields, setFields, getFieldsConfig } from './fields';
 
 export default class Services extends ActionAgent {
+  apis = APIs;
   getFields = getFields;
   setFields = setFields;
   getFieldsConfig = getFieldsConfig;
-  apis = APIs;
-  conditions = Conditions;
-  getConditions = Conditions.getConditions;
-  getConditionsSync = Conditions.getConditionsSync;
-  forms = Forms;
-  getForms = Forms.getForms;
   paginHelper = paginHelper;
+  /** 用于注册 conditions */
+  conditions = Conditions;
+  /** 用于注册 forms */
+  forms = Forms;
   constructor(props) {
     super(props);
 
@@ -36,6 +36,20 @@ export default class Services extends ActionAgent {
       records: [],
       pagingInfo: paginHelper.getDefPagin(),
     };
+  }
+
+  async getConditionsSync() {
+    return await getFromMapperSync(this.conditions, ...arguments);
+  }
+  getConditions() {
+    return getFromMapper(this.conditions, ...arguments);
+  }
+
+  async getFormsSync() {
+    return await getFromMapperSync(this.forms, ...arguments);
+  }
+  getForms() {
+    return getFromMapper(this.forms, ...arguments);
   }
   /**
    * 重写 ActionAgent 的 resStatus 接口

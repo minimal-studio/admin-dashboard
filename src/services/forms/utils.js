@@ -3,7 +3,7 @@ import { IsFunc } from "basic-helper";
 const defaultRetrueObj = false;
 
 const resolveParams = (params) => {
-  const hasParams = params.length > 0;
+  const hasParams = params && params.length > 0;
   if(!hasParams) return console.log('need params');
 
   const isArray = Array.isArray(params);
@@ -15,6 +15,7 @@ const resolveParams = (params) => {
 const getFromMapper = (mapper, params, merger, options = {}) => {
   const { returnObj = defaultRetrueObj } = options;
   const names = resolveParams(params);
+  if(!names) return;
 
   let result = returnObj ? {} : [];
   
@@ -31,6 +32,7 @@ const getFromMapper = (mapper, params, merger, options = {}) => {
 const getFromMapperSync = async (mapper, params, merger, options = {}) => {
   const { returnObj = defaultRetrueObj } = options;
   const names = resolveParams(params);
+  if(!names) return;
 
   let result = returnObj ? {} : [];
   

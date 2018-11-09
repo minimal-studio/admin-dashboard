@@ -2,8 +2,6 @@
  * 根据具体的业务制定所有的表单配置
  */
 
-import { getFromMapper, getFromMapperSync } from "./utils";
-
 /**
  * 根据具体业务的名字命名，在外层通过 getForms(['name']) 获取对应配置
  */
@@ -53,10 +51,4 @@ const Conditions = {
   },
 };
 
-export function getForms() {
-  return getFromMapper(Conditions, ...arguments);
-}
-
-export async function getFormsSync() {
-  return await getFromMapperSync(Conditions, ...arguments);
-}
+export default Conditions;

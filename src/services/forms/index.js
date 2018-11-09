@@ -1,5 +1,5 @@
-import * as Conditions from './condition-options';
-import * as Forms from "./form-options";
+import Conditions from './condition-options';
+import Forms from "./form-options";
 
 export {
   Conditions, Forms

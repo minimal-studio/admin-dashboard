@@ -4,8 +4,6 @@
 
 import { GetDefaultDateInfo } from "basic-helper";
 
-import { getFromMapper, getFromMapperSync } from './utils';
-
 const demoGetFormFromRemote = () => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -56,26 +54,5 @@ const Conditions = {
     };
   }
 };
-/**
- * 同步获取查询条件的定义
- */
-const SYNC_CONDITION_DEMO = {
-  key1: '字段1',
-  key2: '字段2',
-};
-const conditionOptionsMapper = {
-  condition1: {
-    type: 'radio',
-    ref: 'AgentType',
-    defaultValue: 'key2',
-    values: SYNC_CONDITION_DEMO
-  },
-};
 
-export async function getConditionsSync() {
-  return await getFromMapperSync(Conditions, ...arguments);
-}
-
-export function getConditions() {
-  return getFromMapper(Conditions, ...arguments);
-}
+export default Conditions;
