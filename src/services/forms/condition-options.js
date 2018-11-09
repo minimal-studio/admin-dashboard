@@ -2,9 +2,21 @@
  * 根据具体的业务制定所有的查询条件
  */
 
-import { IsFunc, GetDefaultDateInfo } from "basic-helper";
+import { GetDefaultDateInfo } from "basic-helper";
 
-import getFromMapper from './utils';
+import { getFromMapper, getFromMapperSync } from './utils';
+
+const demoGetFormFromRemote = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        value1: '哈哈',
+        value2: '呵呵',
+        value3: '嘻嘻',
+      });
+    }, 1000);
+  });
+};
 
 const Conditions = {
   demo: {
@@ -32,6 +44,16 @@ const Conditions = {
       // needTime: false,
       range: dateRange
     };
+  },
+  asyncCon: async () => {
+    const values = await demoGetFormFromRemote();
+    return {
+      type: 'select',
+      ref: 'Select',
+      title: '下拉选择',
+      desc: '下拉选择的描述',
+      values
+    };
   }
 };
 /**
@@ -49,6 +71,10 @@ const conditionOptionsMapper = {
     values: SYNC_CONDITION_DEMO
   },
 };
+
+export async function getConditionsSync() {
+  return await getFromMapperSync(Conditions, ...arguments);
+}
 
 export function getConditions() {
   return getFromMapper(Conditions, ...arguments);

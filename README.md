@@ -115,14 +115,28 @@ class Page extends Services {
 
 如果表格中的查询条件需要异步获取，需要设置一个 loadingCondition 标记，然后在 after 函数中 return false，或者 actingRef: 'loadingCondition'
 
+或者使用 Services 提供的 getConditionsSync 方法, 在 conditiob-options.js 中定义异步获取条件的函数
+
 ```js
 class AsyncConditionDemo extends Services {
   state = {
     ...this.state,
     loadingCondition: true // 需要设置的标记为
   }
+  componentDidMount() {
+    await this.queryConditionData1();
+  }
   // 实现 1
   queryConditionData1() {
+    const options = ['datetimeRange', 'asyncCon'];
+    const conditionOptions = await this.getConditionsSync(options);
+    this.setState({
+      conditionOptions,
+      loadingCondition: false
+    });
+  }
+  // 实现 2
+  queryConditionData2() {
     const options = {
       actingRef: 'querying',
       after: (res) => {
@@ -133,8 +147,8 @@ class AsyncConditionDemo extends Services {
       }
     }
   }
-  // 实现 2
-  queryConditionData2() {
+  // 实现 3
+  queryConditionData3() {
     const options = {
       actingRef: 'loadingCondition',
       after: (res) => {

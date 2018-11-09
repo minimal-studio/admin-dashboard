@@ -21,6 +21,7 @@ export default class Services extends ActionAgent {
   apis = APIs;
   conditions = Conditions;
   getConditions = Conditions.getConditions;
+  getConditionsSync = Conditions.getConditionsSync;
   forms = Forms;
   getForms = Forms.getForms;
   paginHelper = paginHelper;

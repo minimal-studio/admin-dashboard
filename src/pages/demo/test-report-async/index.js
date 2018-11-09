@@ -57,9 +57,10 @@ class TestReportClass extends Services {
     ];
   }
   componentDidMount() {
-    this.getFormOptions();
+    // this.getFormOptions1();
+    this.getFormOptions2();
   }
-  getFormOptions = async () => {
+  getFormOptions1 = async () => {
     await this.reqAgent(demoGetFormFromRemote, {
       actingRef: 'loadingCondition',
       after: (remoteData) => {
@@ -75,6 +76,14 @@ class TestReportClass extends Services {
         };
       }
     })();
+  }
+  getFormOptions2 = async () => {
+    const options = ['datetimeRange', 'asyncCon'];
+    const conditionOptions = await this.getConditionsSync(options);
+    this.setState({
+      conditionOptions,
+      loadingCondition: false
+    });
   }
   // 与 GeneralReportRender 模版对接的查询接口
   queryData = async (reportData) => {
