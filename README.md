@@ -83,18 +83,34 @@ npm i @babel/core @babel/node @babel/cli -g
 
 主要提供组合查询条件，查询按钮及操作，其它按钮的摆放等，提供一些 api，也可以进行扩展
 
+> 关于按钮的控制权
+
+每个按钮需要设置 id，否则不生效。按钮的与页面的应对关系
+
+```js
+// pageCode 是用于页面的标识，唯一的
+{
+  [pageCode]: {
+    // btnId 用于区分页面之内的不同功能的按钮，页面之内不能重复
+    [btnId]: true // 是否激活的按钮
+  }
+}
+```
+
 ```js
 // GeneralReportRender 提供的 API，挂在在当前页面组建的 this 下
 class Page extends Services {
   actionBtnConfig = [
     {
       text: '',
+      id: '',
       action: () => {},
     }
   ]; // 远端数据渲染的操作按钮
   reportActionBtns = [
     {
       text: '',
+      id: '',
       action: () => {},
       color: 'red'
     }
