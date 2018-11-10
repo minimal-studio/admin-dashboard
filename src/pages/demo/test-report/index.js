@@ -81,8 +81,9 @@ class TestReportClass extends Services {
   reportActionBtns = [
     {
       text: 'ForTest',
+      id: 'testing',
       action: () => {
-        console.log('for test')
+        console.log('for test');
       }
     }
   ]
@@ -112,6 +113,7 @@ class TestReportClass extends Services {
   actionBtnConfig = [
     {
       text: '详情',
+      id: 'detail',
       action: (...args) => {
         this.showDetail(...args);
       }

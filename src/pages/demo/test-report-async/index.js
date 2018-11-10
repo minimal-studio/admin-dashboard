@@ -112,6 +112,7 @@ class TestReportClass extends Services {
   actionBtnConfig = [
     {
       text: '详情',
+      id: 'detail',
       action: (...args) => {
         this.showDetail(...args);
       }
