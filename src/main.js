@@ -15,7 +15,7 @@ import { Call } from 'basic-helper';
  * 通用代码块
  */
 
-import { ManagerAPP } from 'uke-admin-web-scaffold';
+import { AdminWevScaffold } from 'uke-admin-web-scaffold';
 
 import './config/app-config';
 import * as AllManagerPages from './pages';
@@ -44,9 +44,9 @@ const Status = ({onLogout}) => {
   return (
     <React.Fragment>
       <span className="flex"/>
-      <div className="actions mr10">
+      {/* <div className="actions mr10">
         <span className="_btn" onClick={e => onLogout()}>退出登录</span>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };
@@ -68,7 +68,7 @@ class LoginFilter extends React.Component {
       <LoginSelector {...this.props}>
         {
           isLogin ? (
-            <ManagerAPP
+            <AdminWevScaffold
               {...this.props}
               // DashBoard={DashBoard}
               // 必须填写的
@@ -80,9 +80,10 @@ class LoginFilter extends React.Component {
                 title: 'title',
                 icon: 'icon',
               }}
+              title="Uke 管理系统"
               i18nConfig={i18nConfig}
               pluginComponent={{
-                Statusbar: <Status/>
+                Statusbar: <Status />
               }}
               pageComponents={pageComponents}/>
           ): null

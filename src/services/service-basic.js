@@ -8,12 +8,23 @@ import React, {Component, PureComponent} from 'react';
 
 import { Call, ToBasicUnitMoney, DebounceClaaass } from 'basic-helper';
 import ActionAgent from "uke-admin-web-scaffold/action-agent";
+import { Notify } from 'ukelli-ui';
 
 import * as APIs from './apis';
 import * as paginHelper from '../utils/pagination-helper';
 import { Conditions, Forms } from "./forms";
 import { getFromMapper, getFromMapperSync } from './forms/utils';
 import { getFields, setFields, getFieldsConfig } from './fields';
+
+window.addEventListener('error', (e) => {
+  Notify({
+    config: {
+      title: '未捕获的异常错误',
+      text: e + '',
+      lifecycle: 0
+    }
+  });
+});
 
 export default class Services extends ActionAgent {
   apis = APIs;
@@ -36,6 +47,27 @@ export default class Services extends ActionAgent {
       records: [],
       pagingInfo: paginHelper.getDefPagin(),
     };
+  }
+  
+  componentDidCatch(error, info) {
+    Notify({
+      config: {
+        title: '程序异常提示',
+        lifecycle: -1,
+        text: (
+          <div>
+            <p>
+              error:
+              {error}
+            </p>
+            <p>
+              info:
+              {info}
+            </p>
+          </div>
+        )
+      }
+    });
   }
 
   async getConditionsSync() {
