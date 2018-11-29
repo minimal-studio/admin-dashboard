@@ -3,7 +3,7 @@
  * 也可以自定义模板来渲染对应的页面
  */
 
-import FEDeploy from 'uke-admin-web-scaffold/fe-deploy';
+import FEDeploy, { DeployManager } from 'uke-admin-web-scaffold/fe-deploy';
 
 import './registe-spec-fields';
 
@@ -11,5 +11,5 @@ export * from './generate-pages-refs';
 export * from './demo';
 
 export {
-  FEDeploy
+  FEDeploy, DeployManager
 };

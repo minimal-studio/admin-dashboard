@@ -26,10 +26,10 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.6",
-    "react-transition-group": "^2.2.0",
-    "uke-admin-web-scaffold": "^0.14.10",
-    "uke-request": "^0.12.15",
-    "ukelli-ui": "^2.7.24",
+    "react-transition-group": "^2.5.0",
+    "uke-admin-web-scaffold": "^0.15.0",
+    "uke-request": "^0.13.1",
+    "ukelli-ui": "^2.7.27",
     "unistore": "^3.0.6"
   },
   "devDependencies": {
