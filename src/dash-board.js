@@ -50,7 +50,7 @@ export default class DashBoard extends React.PureComponent {
   }
   render() {
     return (
-      <div className="dash-board">
+      <div className="dash-board card">
         <CardContainer className="j-c-b mb10">
           <Card row={9} className="relative">
             <h3 className="text-center">数据1</h3>
@@ -64,11 +64,11 @@ export default class DashBoard extends React.PureComponent {
         <CardContainer className="j-c-b">
           <Card row={9} className="relative">
             <h3 className="text-center">数据3</h3>
-            <ChartCom id="chartDOM3" ref={e => this.chartDOM3 = e} data={mockData} type="bar" options={options} />
+            <ChartCom id="chartDOM3" ref={e => this.chartDOM3 = e} data={mockData} type="radar" options={options} />
           </Card>
           <Card row={9} className="relative">
             <h3 className="text-center">数据4</h3>
-            <ChartCom id="chartDOM4" ref={e => this.chartDOM4 = e} data={mockData} type="line" options={options} />
+            <ChartCom id="chartDOM4" ref={e => this.chartDOM4 = e} data={mockData} type="pie" options={options} />
           </Card>
         </CardContainer>
       </div>

@@ -30,7 +30,7 @@ import DashBoard from './dash-board';
  */
 import './app.scss';
 
-const pageComponents = AllManagerPages;
+const pageComponents = {...AllManagerPages, DashBoard};
 
 const i18nConfig = {
   'zh-CN': '中文',
