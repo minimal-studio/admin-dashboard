@@ -72,6 +72,11 @@ class LoginFilter extends React.Component {
               {...this.props}
               // DashBoard={DashBoard}
               // 必须填写的
+              bgStyle={{
+                // background: `url(./images/bg/bg_1.jpg)`,
+                // backgroundColor: '#f3f3f3',
+                // opacity: 0.1
+              }}
               username={userInfo.username}
               versionInfo={VersionInfo}
               menuMappers={{

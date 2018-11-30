@@ -66,7 +66,10 @@ export default class LoginPanel extends Component {
 
     return (
       <form
-        className="login-panel"
+        className="login-panel fixbg"
+        style={{
+          backgroundImage: `url(./images/bg/bg_3.jpg)`
+        }}
         onSubmit={e => {
           e.preventDefault();
           login(this.formHelper.value, (userInfo) => {
