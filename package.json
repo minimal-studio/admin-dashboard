@@ -27,9 +27,9 @@
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^2.5.0",
-    "uke-admin-web-scaffold": "^0.15.3",
-    "uke-request": "^0.13.1",
-    "ukelli-ui": "^2.7.30",
+    "uke-admin-web-scaffold": "^0.15.7",
+    "uke-request": "^0.13.2",
+    "ukelli-ui": "^2.7.33",
     "unistore": "^3.0.6"
   },
   "devDependencies": {

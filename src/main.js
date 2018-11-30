@@ -23,6 +23,7 @@ import * as AllManagerPages from './pages';
 import LoginSelector from './auth/selector';
 import { authStore, authActions } from './auth/actions';
 import VersionInfo from './version.json';
+import DashBoard from './dash-board';
 
 /**
  * 样式文件
@@ -51,12 +52,6 @@ const Status = ({onLogout}) => {
   );
 };
 
-const DashBoard = () => {
-  return (
-    <div>Test DashBoard</div>
-  );
-};
-
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
@@ -70,7 +65,6 @@ class LoginFilter extends React.Component {
           isLogin ? (
             <AdminWevScaffold
               {...this.props}
-              // DashBoard={DashBoard}
               // 必须填写的
               bgStyle={{
                 // background: `url(./images/bg/bg_1.jpg)`,
@@ -88,9 +82,10 @@ class LoginFilter extends React.Component {
               title="Uke 管理系统"
               i18nConfig={i18nConfig}
               pluginComponent={{
-                Statusbar: <Status />
+                Statusbar: <Status />,
+                DashBoard: <DashBoard />
               }}
-              pageComponents={pageComponents}/>
+              pageComponents={pageComponents} />
           ): null
         }
       </LoginSelector>
