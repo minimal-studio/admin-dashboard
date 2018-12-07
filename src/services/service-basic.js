@@ -114,13 +114,14 @@ export default class Services extends ActionAgent {
     }
     return checkRes.isPass;
   }
-  reportDataFilter({ conditionData, nextPaging }) {
+  reportDataFilter({ conditionData, nextPagin }) {
+    console.log(nextPagin)
     /**
      * 这里需要根据业务字段配置对应的
      */
     return {
       data: conditionData,
-      pagin: nextPaging
+      pagin: nextPagin
     };
   }
 }
