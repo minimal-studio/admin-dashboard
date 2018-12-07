@@ -45,6 +45,7 @@ export default class Services extends ActionAgent {
       resDesc: '',
       resData: {},
       records: [],
+      infoMapper: paginHelper.getPaginMapper(),
       pagingInfo: paginHelper.getDefPagin(),
     };
   }

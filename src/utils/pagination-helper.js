@@ -1,8 +1,8 @@
 const defaultPagin = {
   active: true,
-  total: 0,
-  idx: 0,
-  size: 10
+  total: 1000,
+  pIdx: 0,
+  pSize: 10
 };
 
 /**
@@ -11,8 +11,8 @@ const defaultPagin = {
 const paginTransfer = {
   active: 'active',
   total: 'total',
-  idx: 'idx',
-  size: 'size'
+  pIdx: 'pIdx',
+  pSize: 'pSize'
 };
 
 export function getDefPagin() {
