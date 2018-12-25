@@ -1,6 +1,7 @@
 import generateNavConfig from './generate-nav-config';
 
-const isDev = process.env.NODE_ENV === 'development';
+const isnetlify = process.env.PLATFORM === 'netlify';
+const isDev = !isnetlify || process.env.NODE_ENV === 'development';
 
 const demoMenu = {
   title: '范例菜单',

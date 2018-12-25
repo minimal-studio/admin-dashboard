@@ -8,6 +8,7 @@
   "scripts": {
     "start": "PORT=6086 PLATFORM=workspace_admin ukectl start",
     "build": "npm run setAppVersion; ukectl build",
+    "deploy": "PLATFORM=netlify; npm run build",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
     "setAppVersion": "sh ./version/set-app-version.sh",
@@ -34,6 +35,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "uke-scripts": "^0.4.18"
+    "uke-scripts": "^0.4.19"
   }
 }
