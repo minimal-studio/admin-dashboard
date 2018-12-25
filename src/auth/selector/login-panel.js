@@ -65,17 +65,10 @@ export default class LoginPanel extends Component {
     const { logging, login, loginResDesc } = this.props;
 
     return (
-      <form
+      <div
         className="login-panel fixbg"
         style={{
           backgroundImage: `url(./images/bg/bg_3.jpg)`
-        }}
-        onSubmit={e => {
-          e.preventDefault();
-          login(this.formHelper.value, (userInfo) => {
-            // console.log(userInfo)
-            window.Storage.setItem(StoreLoginInfo, userInfo);
-          });
         }}>
         <div className="form-layout">
           <h3 className="title">管理系统</h3>
@@ -87,6 +80,12 @@ export default class LoginPanel extends Component {
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
+            onSubmit={e => {
+              login(this.formHelper.value, userInfo => {
+                // console.log(userInfo)
+                window.Storage.setItem(StoreLoginInfo, userInfo);
+              });
+            }}
             showInputTitle
             formOptions={this.formOptions} ref={e => this.formHelper = e}>
             <div className="form-group">
@@ -96,7 +95,7 @@ export default class LoginPanel extends Component {
             </div>
           </FormGenerator>
         </div>
-      </form>
+      </div>
     );
   }
 }

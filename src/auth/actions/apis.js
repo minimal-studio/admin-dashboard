@@ -1,24 +1,24 @@
 import { $R } from '../../services/req-filter';
 
 export const AUTH_APIS = {
-  LOGIN : 'admin_login',
-  LOGOUT: 'admin_logout'
+  LOGIN : '/auth-login',
+  LOGOUT: '/logout'
 };
 
 async function login(data) {
-  let sendData = {
-    data
-  };
-
-  return $R.send({sendData, path: '/auth-login'});
+  // return $R.post(AUTH_APIS.LOGIN, data);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        data,
+        err: null
+      });
+    }, 500);
+  });
 }
 
 async function logout() {
-  let sendData = {
-    method: 'admin_logout',
-    data: {}
-  };
-  return $R.send({sendData});
+  return $R.post(AUTH_APIS.LOGOUT, {});
 }
 
 Object.assign(AUTH_APIS, {
