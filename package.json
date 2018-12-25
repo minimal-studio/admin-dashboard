@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "uke-scripts": "^0.4.9"
+    "uke-scripts": "^0.4.16"
   }
 }
