@@ -53,8 +53,8 @@ const NAV_MENU_CONFIG = [
     icon: 'chalkboard',
     code: 'FEDeploy',
   },
-  isDev ? generateNavConfig : null,
-  isDev ? demoMenu : null,
+  !isDev ? generateNavConfig : null,
+  !isDev ? demoMenu : null,
 ];
 
 export default NAV_MENU_CONFIG;
