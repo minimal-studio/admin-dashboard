@@ -15,7 +15,7 @@ export class TestFormBasic extends Services {
   constructor(props) {
     super(props);
 
-    this.formOptions = this.getForms(['hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo']);
+    this.formOptions = this.getForms(["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","textDemo"]);
   }
   btnConfig = [
     {
@@ -62,7 +62,8 @@ export class TestForm extends TestFormBasic {
         {/* 如果是已经定义好的数据，则不需要 Loading */}
         <FormLayout
           tipInfo={{
-            title: '如果是已经定义好的数据，则不需要 Loading'
+            title: '如果是已经定义好的数据，则不需要 Loading',
+            type: 'success'
           }}
           {...this.state}
           formOptions={this.formOptions}

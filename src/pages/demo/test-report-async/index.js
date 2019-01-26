@@ -7,9 +7,10 @@
 
 import React from 'react';
 
-import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { ShowModal, CloseModal, DescHelper } from 'ukelli-ui';
 import { Services } from '../services';
 import { GeneralReportRender } from '../template-engine';
+import { getTestData, keyFieldsForReport } from '../report-data';
 
 const demoGetFormFromRemote = () => {
   return new Promise(resolve => {
@@ -31,29 +32,16 @@ class TestReportClass extends Services {
   constructor(props) {
     super(props);
 
-    let keyFields = [
-      'username_for_user',
-      'Address',
-      'Phone',
-      {
-        key: 'Weight',
-        filter: (str, item, mapper, idx) => {
-          // 这里是过滤每一条 Weight 字段的 filter 函数
-          return str + 'kg';
-        }
-      },
+    this.keyMapper = [
+      ...this.getFields({
+        names: keyFieldsForReport,
+      }),
       {
         key: 'action',
         filter: (str, ...other) => {
           return this.getActionBtn(...other);
         }
       }
-    ];
-
-    this.keyMapper = [
-      ...this.getFields({
-        names: keyFields,
-      })
     ];
   }
   componentDidMount() {
@@ -64,7 +52,7 @@ class TestReportClass extends Services {
     await this.reqAgent(demoGetFormFromRemote, {
       actingRef: 'loadingCondition',
       after: (remoteData) => {
-        const options = ['datetimeRange', 'selectDemo'];
+        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
         const merge = {
           selectDemo: {
             values: remoteData
@@ -78,7 +66,7 @@ class TestReportClass extends Services {
     })();
   }
   getFormOptions2 = async () => {
-    const options = ['datetimeRange', 'asyncCon'];
+    const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
     const conditionOptions = await this.getConditionsSync(options);
     this.setState({
       conditionOptions,
@@ -93,18 +81,18 @@ class TestReportClass extends Services {
       id: 'queryData',
       after: (res) => {
         return {
-          records: res.data
+          records: res
         };
       },
     };
-    const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
+    const res = await this.reqAgent(getTestData, agentOptions)(postData);
   }
   showDetail(item) {
     let ModalId = ShowGlobalModal({
       title: '详情',
       width: 700,
       children: (
-        <div className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</div>
+        <DescHelper keyMapper={this.keyMapper} record={item} />
       )
     });
   }

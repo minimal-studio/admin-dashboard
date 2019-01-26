@@ -15,7 +15,7 @@ import { Call } from 'basic-helper';
  * 通用代码块
  */
 
-import { AdminWevScaffold } from 'uke-admin-web-scaffold';
+import { AdminWebScaffold } from 'uke-admin-web-scaffold';
 
 import './config/app-config';
 import * as AllManagerPages from './pages';
@@ -63,7 +63,7 @@ class LoginFilter extends React.Component {
       <LoginSelector {...this.props}>
         {
           isLogin ? (
-            <AdminWevScaffold
+            <AdminWebScaffold
               {...this.props}
               // 必须填写的
               bgStyle={{

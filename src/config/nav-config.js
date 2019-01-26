@@ -1,7 +1,7 @@
 import generateNavConfig from './generate-nav-config';
 
-const isnetlify = process.env.PLATFORM === 'netlify';
-const isDev = !isnetlify || process.env.NODE_ENV === 'development';
+const isNetlify = process.env.PLATFORM === 'netlify';
+const needDemoMenu = isNetlify || process.env.NODE_ENV === 'development';
 
 const demoMenu = {
   title: '范例菜单',
@@ -53,8 +53,8 @@ const NAV_MENU_CONFIG = [
     icon: 'chalkboard',
     code: 'FEDeploy',
   },
-  !isDev ? generateNavConfig : null,
-  !isDev ? demoMenu : null,
+  needDemoMenu ? generateNavConfig : null,
+  needDemoMenu ? demoMenu : null,
 ];
 
 export default NAV_MENU_CONFIG;

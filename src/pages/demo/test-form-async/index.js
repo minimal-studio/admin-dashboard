@@ -32,7 +32,7 @@ export default class TestFormAsync extends Services {
     const agentOptions = {
       actingRef: 'querying',
       after: (remoteData) => {
-        const options = ['hideDemo', 'inputDemo', 'pwDemo', 'selectDemo', 'radioDemo'];
+        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","textDemo"];
         const merge = {
           selectDemo: {
             values: remoteData
@@ -93,7 +93,8 @@ export default class TestFormAsync extends Services {
             querying ? null : (
               <FormLayout
                 tipInfo={{
-                  title: '如果是异步获取表单初始化数据，需要 Loading'
+                  title: '如果是异步获取表单初始化数据，需要 Loading',
+                  type: 'success'
                 }}
                 {...this.state}
                 btnConfig={this.btnConfig}/>
