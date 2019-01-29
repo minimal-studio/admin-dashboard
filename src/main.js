@@ -24,6 +24,7 @@ import LoginSelector from './auth/selector';
 import { authStore, authActions } from './auth/actions';
 import VersionInfo from './version.json';
 import DashBoard from './dash-board';
+import statusbarConfig from './statusbar-config';
 
 /**
  * 样式文件
@@ -72,6 +73,7 @@ class LoginFilter extends React.Component {
                 // opacity: 0.1
               }}
               username={userInfo.username}
+              statusbarConfig={statusbarConfig}
               versionInfo={VersionInfo}
               menuMappers={{
                 child: 'child',
