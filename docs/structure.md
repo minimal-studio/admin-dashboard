@@ -1,5 +1,16 @@
+# 项目结构
+
 ## 目录结构与功能
 
+- _template 用于 uke-cli 生产的模版，可以修改
+- build 编译后的目录
+- docs 相关文档目录
+- init-script 项目初始化脚本
+- packages 工作区
+- public 公共资源目录
+- scripts 一般脚本
+- version 版本嵌入脚本
+- _uke-data.js uke-cli 给当前项目的配置，初始化是需要修改其中的 developer 的名字，不需要提交
 - src/ 源文件
   - auth/ 验证相关
   - components/ 一些通用组件
@@ -7,11 +18,11 @@
     - app-config 主配置
     - generate-nav-config 生成的导航配置
     - icon-mapper icon 的配置
-    - key-mappers 内置中英对照
+    - key-mappers 内置中英对照
     - listener 监听器
     - nav-config 导航配置
   - pages/ 渲染页面
-    - 具体的业务页面
+    - 具体的业务页面
     - generate-pages-refs.js uke-cli 生成页面时注入到此文件
     - index.js 注册所有页面
     - registe-spec-fields.js 注册特殊的路由页面
@@ -30,8 +41,115 @@
   - utils/ 辅助函数
     - pagination-helper.js 分页辅助函数
 
-
 ## 模块说明
+
+### 模版引擎
+
+- 默认使用 uke-admin-web-scaffold/template-engine 来渲染表格和表单
+- 可以在 src/template-engine 下注册新的模版引擎
+- uke-admin-web-scaffold/uke-admin-web-scaffold-demo 为默认模版的例子
+
+> for-report 表格模版说明
+
+主要提供组合查询条件，查询按钮及操作，其它按钮的摆放等，提供一些 api，也可以进行扩展
+
+> 关于按钮的控制权
+
+每个按钮需要设置 id，否则不生效。按钮的与页面的应对关系
+
+```js
+// pageCode 是用于页面的标识，唯一的
+{
+  [pageCode]: {
+    // btnId 用于区分页面之内的不同功能的按钮，页面之内不能重复
+    [btnId]: true // 是否激活的按钮
+  }
+}
+```
+
+```js
+// GeneralReportRender 提供的 API，挂在在当前页面组建的 this 下
+class Page extends Services {
+  actionBtnConfig = [
+    {
+      text: '',
+      id: '',
+      action: () => {},
+    }
+  ]; // 远端数据渲染的操作按钮
+  reportActionBtns = [
+    {
+      text: '',
+      id: '',
+      action: () => {},
+      color: 'red'
+    }
+  ]; // 用于拓展表格的操作按钮
+  /**
+   * 查询按钮的接口, 传入两个参数
+   */
+  queryData({conditionData, nextPagin}) {
+    // api
+  }
+  getActionBtn() {
+    // 可以忽略
+  }
+}
+```
+
+#### 异步查询条件标记
+
+如果表格中的查询条件需要异步获取，需要设置一个 loadingCondition 标记，然后在 after 函数中 return false，或者 actingRef: 'loadingCondition'
+
+或者使用 Services 提供的 getConditionsSync 方法, 在 conditiob-options.js 中定义异步获取条件的函数
+
+```js
+class AsyncConditionDemo extends Services {
+  state = {
+    ...this.state,
+    loadingCondition: true // 需要设置的标记为
+  }
+  componentDidMount() {
+    await this.queryConditionData1();
+  }
+  // 实现 1
+  queryConditionData1() {
+    const options = ['datetimeRange', 'asyncCon'];
+    const conditionOptions = await this.getConditionsSync(options);
+    this.setState({
+      conditionOptions,
+      loadingCondition: false
+    });
+  }
+  // 实现 2
+  queryConditionData2() {
+    const options = {
+      actingRef: 'querying',
+      after: (res) => {
+        return {
+          ...yourData,
+          loadingCondition: false
+        }
+      }
+    }
+  }
+  // 实现 3
+  queryConditionData3() {
+    const options = {
+      actingRef: 'loadingCondition',
+      after: (res) => {
+        return {
+          ...yourData,
+        }
+      }
+    }
+  }
+}
+```
+
+> for-form 表格模版说明
+
+使用 Ukelli-UI 中的 FormLayout 组件进一步封装，提供表单渲染，状态管理等，暂时不提供额外接口，可以自行拓展
 
 ### 基础服务 Services
 
