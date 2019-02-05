@@ -9,7 +9,7 @@ import React from 'react';
 import { Provider, connect } from 'unistore/react';
 import { hot } from 'react-hot-loader';
 
-import { Call } from 'basic-helper';
+import { Call, DateFormat } from 'basic-helper';
 
 /**
  * 通用代码块
@@ -53,6 +53,18 @@ const Status = ({onLogout}) => {
   );
 };
 
+const Footer = () => {
+  const today = new Date();
+  return (
+    <div className="mr10">
+      <span className="mr10">© {DateFormat(today, 'YYYY')}, Made by <a href="https://github.com/SANGET" target="_blank">SANGET</a>, </span>
+      <a href="https://github.com/SANGET/uke-admin-web-scaffold" target="_blank" className="item mr10">Github</a>
+      <a href="https://ukelli.com" target="_blank" className="item mr10">Blog</a>
+      <a href="https://ukelli.com" target="_blank" className="item mr10">About</a>
+    </div>
+  );
+};
+
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
@@ -81,11 +93,12 @@ class LoginFilter extends React.Component {
                 title: 'title',
                 icon: 'icon',
               }}
-              title="Uke 管理系统"
+              title="uke-dashboard"
               i18nConfig={i18nConfig}
               pluginComponent={{
-                Statusbar: <Status />,
-                DashBoard: <DashBoard />
+                Statusbar: Status,
+                DashBoard: DashBoard,
+                Footer: Footer
               }}
               pageComponents={pageComponents} />
           ): null

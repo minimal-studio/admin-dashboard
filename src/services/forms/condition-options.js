@@ -2,7 +2,7 @@
  * 根据具体的业务制定所有的查询条件
  */
 import React from 'react';
-import { GetDefaultDateInfo } from "basic-helper";
+import { DateRange } from "basic-helper/datetime-helper";
 
 const CustomerCom = ({ onChange }) => {
   // onChange 由 FormGenerator 提供
@@ -168,7 +168,7 @@ const Conditions = {
     title: '文本',
   },
   datetimeRange: () => {
-    const dateRange = GetDefaultDateInfo(0, 0);
+    const dateRange = DateRange(0, 0);
     return {
       type: 'datetimeRange',
       refs: ['startData', 'endDate'],

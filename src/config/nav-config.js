@@ -3,49 +3,57 @@ import generateNavConfig from './generate-nav-config';
 const isNetlify = process.env.PLATFORM === 'netlify';
 const needDemoMenu = isNetlify || process.env.NODE_ENV === 'development';
 
-const demoMenu = {
-  title: '范例菜单',
-  icon: 'feather-alt',
-  child: [
-    {
-      title: '首页',
-      code: 'HomePage',
-    },
-    {
-      title: '测试表格',
-      code: 'TestReport',
-    },
-    {
-      title: '表格异步获取查询条件',
-      code: 'ReportAsync',
-    },
-    {
-      title: '测试表单',
-      code: 'TestForm',
-    },
-    {
-      title: '异步获取表单数据示例',
-      code: 'FormAsync',
-    },
-    {
-      title: '测试表单with tmpl',
-      code: 'FormWithTMPL',
-    },
-    {
-      title: '测试表单with tmpl2',
-      code: 'FormWithTMPL2',
-    },
-    {
-      title: '404',
-      code: 'Notfound',
-    },
-  ]
-};
+const demoMenu = [
+  // {
+  //   title: '首页',
+  //   code: 'HomePage',
+  // },
+  {
+    title: '表格',
+    code: 'TestReport',
+    icon: 'chart-bar'
+  },
+  {
+    title: '表格异步查询条件',
+    code: 'ReportAsync',
+    icon: 'asterisk'
+  },
+  {
+    title: '表单',
+    code: 'TestForm',
+    icon: 'bookmark'
+  },
+  {
+    title: '异步表单数据',
+    code: 'FormAsync',
+    icon: 'book'
+  },
+  {
+    title: '表单模版引擎',
+    code: 'FormWithTMPL',
+    icon: 'book-open'
+  },
+  {
+    title: '表单模版引擎2',
+    code: 'FormWithTMPL2',
+    icon: 'book-reader'
+  },
+  {
+    title: '404',
+    code: 'Notfound',
+    icon: 'exclamation-triangle'
+  },
+];
 
 const NAV_MENU_CONFIG = [
   {
-    title: '首页',
+    title: 'DashBoard',
     code: 'DashBoard',
+    icon: 'tachometer-alt',
+  },
+  {
+    title: '首页',
+    code: 'HomePage',
     icon: 'home',
   },
   {
@@ -53,8 +61,8 @@ const NAV_MENU_CONFIG = [
     icon: 'chalkboard',
     code: 'FEDeploy',
   },
+  ...(needDemoMenu ? demoMenu : []),
   needDemoMenu ? generateNavConfig : null,
-  needDemoMenu ? demoMenu : null,
 ];
 
 export default NAV_MENU_CONFIG;
