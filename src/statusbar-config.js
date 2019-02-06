@@ -32,7 +32,7 @@ const menusForTask = ({ hide }) => {
     <Menus data={[
       {
         text: 'Github',
-        icon: 'git',
+        pureIcon: 'fab fa-github',
         action: () => {
           hide();
           window.open('https://github.com/SANGET/uke-dashboard.git');
