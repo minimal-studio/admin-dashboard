@@ -52,7 +52,7 @@ export default class DashBoard extends React.PureComponent {
   render() {
     return (
       <div className="dash-board card">
-        <div className="p10">
+        <div className="p20">
           <Grid container space={20}>
             <Grid xl={6} lg={6}>
               <Card className="relative">
