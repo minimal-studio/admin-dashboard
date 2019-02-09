@@ -20,7 +20,7 @@ uke admin web 提供了一种管理系统前端的解决方案
 ```js
 import React from 'react';
 
-import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { ShowModal, CloseModal } from 'ukelli-ui';
 import { Services } from '../services';
 import { GeneralReportRender } from '../../template-engine';
 
@@ -79,11 +79,11 @@ class TestReportClass extends Services {
     const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
   }
   showDetail(item) {
-    let ModalId = ShowGlobalModal({
+    let ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
-        <div className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</div>
+        <div className="text-center" onClick={e => CloseModal(ModalId)}>当前人: {item.UserName}</div>
       )
     });
   }

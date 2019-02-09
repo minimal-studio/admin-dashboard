@@ -1,7 +1,7 @@
 {%comment%}
 
 import React, { Component } from 'react';
-import { ShowGlobalModal, CloseGlobalModal } from 'ukelli-ui';
+import { ShowModal, CloseModal } from 'ukelli-ui';
 
 import { Services } from '../services';
 import { GeneralReportRender } from '../../template-engine';
@@ -55,11 +55,11 @@ class MiddleClass extends Services {
     const res = await this.reqAgent(this.apis.getTestData, agentOptions)(postData);
   }
   showDetail(item) {
-    let ModalId = ShowGlobalModal({
+    let ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
-        <div className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</div>
+        <div className="text-center" onClick={e => CloseModal(ModalId)}>当前人: {item.UserName}</div>
       )
     });
   }
@@ -74,11 +74,11 @@ class MiddleClass extends Services {
   ]
   showDetail(item) {
     console.log(item)
-    let ModalId = ShowGlobalModal({
+    let ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
-        <span className="text-center" onClick={e => CloseGlobalModal(ModalId)}>当前人: {item.UserName}</span>
+        <span className="text-center" onClick={e => CloseModal(ModalId)}>当前人: {item.UserName}</span>
       )
     });
   }

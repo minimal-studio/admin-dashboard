@@ -88,7 +88,7 @@ class TestReportClass extends Services {
     const res = await this.reqAgent(getTestData, agentOptions)(postData);
   }
   showDetail(item) {
-    let ModalId = ShowGlobalModal({
+    let ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
