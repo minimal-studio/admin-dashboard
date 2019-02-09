@@ -25,7 +25,7 @@ const HomePage = () => {
         </Grid>
       </CardContainer>
       {/* <TipPanel title="Hi～" texts={[
-        '这里是 uke admin web 示例项目。', 
+        '这里是 uke dashboard 示例项目。', 
         '这是提供了基础管理后台的脚手架、命令生成工具，以及一套完整的开发流程。',
       ]}/>
       <TipPanel title="明细" texts={[

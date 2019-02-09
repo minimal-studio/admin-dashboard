@@ -1,6 +1,6 @@
 # Uke Admin Seed 介绍
 
-uke admin web 提供了一种管理系统前端的解决方案
+uke dashboard 提供了一种管理系统前端的解决方案
 
 - 数据驱动
 - 自动化构建工具
