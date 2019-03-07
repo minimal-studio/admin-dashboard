@@ -1,8 +1,9 @@
 # uke-dashboard
 
-> 基于 React 的、前后端完全分离的管理系统前端模块
+> 基于 React 的、前后端完全分离的管理系统前端模块，核心引擎由 ukelli-ui 和 uke-admin-web-scaffold 提供
 
 uke-dashboard 是一个基于 React 的管理系统前端应用，应用于企业级的管理系统，适合多人团队协作开发，完全的前后端分离。提供专注于业务的“声明式”开发方式、功能齐全的模版引擎(Template engin)，提供易于扩展的插件功能，提供开发约定，提高团队的开发效率，同时维持系统整体的统一性(开发方式，接入方式，UI交互，视觉效果等)。
+
 
 ## Live demo
 
@@ -12,7 +13,7 @@ uke-dashboard 是一个基于 React 的管理系统前端应用，应用于企�
 
 ## 依赖
 
-- NodeJs
+- Node
 - Babel 7
 - Webpack 4
 - basic-helper
