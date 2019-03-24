@@ -47,6 +47,9 @@ export default class Services extends ActionAgent {
       records: [],
       infoMapper: paginHelper.getPaginMapper(),
       pagingInfo: paginHelper.getDefPagin(),
+      propsForTable: {
+        rowKey: record => record.ID
+      }
     };
   }
   

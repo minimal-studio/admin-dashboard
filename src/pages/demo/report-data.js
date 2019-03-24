@@ -6,6 +6,7 @@ const getTestData = () => {
     setTimeout(() => {
       resolve([
         {
+          ID: 1,
           UserName: 'Name1',
           Address: 'gd',
           Phone: '99999999',
@@ -13,6 +14,7 @@ const getTestData = () => {
           Weight: 58,
         },
         {
+          ID: 2,
           UserName: 'Name2',
           Address: 'hk',
           Phone: '99999998',
@@ -20,11 +22,20 @@ const getTestData = () => {
           Weight: 58,
         },
         {
+          ID: 3,
           UserName: 'Name3',
           Address: 'moc',
           Phone: '99999997',
           Status: '在内',
           Weight: 58,
+        },
+        {
+          ID: 4,
+          UserName: 'Name4',
+          Address: 'ab',
+          Phone: '99999996',
+          Status: '没有',
+          Weight: 78,
         },
       ]);
     }, 1000);

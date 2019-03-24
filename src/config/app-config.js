@@ -43,7 +43,7 @@ const commonFuncs = {
   getImage,
   getKeyMap,
   $request,
-  isMobile: !window.IsDesktopMode,
+  isMobile: /Android|iOS/.test(window.navigator.userAgent),
 };
 
 setUkelliConfig(Object.assign({}, commonFuncs, {
