@@ -72,7 +72,7 @@ $tabTextActiveColor: #000;
 /*
  * leftmenu
  */
-// $leftmenuBgColor: #c38181;
+// $navMenuBgColor: #c38181;
 $containerBgColorRed: #c38181;
 $containerBgColorGreen: #558a83;
 $containerBgColorCyan: #459cab;
@@ -81,12 +81,12 @@ $containerBgColorBlue: rgba(85, 104, 138, 1);
 $containerBgColorBlack: rgba(40, 44, 52, 0.95);
 $containerBgColorWhile: #e6e6e6;
 
-$leftmenuBgColor: #1d2939;
-$containerBgColor: $leftmenuBgColor;
-$leftmenuWidth: 220px;
-$leftmenuCollapseWidth: 34px;
-$leftmenuItemBorderColor: #777;
-$leftmenuItemActiveTextColor: #000;
+$navMenuBgColor: #1d2939;
+$containerBgColor: $navMenuBgColor;
+$navMenuWidth: 220px;
+$navMenuCollapseWidth: 34px;
+$navMenuItemBorderColor: #777;
+$navMenuItemActiveTextColor: #000;
 
 /*
  * Scroll bar style
