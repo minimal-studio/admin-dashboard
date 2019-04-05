@@ -21,10 +21,11 @@ const getFromMapper = (mapper, params, merger, options = {}) => {
   
   for (const name of names) {
     const currMapper = mapper[name];
+    let res = name;
     if(currMapper) {
-      const res = IsFunc(currMapper) ? currMapper() : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
-      returnObj ? result[name] = res : result.push(res);
+      res = IsFunc(currMapper) ? currMapper() : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
     }
+    returnObj ? result[name] = res : result.push(res);
   }
   return result;
 };
@@ -38,10 +39,11 @@ const getFromMapperSync = async (mapper, params, merger, options = {}) => {
   
   for (const name of names) {
     const currMapper = mapper[name];
+    let res = name;
     if(currMapper) {
-      const res = IsFunc(currMapper) ? await currMapper() : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
-      returnObj ? result[name] = res : result.push(res);
+      res = IsFunc(currMapper) ? await currMapper() : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
     }
+    returnObj ? result[name] = res : result.push(res);
   }
   return result;
 };

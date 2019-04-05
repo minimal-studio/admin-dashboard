@@ -32,7 +32,17 @@ export default class TestFormAsync extends Services {
     const agentOptions = {
       actingRef: 'querying',
       after: (remoteData) => {
-        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","textDemo"];
+        const options = [
+          '时间输入',
+          "hideDemo","dateRangeDemo","dateRangeDemo2",
+          '选择器',
+          "radioDemo", "checkboxDemo","radioMultipleDemo","selectorDemo","switchDemo",
+          '输入控制',
+          "inputDemo","inputRangeDemo","refuDemo",
+          "inputSelectorDemo","textDemo",
+          '自定义组件',
+          "customerFormDemo","customerFormDemo2",
+        ];
         const merge = {
           selectDemo: {
             values: remoteData

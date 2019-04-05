@@ -15,7 +15,17 @@ export class TestFormBasic extends Services {
   constructor(props) {
     super(props);
 
-    this.formOptions = this.getForms(["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","textDemo"]);
+    this.formOptions = this.getForms([
+      '时间输入',
+      "hideDemo","dateRangeDemo","dateRangeDemo2",
+      '选择器',
+      "radioDemo", "checkboxDemo","radioMultipleDemo","selectorDemo","switchDemo",
+      '输入控制',
+      "inputDemo","inputRangeDemo","refuDemo",
+      "inputSelectorDemo","textDemo",
+      '自定义组件',
+      "customerFormDemo","customerFormDemo2",
+    ]);
   }
   btnConfig = [
     {
