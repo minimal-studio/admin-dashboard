@@ -1,5 +1,19 @@
 import React from 'react';
 import { ShowModal, CloseModal, DescHelper } from 'ukelli-ui';
+import { SetFloatLen, SetBasicUnit } from 'basic-helper';
+
+/** 设置金钱的浮动小数位数 */
+SetFloatLen(2);
+
+/** 
+ * 设置金额的基准单位，默认为毫 10000
+ * 1 元
+ * 10 角
+ * 100 分
+ * 1000 厘
+ * 10000 毫
+ */
+SetBasicUnit(100);
 
 const getTestData = () => {
   return new Promise(resolve => {
@@ -7,33 +21,37 @@ const getTestData = () => {
       resolve([
         {
           ID: 1,
-          UserName: 'Name1',
+          Username: 'Name1',
           Address: 'gd',
-          Phone: '99999999',
+          Income: '10000000000',
+          Phone: '1333333333',
           Status: '在家',
           Weight: 58,
         },
         {
           ID: 2,
-          UserName: 'Name2',
+          Username: 'Name2',
           Address: 'hk',
-          Phone: '99999998',
+          Income: '20000000000',
+          Phone: '1333333334',
           Status: '在外',
           Weight: 58,
         },
         {
           ID: 3,
-          UserName: 'Name3',
+          Username: 'Name3',
           Address: 'moc',
-          Phone: '99999997',
+          Income: '30000000000',
+          Phone: '1333333335',
           Status: '在内',
           Weight: 58,
         },
         {
           ID: 4,
-          UserName: 'Name4',
+          Username: 'Name4',
           Address: 'ab',
-          Phone: '99999996',
+          Income: '40000000000',
+          Phone: '1333333336',
           Status: '没有',
           Weight: 78,
         },
@@ -76,7 +94,29 @@ const keyFieldsForReport = [
       }
     }
   },
+  {
+    key: 'Income',
+    money: true,
+    onSort: (mapper, isDesc) => {
+      // alert('进行了排序');
+      console.log(mapper, isDesc);
+      return !isDesc;
+    }
+  },
   'Phone',
+  'Nickname',
+  'Gender',
+  'Expenditure',
+  'EducationLevel',
+  'Jobs',
+  'Hobby',
+  'Placeholder1',
+  'Placeholder2',
+  'Placeholder3',
+  'Placeholder4',
+  'Placeholder5',
+  'Placeholder6',
+  'Placeholder7',
   {
     key: 'Weight',
     filter: (str, item, mapper, idx) => {

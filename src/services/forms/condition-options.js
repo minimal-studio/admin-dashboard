@@ -63,17 +63,17 @@ const Conditions = {
       value3: 'value3',
     }
   },
-  radioMultipleDemo: {
-    ref: 'ref22',
-    type: 'radio',
-    title: '多选控件',
-    isMultiple: true,
-    values: {
-      value1: 'value1',
-      value2: 'value2',
-      value3: 'value3',
-    }
-  },
+  // radioMultipleDemo: {
+  //   ref: 'ref22',
+  //   type: 'radio',
+  //   title: '多选控件',
+  //   isMultiple: true,
+  //   values: {
+  //     value1: 'value1',
+  //     value2: 'value2',
+  //     value3: 'value3',
+  //   }
+  // },
   selectorDemo: {
     ref: 'ref2',
     type: 'select',

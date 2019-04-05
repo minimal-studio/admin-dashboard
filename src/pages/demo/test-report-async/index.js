@@ -52,7 +52,7 @@ class TestReportClass extends Services {
     await this.reqAgent(demoGetFormFromRemote, {
       actingRef: 'loadingCondition',
       after: (remoteData) => {
-        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
+        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
         const merge = {
           selectDemo: {
             values: remoteData
@@ -66,7 +66,7 @@ class TestReportClass extends Services {
     })();
   }
   getFormOptions2 = async () => {
-    const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
+    const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
     const conditionOptions = await this.getConditionsSync(options);
     this.setState({
       conditionOptions,

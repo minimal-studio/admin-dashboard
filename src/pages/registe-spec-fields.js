@@ -13,7 +13,8 @@ import { setFields } from '../services/fields';
 
 setFields({
   username_for_user: {
-    key: 'UserName',
+    key: 'Username',
+    fixed: 'left',
     filter: (str, item, mapper, idx) => {
       return (
         <Link to="TestLink" params={{

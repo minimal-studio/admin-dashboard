@@ -28,7 +28,7 @@ class TestReportClass extends Services {
     super(props);
 
     this.conditionOptions = this.getConditions(
-      ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","radioMultipleDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"]
+      ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"]
     );
 
     this.keyMapper = [
