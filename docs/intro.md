@@ -22,7 +22,7 @@ import React from 'react';
 
 import { ShowModal, CloseModal } from 'ukelli-ui';
 import { Services } from '../services';
-import { GeneralReportRender } from '../../template-engine';
+import { HOCReportRender } from '../../template-engine';
 
 class TestReportClass extends Services {
   state = {
@@ -31,7 +31,7 @@ class TestReportClass extends Services {
   constructor(props) {
     super(props);
 
-    // 模版 GeneralReportRender 渲染 conditions 的接口
+    // 模版 HOCReportRender 渲染 conditions 的接口
     this.conditionOptions = this.getConditions('datetimeRange');
 
     // 定义表格渲染字段的过滤器
@@ -49,19 +49,19 @@ class TestReportClass extends Services {
       {
         key: 'action',
         filter: (str, ...other) => {
-          return this.getActionBtn(...other);
+          return this.getRecordBtns(...other);
         }
       }
     ];
 
-    // 模版 GeneralReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
+    // 模版 HOCReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
     this.keyMapper = [
       ...this.getFields({
         names: keyFields,
       })
     ];
   }
-  // 与 GeneralReportRender 模版对接的查询接口
+  // 与 HOCReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     // this.reportDataFilter services 提供的表格查询数据过滤器
     const postData = this.reportDataFilter(reportData);
@@ -87,8 +87,8 @@ class TestReportClass extends Services {
       )
     });
   }
-  // 与 GeneralReportRender 模版对接的按钮接口
-  actionBtnConfig = [
+  // 与 HOCReportRender 模版对接的按钮接口
+  recordActionBtns = [
     {
       text: '详情',
       action: (...args) => {
@@ -98,7 +98,7 @@ class TestReportClass extends Services {
   ];
 }
 
-const TestReport = GeneralReportRender(TestReportClass);
+const TestReport = HOCReportRender(TestReportClass);
 
 export default TestReport;
 ```

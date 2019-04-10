@@ -1,7 +1,7 @@
 /**
  * 这个是设置更多操作的示例
  * 1. 通过继承 Action 的获取业务数据的接口
- * 2. 如果需要更多操作，可以通过定义 getActionBtn 来生成操作按钮
+ * 2. 如果需要更多操作，可以通过定义 getRecordBtns 来生成操作按钮
  * 3. 这里都是编写 page 的业务逻辑的，更专注于模版
  */
 
@@ -9,7 +9,7 @@ import React from 'react';
 
 import { ShowModal, CloseModal, DescHelper } from 'ukelli-ui';
 import { Services } from '../services';
-import { GeneralReportRender } from '../template-engine';
+import { HOCReportRender } from '../template-engine';
 import { getTestData, keyFieldsForReport } from '../report-data';
 
 const demoGetFormFromRemote = () => {
@@ -39,7 +39,7 @@ class TestReportClass extends Services {
       {
         key: 'action',
         filter: (str, ...other) => {
-          return this.getActionBtn(...other);
+          return this.getRecordBtns(...other);
         }
       }
     ];
@@ -73,7 +73,7 @@ class TestReportClass extends Services {
       loadingCondition: false
     });
   }
-  // 与 GeneralReportRender 模版对接的查询接口
+  // 与 HOCReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
@@ -96,8 +96,8 @@ class TestReportClass extends Services {
       )
     });
   }
-  // 与 GeneralReportRender 模版对接的按钮接口
-  actionBtnConfig = [
+  // 与 HOCReportRender 模版对接的按钮接口
+  recordActionBtns = [
     {
       text: '详情',
       id: 'detail',
@@ -108,6 +108,6 @@ class TestReportClass extends Services {
   ];
 }
 
-const TestReportAsync = GeneralReportRender(TestReportClass);
+const TestReportAsync = HOCReportRender(TestReportClass);
 
 export default TestReportAsync;

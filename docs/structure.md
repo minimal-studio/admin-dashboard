@@ -68,9 +68,9 @@
 ```
 
 ```js
-// GeneralReportRender 提供的 API，挂在在当前页面组建的 this 下
+// HOCReportRender 提供的 API，挂在在当前页面组建的 this 下
 class Page extends Services {
-  actionBtnConfig = [
+  recordActionBtns = [
     {
       text: '',
       id: '',
@@ -91,7 +91,7 @@ class Page extends Services {
   queryData({conditionData, nextPagin}) {
     // api
   }
-  getActionBtn() {
+  getRecordBtns() {
     // 可以忽略
   }
 }
@@ -164,7 +164,7 @@ import React from 'react';
 
 import { ShowModal, CloseModal } from 'ukelli-ui';
 import { Services } from '../services';
-import { GeneralReportRender } from '../../template-engine';
+import { HOCReportRender } from '../../template-engine';
 
 class TestReportClass extends Services {
   state = {
@@ -173,7 +173,7 @@ class TestReportClass extends Services {
   constructor(props) {
     super(props);
 
-    // 模版 GeneralReportRender 渲染 conditions 的接口
+    // 模版 HOCReportRender 渲染 conditions 的接口
     this.conditionOptions = this.getConditions('datetimeRange');
 
     // 定义表格渲染字段的过滤器
@@ -191,19 +191,19 @@ class TestReportClass extends Services {
       {
         key: 'action',
         filter: (str, ...other) => {
-          return this.getActionBtn(...other);
+          return this.getRecordBtns(...other);
         }
       }
     ];
 
-    // 模版 GeneralReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
+    // 模版 HOCReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
     this.keyMapper = [
       ...this.getFields({
         names: keyFields,
       })
     ];
   }
-  // 与 GeneralReportRender 模版对接的查询接口
+  // 与 HOCReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     // this.reportDataFilter services 提供的表格查询数据过滤器
     const postData = this.reportDataFilter(reportData);
@@ -229,8 +229,8 @@ class TestReportClass extends Services {
       )
     });
   }
-  // 与 GeneralReportRender 模版对接的按钮接口
-  actionBtnConfig = [
+  // 与 HOCReportRender 模版对接的按钮接口
+  recordActionBtns = [
     {
       text: '详情',
       action: (...args) => {
@@ -240,7 +240,7 @@ class TestReportClass extends Services {
   ];
 }
 
-const TestReport = GeneralReportRender(TestReportClass);
+const TestReport = HOCReportRender(TestReportClass);
 
 export default TestReport;
 ```
@@ -277,7 +277,7 @@ reqAgent: func(api, agentOptions) // 用于封装 API 请求过程的，让开�
 > 根据页面类型定义业务配置, 用于于与渲染模版对接, 表格类型
 
 ```js
-actionBtnConfig: [{ text: '', action: func }] // 用于表格渲染中的操作按钮们
+recordActionBtns: [{ text: '', action: func }] // 用于表格渲染中的操作按钮们
 conditionOptions: [{}] // 用于渲染表格的查询条件
 keyMapper: [{}] // 用于渲染表格的显示的具体字段以及字段的过滤器
 queryData: [{}] // 用于表格查询的默认方法，也可以自定义

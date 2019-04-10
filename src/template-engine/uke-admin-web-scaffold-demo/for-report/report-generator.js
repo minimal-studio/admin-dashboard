@@ -6,12 +6,12 @@ import React, {Component, PureComponent} from 'react';
 
 import ReportLayoutRender from './records-template';
 
-export function GeneralReportRender(Action, passProps = {}) {
+export function HOCReportRender(Action, passProps = {}) {
   return class C extends Action {
-    getActionBtn(item) {
-      const {actionBtnConfig} = this;
-      if(!actionBtnConfig) return '-';
-      return actionBtnConfig.map((config, idx) => {
+    getRecordBtns(item) {
+      const {recordActionBtns} = this;
+      if(!recordActionBtns) return '-';
+      return recordActionBtns.map((config, idx) => {
         const {text, action} = config;
         return (
           <span className="link-btn mr5" key={text + idx} onClick={e => {

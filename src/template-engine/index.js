@@ -6,11 +6,11 @@
 import {
   FormRender,
   ReportTemplate,
-  GeneralReportRender
+  HOCReportRender
 } from 'uke-admin-web-scaffold/template-engine';
 
 export {
   FormRender,
   ReportTemplate,
-  GeneralReportRender
+  HOCReportRender
 };
