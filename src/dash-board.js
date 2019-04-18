@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { ChartCom, Grid, Card, CardContainer } from 'ukelli-ui';
+import { ChartCom, Grid, Card, CardContainer, Label } from 'ukelli-ui';
 
 ChartCom.setChartJSPath('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js');
 
@@ -51,35 +51,42 @@ export default class DashBoard extends React.PureComponent {
   }
   render() {
     return (
-      <div className="dash-board card">
-        <div className="p20">
-          <Grid container space={20}>
-            <Grid xl={6} lg={6}>
-              <Card className="relative">
-                <h3 className="text-center">数据1</h3>
-                <ChartCom id="chartDOM1" ref={this.saveRef('chartDOM1')} data={mockData} type="bar" options={options} />
-              </Card>
+      <div className="dash-board">
+        <CardContainer>
+          <div className="p10">
+            <Grid container space={20}>
+              <Grid xl={12} lg={12}>
+                <Card p={20}>
+                  统计数据： 在线 <Label color="red">{(1000000).toLocaleString('en-US')}</Label> 人
+                </Card>
+              </Grid>
+              <Grid xl={6} lg={6}>
+                <Card className="relative">
+                  <h3 className="text-center">数据1</h3>
+                  <ChartCom id="chartDOM1" ref={this.saveRef('chartDOM1')} data={mockData} type="bar" options={options} />
+                </Card>
+              </Grid>
+              <Grid xl={6} lg={6}>
+                <Card className="relative">
+                  <h3 className="text-center">数据2</h3>
+                  <ChartCom id="chartDOM2" ref={this.saveRef('chartDOM2')} data={mockData} type="line" options={options} />
+                </Card>
+              </Grid>
+              <Grid xl={6} lg={6}>
+                <Card className="relative">
+                  <h3 className="text-center">数据3</h3>
+                  <ChartCom id="chartDOM3" ref={this.saveRef('chartDOM3')} data={mockData} type="radar" options={options} />
+                </Card>
+              </Grid>
+              <Grid xl={6} lg={6}>
+                <Card className="relative">
+                  <h3 className="text-center">数据4</h3>
+                  <ChartCom id="chartDOM4" ref={this.saveRef('chartDOM4')} data={mockData} type="pie" options={options} />
+                </Card>
+              </Grid>
             </Grid>
-            <Grid xl={6} lg={6}>
-              <Card className="relative">
-                <h3 className="text-center">数据2</h3>
-                <ChartCom id="chartDOM2" ref={this.saveRef('chartDOM2')} data={mockData} type="line" options={options} />
-              </Card>
-            </Grid>
-            <Grid xl={6} lg={6}>
-              <Card className="relative">
-                <h3 className="text-center">数据3</h3>
-                <ChartCom id="chartDOM3" ref={this.saveRef('chartDOM3')} data={mockData} type="radar" options={options} />
-              </Card>
-            </Grid>
-            <Grid xl={6} lg={6}>
-              <Card className="relative">
-                <h3 className="text-center">数据4</h3>
-                <ChartCom id="chartDOM4" ref={this.saveRef('chartDOM4')} data={mockData} type="pie" options={options} />
-              </Card>
-            </Grid>
-          </Grid>
-        </div>
+          </div>
+        </CardContainer>
       </div>
     );
   }

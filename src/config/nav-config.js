@@ -9,40 +9,61 @@ const demoMenu = [
   //   code: 'HomePage',
   // },
   {
-    title: '表格',
-    code: 'TestReport',
-    icon: 'chart-bar'
+    title: '组件',
+    pureIcon: 'fab fa-uikit',
+    child: [
+      {
+        title: 'UI 组件',
+        code: 'https://ui.ukelli.com/'
+      }
+    ]
   },
   {
-    title: '表格异步查询条件',
-    code: 'ReportAsync',
-    icon: 'asterisk'
-  },
-  {
-    title: '表单',
-    code: 'TestForm',
-    icon: 'bookmark'
-  },
-  {
-    title: '异步表单数据',
-    code: 'FormAsync',
-    icon: 'book'
-  },
-  {
-    title: '表单模版引擎',
-    code: 'FormWithTMPL',
-    icon: 'book-open'
-  },
-  {
-    title: '表单模版引擎2',
-    code: 'FormWithTMPL2',
-    icon: 'book-reader'
-  },
-  {
-    title: '404',
-    code: 'Notfound',
-    icon: 'exclamation-triangle'
-  },
+    title: '页面模版',
+    icon: 'anchor',
+    child: [
+      {
+        title: '表格',
+        code: 'TestReport',
+        icon: 'chart-bar'
+      },
+      {
+        title: '表格异步查询条件',
+        code: 'ReportAsync',
+        icon: 'asterisk'
+      },
+      {
+        title: '表单',
+        code: 'TestForm',
+        icon: 'bookmark'
+      },
+      {
+        title: '异步表单数据',
+        code: 'FormAsync',
+        icon: 'book'
+      },
+      {
+        title: '表单模版引擎',
+        code: 'FormWithTMPL',
+        icon: 'book-open'
+      },
+      {
+        title: '表单模版引擎2',
+        code: 'FormWithTMPL2',
+        icon: 'book-reader'
+      },
+      {
+        title: '404',
+        code: 'Notfound',
+        icon: 'exclamation-triangle'
+      },
+      {
+        title: "link",
+        icon: 'link',
+        code: "TestLink"
+      }
+    ]
+  }
 ];
 
 const NAV_MENU_CONFIG = [
@@ -62,7 +83,7 @@ const NAV_MENU_CONFIG = [
     code: 'FEDeploy',
   },
   ...(needDemoMenu ? demoMenu : []),
-  needDemoMenu ? generateNavConfig : null,
+  // needDemoMenu ? generateNavConfig : null,
 ];
 
 export default NAV_MENU_CONFIG;
