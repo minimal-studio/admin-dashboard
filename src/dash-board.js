@@ -60,26 +60,26 @@ export default class DashBoard extends React.PureComponent {
                   统计数据： 在线 <Label color="red">{(1000000).toLocaleString('en-US')}</Label> 人
                 </Card>
               </Grid>
-              <Grid xl={6} lg={6}>
-                <Card className="relative">
+              <Grid xl={4} lg={6} md={12}>
+                <Card className="relative" p={10}>
                   <h3 className="text-center">数据1</h3>
                   <ChartCom id="chartDOM1" ref={this.saveRef('chartDOM1')} data={mockData} type="bar" options={options} />
                 </Card>
               </Grid>
-              <Grid xl={6} lg={6}>
-                <Card className="relative">
+              <Grid xl={4} lg={6} md={12}>
+                <Card className="relative" p={10}>
                   <h3 className="text-center">数据2</h3>
                   <ChartCom id="chartDOM2" ref={this.saveRef('chartDOM2')} data={mockData} type="line" options={options} />
                 </Card>
               </Grid>
-              <Grid xl={6} lg={6}>
-                <Card className="relative">
+              <Grid xl={4} lg={6} md={12}>
+                <Card className="relative" p={10}>
                   <h3 className="text-center">数据3</h3>
                   <ChartCom id="chartDOM3" ref={this.saveRef('chartDOM3')} data={mockData} type="radar" options={options} />
                 </Card>
               </Grid>
-              <Grid xl={6} lg={6}>
-                <Card className="relative">
+              <Grid xl={4} lg={6} md={12}>
+                <Card className="relative" p={10}>
                   <h3 className="text-center">数据4</h3>
                   <ChartCom id="chartDOM4" ref={this.saveRef('chartDOM4')} data={mockData} type="pie" options={options} />
                 </Card>
