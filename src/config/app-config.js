@@ -1,11 +1,16 @@
 import {setUkelliConfig} from 'ukelli-ui';
 
 // import { initFields } from '../lib/fields';
+import { SetFloatLen } from 'basic-helper';
+
 import FrontEndNameMappers from './key-mappers';
 import { iconMapper, iconPrefix } from './icon-mapper';
 import { $request } from '../services/req-filter';
 
 import './listener';
+
+/** 统一设置数字格式化的浮点位数 */
+SetFloatLen(4);
 
 function SetGateUrl(selectedGate) {
   /**
