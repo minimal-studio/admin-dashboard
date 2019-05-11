@@ -14,49 +14,11 @@ import {
   TableBody, ConditionGenerator
 } from 'ukelli-ui';
 
-import { getDefPagin } from '../../utils/pagination-helper';
-import { getScreenInfo } from '../../utils/dom';
+import TemplateClass from 'uke-admin-web-scaffold/template-engine/for-report/records-template';
 
 const delayExec = new DebounceClass();
 
-export default class ReportTemplate extends Component {
-  static propTypes = {
-    onQueryData: PropTypes.func.isRequired,
-    gm: PropTypes.func.isRequired,
-    showCondition: PropTypes.bool,
-    height: PropTypes.number,
-    children: PropTypes.any,
-    loadingCondition: PropTypes.bool,
-    needPaging: PropTypes.bool,
-    needCheck: PropTypes.bool,
-    whenCheckAction: PropTypes.any,
-    autoQuery: PropTypes.bool,
-    isMobile: PropTypes.bool,
-    // didMountQuery: PropTypes.bool,
-    needCount: PropTypes.bool,
-  
-    keyMapper: PropTypes.array.isRequired,
-    conditionOptions: PropTypes.array,
-  
-    records: PropTypes.array.isRequired,
-    pagingInfo: PropTypes.object,
-    querying: PropTypes.bool,
-    template: PropTypes.oneOf(['table', 'RecordItemsHelper']),
-    // hasErr: PropTypes.bool,
-    resDesc: PropTypes.string
-  };
-  static defaultProps = {
-    autoQuery: false,
-    // didMountQuery: true,
-    needCount: false,
-    isMobile: false,
-    needCheck: false,
-    loadingCondition: false,
-    showCondition: true,
-    needPaging: true,
-    template: 'table',
-    resDesc: '',
-  }
+export default class ReportTemplate extends TemplateClass {
   constructor(props) {
     super(props);
 
@@ -65,95 +27,6 @@ export default class ReportTemplate extends Component {
       displayFloat: GetFloatLen() != 0,
       tableHeight: props.height || 200
     };
-  }
-  // componentDidMount() {
-  //   this.setTableContainerHeight();
-  // }
-
-  componentWillUnmount() {
-    this.restoreBasicFloatLen();
-  }
-
-  restoreBasicFloatLen() {
-    if(GetFloatLen() == 0) {
-      ToggleBasicFloatLen();
-    }
-  }
-
-  toggleFloat() {
-    /**
-     * 在管理中心的时候可以用，但是关闭管理中心后必须设置回去
-     */
-    let isDisplay = ToggleBasicFloatLen();
-    this.setState({
-      displayFloat: isDisplay
-    });
-  }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if((this.props.loading !== nextProps.loading && nextProps.hasErr && !nextProps.loading) || this.props.hasErr !== nextProps.hasErr) {
-  //     this.toast.show(nextProps.resDesc, nextProps.hasErr ? 'error' : 'success');
-  //   }
-  // }
-
-  getQueryData(conditionData) {
-    return {
-      nextPagin: getDefPagin(),
-      conditionData: conditionData || this.conditionHelper.value
-    };
-  }
-
-  toggleSelectItem(item, idx) {
-    let nextCheckedItems = this.state.checkedItems;
-    if(nextCheckedItems[idx]) {
-      delete nextCheckedItems[idx];
-    } else {
-      nextCheckedItems[idx] = item;
-    }
-    this.selectItems(nextCheckedItems);
-  }
-
-  toggleAllItems(allCheck) {
-    let nextCheckedItems = this.state.checkedItems;
-    if(!allCheck) {
-      nextCheckedItems = {};
-    } else {
-      this.props.records.forEach((item, idx) => nextCheckedItems[idx] = item);
-    }
-    this.selectItems(nextCheckedItems);
-  }
-
-  selectItems(nextState) {
-    this.setState({
-      checkedItems: nextState
-    });
-  }
-
-  setTableContainerHeight(fixGroup) {
-    delayExec.exec(() => {
-      const tableContainerHeight = getScreenInfo().screenHeight - fixGroup.offsetHeight - 200;
-      this.setState({
-        tableHeight: tableContainerHeight
-      });
-    }, 100);
-  }
-
-  whenMountedQuery = (data) => {
-    if(this.didMountQueried) return;
-    delayExec.exec(() => {
-      this.handleQueryData(data);
-    }, 100);
-    this.didMountQueried = true;
-  }
-
-  handleQueryData(val) {
-    this.props.onQueryData(Object.assign({}, this.getQueryData(val), {
-      onGetResInfo: this.handleRes
-    }));
-  }
-
-  handleRes = ({resDesc, hasErr}) => {
-    hasErr && this.toast.show(resDesc, hasErr ? 'error' : 'success');
   }
 
   render() {
