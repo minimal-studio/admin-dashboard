@@ -23,8 +23,8 @@ import { getFields, setFields, getFieldsConfig } from './fields';
 window.addEventListener('error', (e) => {
   Notify({
     config: {
-      title: '未捕获的异常错误',
-      text: e + '',
+      title: '未处理异常错误',
+      text: e.message,
       lifecycle: 0
     }
   });
