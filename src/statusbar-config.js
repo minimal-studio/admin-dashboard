@@ -83,17 +83,17 @@ const statusbarConfig = [
   {
     title: '',
     icon: 'user',
-    children: menusForUser
+    overlay: menusForUser
   },
   {
     title: '',
     icon: 'comment',
-    children: menusForComment
+    overlay: menusForComment
   },
   {
     title: '',
     icon: 'tasks',
-    children: menusForTask
+    overlay: menusForTask
   },
 ];
 

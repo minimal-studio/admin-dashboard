@@ -16,11 +16,12 @@ import { Call, DateFormat } from 'basic-helper';
  */
 
 import { AdminWebScaffold } from 'uke-admin-web-scaffold';
+import { AuthSelector } from 'uke-admin-web-scaffold/auth-selector';
 
 import './config/app-config';
 import * as AllManagerPages from './pages';
 
-import LoginSelector from './auth/selector';
+// import LoginSelector from './auth/selector';
 import { authStore, authActions } from './auth/actions';
 import VersionInfo from './version.json';
 import DashBoard from './dash-board';
@@ -53,6 +54,29 @@ const Status = ({onLogout}) => {
   );
 };
 
+const loginFormOptions = [
+  {
+    ref: 'AdminName',
+    type: 'input',
+    title: '账号',
+    iconName: 'account',
+    required: true
+  },
+  {
+    ref: 'Password',
+    type: 'password',
+    title: '密码',
+    iconName: 'lock',
+    required: true
+  },
+  {
+    ref: 'GooglePassword',
+    type: 'input',
+    iconName: 'security',
+    title: 'Google认证码'
+  }
+];
+
 const Footer = () => {
   const today = new Date();
   return (
@@ -73,7 +97,12 @@ class LoginFilter extends React.Component {
   render() {
     const { isLogin, userInfo } = this.props;
     return (
-      <LoginSelector {...this.props}>
+      <AuthSelector {...this.props}
+        backgroundImage="url(./images/bg/bg_3.jpg)"
+        logo={() => (
+          <h3>Uke-Dashboard</h3>
+        )}
+        formOptions={loginFormOptions}>
         {
           isLogin ? (
             <AdminWebScaffold
@@ -103,7 +132,7 @@ class LoginFilter extends React.Component {
               pageComponents={pageComponents} />
           ): null
         }
-      </LoginSelector>
+      </AuthSelector>
     );
   }
 }
