@@ -101,7 +101,7 @@ const removeLoadingBG = () => {
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
-    Call(window.OnLuanched);
+    // Call(window.OnLuanched);
   }
   render() {
     const { isLogin, userInfo } = this.props;
@@ -109,7 +109,7 @@ class LoginFilter extends React.Component {
       <AuthSelector {...this.props}
         backgroundImage="url(./images/bg/bg_3.jpg)"
         btnGColor="red"
-        // didMount={e => removeLoadingBG()}
+        didMount={e => removeLoadingBG()}
         logo={() => (
           <h3>Uke-Dashboard</h3>
         )}
