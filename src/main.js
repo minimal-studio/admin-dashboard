@@ -89,6 +89,15 @@ const Footer = () => {
   );
 };
 
+const removeLoadingBG = () => {
+  let loaderDOM = document.querySelector('#loadingBg');
+  if(!loaderDOM || !loaderDOM.parentNode) return;
+  loaderDOM.classList.add('loaded');
+  loaderDOM.parentNode.removeChild(loaderDOM);
+  // setTimeout(() => {
+  // }, 100);
+};
+
 class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
@@ -99,6 +108,8 @@ class LoginFilter extends React.Component {
     return (
       <AuthSelector {...this.props}
         backgroundImage="url(./images/bg/bg_3.jpg)"
+        btnGColor="red"
+        // didMount={e => removeLoadingBG()}
         logo={() => (
           <h3>Uke-Dashboard</h3>
         )}
