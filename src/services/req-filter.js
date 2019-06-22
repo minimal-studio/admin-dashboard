@@ -34,7 +34,7 @@ function getCommonHeader() {
  * 前端应该与服务端的接口分离
  * 通过此方法实现对接远端需要的 request 数据
  */
-$R.wrapDataBeforeSend = (options) => {
+const beforeReq = (options) => {
   const {isCompress, method, data, ...params} = options;
   return {
     header: Object.assign({}, getCommonHeader(data), {
@@ -57,11 +57,14 @@ $R.wrapDataBeforeSend = (options) => {
  *   err: null || 'description' // 对接 response 的错误描述
  * }
  */
-$R.setResDataHook = (resData) => {
+const afterRes = (resData) => {
   if(typeof resData !== 'object') resData = {};
   resData.data = resData.data || resData.Data || {};
   return resData;
 };
+
+/** 使用 $R 的中间件 */
+$R.use([beforeReq, afterRes]);
 
 /**
  * 设置 $R 对象的 res
