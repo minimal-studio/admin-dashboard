@@ -77,11 +77,11 @@ const NAV_MENU_CONFIG = [
     code: 'HomePage',
     icon: 'home',
   },
-  {
+  !isNetlify ? {
     title: '前端资源管理',
     icon: 'chalkboard',
     code: 'FEDeploy',
-  },
+  } : null,
   ...(needDemoMenu ? demoMenu : []),
   // needDemoMenu ? generateNavConfig : null,
 ];

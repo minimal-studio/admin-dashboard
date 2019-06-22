@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "basic-helper": "^2.0.0",
+    "basic-helper": "^3.0.4",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
@@ -28,9 +28,9 @@
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^2.5.0",
-    "uke-admin-web-scaffold": "^0.21.6",
-    "uke-request": "^0.13.8",
-    "ukelli-ui": "^2.17.9",
+    "uke-admin-web-scaffold": "^0.22.0",
+    "uke-request": "^1.0.2",
+    "ukelli-ui": "^2.17.11",
     "unistore": "^3.1.0"
   },
   "devDependencies": {
