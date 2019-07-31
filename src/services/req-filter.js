@@ -2,7 +2,7 @@
  * 这里是根据具体业务的处理filter
  */
 
-import { PollClass, RequestClass } from 'uke-request';
+import { RequestClass } from 'uke-request';
 
 import { authStore } from '../auth/actions';
 
@@ -83,14 +83,8 @@ function handleRes({resData, callback}) {
  */
 $R.on('onRes', handleRes);
 
-/**
- * 轮询对象的设置
- */
-const PollingEntity = new PollClass(2);
-PollingEntity.setReqObj($R);
-
 const $request = $R;
 
 export {
-  $request, $R, PollingEntity
+  $request, $R
 };

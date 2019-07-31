@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <CardContainer>
-        <Grid container space={20}>
+        <Grid container space={20} style={{ margin: -50 }}>
           <Grid item lg={6}>
             <Card p={20}>
               <h3>uke-dashboard</h3>
@@ -19,7 +19,7 @@ const HomePage = () => {
             <Card p={20}>
               <h3>ukelli-ui</h3>
               <p>ukelli-ui 是基于 React 的 UI 库，提供简约和功能齐全的组件，可高度定制的组件接口，灵活的配置，提供给开发者另一种开发思路，也致力于尝试不同的组件使用和开发方向。</p>
-              <p></p>
+              <p />
             </Card>
           </Grid>
         </Grid>

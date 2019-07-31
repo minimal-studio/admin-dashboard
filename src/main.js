@@ -1,4 +1,4 @@
-'use strict';
+
 
 /**
  * Author: Alex Zhang
@@ -32,7 +32,7 @@ import statusbarConfig from './statusbar-config';
  */
 import './app.scss';
 
-const pageComponents = {...AllManagerPages, DashBoard};
+const pageComponents = { ...AllManagerPages, DashBoard };
 
 const i18nConfig = {
   'zh-CN': '中文',
@@ -43,7 +43,7 @@ function selector(state) {
   return state;
 }
 
-const Status = ({onLogout}) => {
+const Status = ({ onLogout }) => {
   return (
     <React.Fragment>
       <span className="flex"/>
@@ -90,8 +90,8 @@ const Footer = () => {
 };
 
 const removeLoadingBG = () => {
-  let loaderDOM = document.querySelector('#loadingBg');
-  if(!loaderDOM || !loaderDOM.parentNode) return;
+  const loaderDOM = document.querySelector('#loadingBg');
+  if (!loaderDOM || !loaderDOM.parentNode) return;
   loaderDOM.classList.add('loaded');
   loaderDOM.parentNode.removeChild(loaderDOM);
   // setTimeout(() => {
@@ -103,6 +103,7 @@ class LoginFilter extends React.Component {
     // this.props.autoLogin();
     // Call(window.OnLuanched);
   }
+
   render() {
     const { isLogin, userInfo } = this.props;
     return (
@@ -137,11 +138,11 @@ class LoginFilter extends React.Component {
               i18nConfig={i18nConfig}
               pluginComponent={{
                 Statusbar: Status,
-                DashBoard: DashBoard,
-                Footer: Footer
+                DashBoard,
+                Footer
               }}
               pageComponents={pageComponents} />
-          ): null
+          ) : null
         }
       </AuthSelector>
     );

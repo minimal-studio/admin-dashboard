@@ -16,6 +16,7 @@ class TestReportClass extends Services {
   state = {
     ...this.state,
   }
+
   templateOptions = {
     needCheck: true,
     whenCheckAction: (
@@ -24,11 +25,12 @@ class TestReportClass extends Services {
       </div>
     )
   }
+
   constructor(props) {
     super(props);
 
     this.conditionOptions = this.getConditions(
-      ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"]
+      ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"]
     );
 
     this.keyMapper = [
@@ -43,15 +45,17 @@ class TestReportClass extends Services {
       }
     ];
   }
-  reportActionBtns = [
-    {
-      text: 'ForTest',
-      id: 'testing',
-      action: () => {
-        console.log('for test');
-      }
-    }
-  ]
+
+  // reportActionBtns = [
+  //   {
+  //     text: 'ForTest',
+  //     id: 'testing',
+  //     action: () => {
+  //       console.log('for test');
+  //     }
+  //   }
+  // ]
+
   // 与 HOCReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);
@@ -65,8 +69,9 @@ class TestReportClass extends Services {
     };
     await this.reqAgent(getTestData, agentOptions)(postData);
   }
+
   showDetail(item) {
-    let ModalId = ShowModal({
+    const ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
