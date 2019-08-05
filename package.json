@@ -28,28 +28,26 @@
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^4.2.1",
-    "uke-admin-web-scaffold": "^1.0.0-rc.3",
-    "uke-request": "^1.0.5",
-    "ukelli-ui": "^3.0.0-rc.5",
+    "uke-admin-web-scaffold": "^1.0.0-rc.4",
+    "uke-request": "^1.0.8",
+    "ukelli-ui": "^3.0.0-rc.10",
     "unistore": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/node": "^7.2.2",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-react-app": "^4.0.1",
-    "eslint-loader": "2.2.1",
-    "eslint-plugin-flowtype": "3.12.2",
-    "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "^1.6.1",
-    "uke-scripts": "^0.4.19"
+    "uke-scripts": "^1.0.0-rc.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
