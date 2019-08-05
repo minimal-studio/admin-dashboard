@@ -8,25 +8,25 @@
 
 import { getKeyMap } from "../config/app-config";
 
-let namesMapper = [
+const namesMapper = [
   'TransferType',
 ];
-let moneyMapper = [
+const moneyMapper = [
   'RealCost',
 ];
-let abvMoneyMapper = [
+const abvMoneyMapper = [
   'Bet',
 ];
-let datetimeMapper = [
+const datetimeMapper = [
   'OrderTime',
   'loginTime',
   'createTime',
 ];
-let dateMapper = [
+const dateMapper = [
   // 'CalcEndDate',
   // 'CalcStartDate',
 ];
-let normalFields = [
+const normalFields = [
   'Account',
 ];
 
@@ -36,19 +36,19 @@ let normalFields = [
  */
 let scopeFields = {};
 
-function initFields() {
-  if(scopeFields.common) return;
-  let commonFields = (function() {
-    let resultObj = {};
+const initFields = () => {
+  if (scopeFields.common) return;
+  const commonFields = (() => {
+    const resultObj = {};
     function setResultObj(key, val) {
-      if(resultObj.hasOwnProperty(key)) console.log('重复配置了 ' + key + ' 请检查');
+      if (resultObj.hasOwnProperty(key)) console.log(`重复配置了 ${key} 请检查`);
       resultObj[key] = val;
     }
-    namesMapper.map(item => setResultObj(item, {namesMapper: getKeyMap('all')}));
-    moneyMapper.map(item => setResultObj(item, {money: true}));
-    abvMoneyMapper.map(item => setResultObj(item, {abvMoney: true}));
-    dateMapper.map(item => setResultObj(item, {date: true}));
-    datetimeMapper.map(item => setResultObj(item, {datetime: true}));
+    namesMapper.map(item => setResultObj(item, { namesMapper: getKeyMap('all') }));
+    moneyMapper.map(item => setResultObj(item, { money: true }));
+    abvMoneyMapper.map(item => setResultObj(item, { abvMoney: true }));
+    dateMapper.map(item => setResultObj(item, { date: true }));
+    datetimeMapper.map(item => setResultObj(item, { datetime: true }));
     normalFields.map(item => setResultObj(item, ''));
 
     return resultObj;
@@ -56,34 +56,34 @@ function initFields() {
   scopeFields = {
     common: commonFields
   };
-}
+};
 
 const defaultScope = 'common';
 
 function setFields(fields, scope = defaultScope) {
-  if(!scopeFields[scope]) scopeFields[scope] = {};
+  if (!scopeFields[scope]) scopeFields[scope] = {};
   Object.assign(scopeFields[scope], fields);
 }
 function getFields(options = {}) {
   /**
    * TODO 写下参数说明
    */
-  let {names, scope = defaultScope, extend} = options;
-  let _configNames = Array.isArray(names) ? names : [names];
-  let result = [];
-  let currScopeFieldGroup = scopeFields[scope];
+  const { names, scope = defaultScope, extend } = options;
+  const _configNames = Array.isArray(names) ? names : [names];
+  const result = [];
+  const currScopeFieldGroup = scopeFields[scope];
 
-  _configNames.forEach(nameConfig => {
-    if(!nameConfig) return;
-    let isString = typeof nameConfig == 'string';
-    let currConfig = isString ? currScopeFieldGroup[nameConfig] : nameConfig;
-    let name = isString ? nameConfig : currConfig.key;
-    let currCommonField = scopeFields.common[name];
+  _configNames.forEach((nameConfig) => {
+    if (!nameConfig) return;
+    const isString = typeof nameConfig == 'string';
+    const currConfig = isString ? currScopeFieldGroup[nameConfig] : nameConfig;
+    const name = isString ? nameConfig : currConfig.key;
+    const currCommonField = scopeFields.common[name];
     result.push(Object.assign({}, {
       key: name,
     }, currConfig, currCommonField));
   });
-  if(extend) result.push(extend);
+  if (extend) result.push(extend);
   return result;
 }
 // setTimeout(() => {

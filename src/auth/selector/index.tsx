@@ -10,14 +10,14 @@ const LoginSelector = (props) => {
 
   let container;
   switch (true) {
-  case isLogin:
-    container = React.cloneElement(children, props);
-    break;
-  default:
-    container = (
-      <LoginPanel
-        {...props}/>
-    );
+    case isLogin:
+      container = React.cloneElement(children, props);
+      break;
+    default:
+      container = (
+        <LoginPanel
+          {...props}/>
+      );
   }
   return (
     <TransitionGroup component={null}>

@@ -17,21 +17,13 @@ class TestReportClass extends Services {
     ...this.state,
   }
 
-  templateOptions = {
-    needCheck: true,
-    whenCheckAction: (
-      <div>
-        <span className="btn theme">批量操作逻辑</span>
-      </div>
-    )
-  }
-
   constructor(props) {
     super(props);
 
     this.conditionOptions = this.getConditions(
       ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"]
     );
+    console.log(this.conditionOptions)
 
     this.keyMapper = [
       ...this.getFields({
@@ -39,11 +31,18 @@ class TestReportClass extends Services {
       }),
       {
         key: 'action',
-        filter: (str, ...other) => {
-          return this.getRecordBtns(...other);
-        }
+        filter: (str, ...other) => this.getRecordBtns(...other)
       }
     ];
+
+    this.templateOptions = {
+      needCheck: true,
+      checkedOverlay: (
+        <div>
+          <span className="btn theme">批量操作逻辑</span>
+        </div>
+      )
+    };
   }
 
   // reportActionBtns = [
@@ -61,11 +60,9 @@ class TestReportClass extends Services {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
       actingRef: 'querying',
-      after: (res) => {
-        return {
-          records: res
-        };
-      },
+      after: res => ({
+        records: res
+      }),
     };
     await this.reqAgent(getTestData, agentOptions)(postData);
   }

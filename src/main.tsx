@@ -21,7 +21,6 @@ import { AuthSelector } from 'uke-admin-web-scaffold/auth-selector';
 import './config/app-config';
 import * as AllManagerPages from './pages';
 
-// import LoginSelector from './auth/selector';
 import { authStore, authActions } from './auth/actions';
 import VersionInfo from './version.json';
 import DashBoard from './dash-board';
@@ -43,16 +42,14 @@ function selector(state) {
   return state;
 }
 
-const Status = ({ onLogout }) => {
-  return (
-    <React.Fragment>
-      <span className="flex"/>
-      {/* <div className="actions mr10">
+const Status = ({ onLogout }) => (
+  <React.Fragment>
+    <span className="flex"/>
+    {/* <div className="actions mr10">
         <span className="_btn" onClick={e => onLogout()}>退出登录</span>
       </div> */}
-    </React.Fragment>
-  );
-};
+  </React.Fragment>
+);
 
 const loginFormOptions = [
   {
@@ -102,18 +99,20 @@ class LoginFilter extends React.Component {
   componentDidMount() {
     // this.props.autoLogin();
     // Call(window.OnLuanched);
+    removeLoadingBG();
   }
 
   render() {
-    const { isLogin, userInfo } = this.props;
+    let { isLogin, userInfo } = this.props;
+    isLogin = process.env.NODE_ENV === 'development' ? true : isLogin;
     return (
       <AuthSelector {...this.props}
         backgroundImage="url(./images/bg/bg_3.jpg)"
         btnGColor="red"
-        didMount={e => removeLoadingBG()}
         logo={() => (
           <h3>Uke-Dashboard</h3>
         )}
+        isLogin={isLogin}
         formOptions={loginFormOptions}>
         {
           isLogin ? (
@@ -148,11 +147,9 @@ class LoginFilter extends React.Component {
     );
   }
 }
-const LoginFilterWithStore = connect(selector, authActions)((userStore) => {
-  return (
-    <LoginFilter {...userStore}/>
-  );
-});
+const LoginFilterWithStore = connect(selector, authActions)(userStore => (
+  <LoginFilter {...userStore}/>
+));
 
 const C = () => (
   <Provider store={authStore}>

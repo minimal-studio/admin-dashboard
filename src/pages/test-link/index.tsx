@@ -5,7 +5,7 @@
  * Alias: 测试link
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { TipPanel } from 'ukelli-ui';
 import { Link } from 'uke-admin-web-scaffold';
 

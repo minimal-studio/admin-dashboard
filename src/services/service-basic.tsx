@@ -8,7 +8,7 @@
 import React, { Component, PureComponent } from 'react';
 
 import {
-  Call, ToBasicUnitMoney, DebounceClaaass, IsEmail, IsPhoneNumber, HasValue,
+  Call, ToBasicUnitMoney, DebounceClass, IsEmail, IsPhoneNumber, HasValue,
   EventEmitter
 } from 'basic-helper';
 import { getUrlParams } from 'uke-request';
@@ -26,7 +26,7 @@ window.addEventListener('error', (e) => {
     config: {
       title: '未处理异常错误',
       text: e.message,
-      lifecycle: 0
+      timer: 0
     }
   });
 });
@@ -53,6 +53,8 @@ export default class Services extends ActionAgent {
 
   getFromMapperSync = getFromMapperSync;
 
+  showDesc!: Function
+
   // reportData 的默认数据
   reportData = {
     conditionData: {},
@@ -74,9 +76,7 @@ export default class Services extends ActionAgent {
         /** 统一设置 action 为固定右边的列 */
         fixedRightKeys: ['action'],
         /** 返回 record.ID 作为 Table 的 row 的 key，提高 Table 的渲染性能 */
-        rowKey: (record) => {
-          return record.ID;
-        }
+        rowKey: record => record.ID
       }
     };
   }
@@ -114,9 +114,10 @@ export default class Services extends ActionAgent {
     return res;
   }
 
-  conditionFilterFromUrl(options, needMerge = true, params) {
+  conditionFilterFromUrl(options, needMerge = true, _params?) {
     const conditionOptions = [...options];
-    if (!params) params = getUrlParams();
+    let params = _params;
+    if (!_params) params = getUrlParams();
     if (Object.keys(params).length > 0 && needMerge) {
       conditionOptions.forEach((item, idx) => {
         const { ref, refForS, refs } = item;
@@ -135,8 +136,8 @@ export default class Services extends ActionAgent {
     return conditionOptions;
   }
 
-  async getConditionsSync() {
-    const conditionOptions = await getFromMapperSync(this.conditions, ...arguments);
+  async getConditionsSync(...args) {
+    const conditionOptions = await getFromMapperSync(this.conditions, ...args);
     return this.conditionFilterFromUrl(conditionOptions);
   }
 
@@ -148,26 +149,26 @@ export default class Services extends ActionAgent {
    * @returns {Array}
    * @memberof Services
    */
-  getConditions() {
-    const conditionOptions = getFromMapper(this.conditions, ...arguments);
+  getConditions(...args) {
+    const conditionOptions = getFromMapper(this.conditions, ...args);
     return this.conditionFilterFromUrl(conditionOptions);
   }
 
-  async getFormsSync() {
-    const conditionOptions = await getFromMapperSync(this.forms, ...arguments);
+  async getFormsSync(...args) {
+    const conditionOptions = await getFromMapperSync(this.forms, ...args);
     return this.conditionFilterFromUrl(conditionOptions);
   }
 
-  getForms() {
-    const conditionOptions = getFromMapper(this.forms, ...arguments);
+  getForms(...args) {
+    const conditionOptions = getFromMapper(this.forms, ...args);
     return this.conditionFilterFromUrl(conditionOptions, false);
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch = (error, info) => {
     Notify({
       config: {
         title: '程序异常提示',
-        lifecycle: -1,
+        timer: -1,
         text: (
           <div>
             <p>
@@ -189,7 +190,7 @@ export default class Services extends ActionAgent {
    * 调用顺序为接口 return 前
    * @param {object} res 远端返回的数据
    */
-  resStatus(res) {
+  resStatus = (res) => {
     this.showDesc && this.showDesc({
       title: '消息提示',
       msg: res.err,
@@ -202,9 +203,7 @@ export default class Services extends ActionAgent {
    * 调用顺序为接口返回数据后， setState 前
    * @param {object} res 远端返回的数据
    */
-  _after(res) {
-    return {};
-  }
+  _after = res => ({})
 
   checkForm = (formRef) => {
     const checkRes = formRef.checkForm();
@@ -217,7 +216,7 @@ export default class Services extends ActionAgent {
     return checkRes.isPass;
   }
 
-  reportDataFilter({ conditionData, nextPagin }) {
+  reportDataFilter = ({ conditionData, nextPagin }) => {
     /**
      * 这里需要根据业务字段配置对应的
      */

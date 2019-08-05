@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { FormGenerator, TipPanel } from 'ukelli-ui';
 
-let isDev = process.env.NODE_ENV == 'development';
-let StoreLoginInfo = 'STORE_LOGIN_INFO';
+const isDev = process.env.NODE_ENV == 'development';
+const StoreLoginInfo = 'STORE_LOGIN_INFO';
 
 export default class LoginPanel extends Component {
   static propTypes = {
@@ -12,17 +12,18 @@ export default class LoginPanel extends Component {
     login: PropTypes.func.isRequired,
     loginResDesc: PropTypes.string.isRequired
   }
+
   constructor(props) {
     super(props);
 
     let preLoginFormInfo = window.Storage.getItem(StoreLoginInfo) || {};
     try {
       preLoginFormInfo = JSON.parse(preLoginFormInfo);
-    } catch(e) {
+    } catch (e) {
       preLoginFormInfo = {};
     }
 
-    var defaultUserInfo = {
+    const defaultUserInfo = {
       AdminName: preLoginFormInfo.AdminName || (isDev ? 'alex' : ''),
       Password: (isDev ? 'qwe123' : '')
     };
@@ -52,15 +53,17 @@ export default class LoginPanel extends Component {
       }
     ];
   }
+
   componentDidMount() {
-    let loaderDOM = document.querySelector('#loadingBg');
-    if(!loaderDOM) return;
+    const loaderDOM = document.querySelector('#loadingBg');
+    if (!loaderDOM) return;
     loaderDOM.classList.add('loaded');
     loaderDOM.parentNode.removeChild(loaderDOM);
     setTimeout(() => {
       process.env.NODE_ENV == 'development' && document.querySelector('#freeLogin').click();
     }, 100);
   }
+
   render() {
     const { logging, login, loginResDesc } = this.props;
 
@@ -80,8 +83,8 @@ export default class LoginPanel extends Component {
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
-            onSubmit={e => {
-              login(this.formHelper.value, userInfo => {
+            onSubmit={(e) => {
+              login(this.formHelper.value, (userInfo) => {
                 // console.log(userInfo)
                 window.Storage.setItem(StoreLoginInfo, userInfo);
               });

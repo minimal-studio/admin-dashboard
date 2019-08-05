@@ -7,7 +7,9 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass } from 'basic-helper';
+import {
+  GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass
+} from 'basic-helper';
 import {
   PagingBtn, RecordItemsHelper,
   Loading, Button, Toast,
@@ -32,7 +34,7 @@ export default class ReportTemplate extends TemplateClass {
   render() {
     const {
       records = [], pagingInfo = {}, querying = true, children, template,
-      needCount, autoQuery, showCondition, needCheck, whenCheckAction,
+      needCount, autoQuery, showCondition, needCheck, whenCheckAction, checkedOverlay,
       needPaging, loadingCondition, height,
       conditionOptions, isMobile, gm, keyMapper,
       onQueryData
@@ -47,44 +49,47 @@ export default class ReportTemplate extends TemplateClass {
     //          && !item.date;
     // });
 
-    let templateDOM = null;
-    let _tableH = height ? height : tableHeight;
+    let templateDOM;
+    const _tableH = height || tableHeight;
 
     switch (template) {
-    case 'table':
-      templateDOM = (
-        <div className="table-container" ref={e => this.renderContent = e}>
-          <div className="table-scroll">
-            <Loading loading={querying} inrow>
-              <TableBody
-                height={_tableH}
-                keyMapper={keyMapper}
-                needCheck={needCheck}
-                whenCheckAction={whenCheckAction}
-                onCheck={nextItems => {
-                  this.checkedItems = nextItems;
-                }}
-                records={records}
-                needCount={needCount}/>
-            </Loading>
+      case 'Table':
+        templateDOM = (
+          <div className="table-container" ref={e => this.renderContent = e}>
+            <div className="table-scroll">
+              <Loading loading={querying} inrow>
+                <TableBody
+                  height={_tableH}
+                  keyMapper={keyMapper}
+                  needCheck={needCheck}
+                  whenCheckAction={whenCheckAction}
+                  checkedOverlay={checkedOverlay}
+                  onCheck={(nextItems) => {
+                    this.checkedItems = nextItems;
+                  }}
+                  records={records}
+                  needCount={needCount}/>
+              </Loading>
+            </div>
           </div>
-        </div>
-      );
-      break;
-    case 'RecordItemsHelper':
-      templateDOM = (
-        <Loading loading={querying} inrow>
-          <RecordItemsHelper keyMapper={keyMapper} records={records}/>
-        </Loading>
+        );
+        break;
+      case 'CardTable':
+        templateDOM = (
+          <Loading loading={querying} inrow>
+            <RecordItemsHelper keyMapper={keyMapper} records={records}/>
+          </Loading>
+        );
+    }
+    if (!templateDOM) {
+      return (
+        <span>{gm('没有对应的模板')}</span>
       );
     }
-    if(!templateDOM) return (
-      <span>{gm('没有对应的模板')}</span>
-    );
     const pagingDOM = needPaging ? (
       <PagingBtn
         pagingInfo={pagingInfo}
-        onPagin={nextPagin => {
+        onPagin={(nextPagin) => {
           onQueryData({
             nextPagin,
             conditionData: this.conditionHelper.value
@@ -93,14 +98,14 @@ export default class ReportTemplate extends TemplateClass {
     ) : null;
     const conditionHelper = loadingCondition ? null : (
       <ConditionGenerator
-        ref={conditionHelper => {
-          if(conditionHelper) {
+        ref={(conditionHelper) => {
+          if (conditionHelper) {
             this.conditionHelper = conditionHelper;
             this.whenMountedQuery(conditionHelper.value);
           }
         }}
         onChange={(val, ref) => {
-          if(!autoQuery || !HasValue(val[ref])) return;
+          if (!autoQuery || !HasValue(val[ref])) return;
 
           delayExec.exec(() => {
             this.handleQueryData(val);
@@ -125,9 +130,9 @@ export default class ReportTemplate extends TemplateClass {
     return (
       <div className="report-table-layout">
         <Toast ref={toast => this.toast = toast}/>
-        <div className="report-fix-con" ref={e => {
+        <div className="report-fix-con" ref={(e) => {
           this.fixGroup = e;
-          if(this.__setHeight) return;
+          if (this.__setHeight) return;
           setTimeout(() => {
             this.setTableContainerHeight(e);
           }, 300);
