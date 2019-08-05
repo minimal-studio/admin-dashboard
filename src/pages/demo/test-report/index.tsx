@@ -23,7 +23,6 @@ class TestReportClass extends Services {
     this.conditionOptions = this.getConditions(
       ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"]
     );
-    console.log(this.conditionOptions)
 
     this.keyMapper = [
       ...this.getFields({
