@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import { FormLayout, Loading } from 'ukelli-ui';
 import { Services } from "../services";
@@ -12,27 +12,29 @@ export class TestFormBasic extends Services {
   state = {
     ...this.state
   }
+
   constructor(props) {
     super(props);
 
     this.formOptions = this.getForms([
       '时间输入',
-      "hideDemo","dateRangeDemo","dateRangeDemo2",
+      "hideDemo", "dateRangeDemo", "dateRangeDemo2",
       '选择器',
-      "radioDemo", "checkboxDemo","radioMultipleDemo","selectorDemo","switchDemo",
+      "radioDemo", "checkboxDemo", "radioMultipleDemo", "selectorDemo", "switchDemo",
       '输入控制',
-      "inputDemo","inputRangeDemo","refuDemo",
-      "inputSelectorDemo","textDemo",
+      "inputDemo", "inputRangeDemo", "refuDemo",
+      "inputSelectorDemo", "textDemo",
       '自定义组件',
-      "customerFormDemo","customerFormDemo2",
+      "customerFormDemo", "customerFormDemo2",
     ]);
   }
+
   btnConfig = [
     {
       action: async (formRef, actingRef) => {
-        if(!this.checkForm(formRef)) return;
+        if (!this.checkForm(formRef)) return;
 
-        let postData = {
+        const postData = {
           ...formRef.value,
         };
         const agentOptions = {
@@ -46,9 +48,9 @@ export class TestFormBasic extends Services {
     },
     {
       action: async (formRef, actingRef) => {
-        if(!this.checkForm(formRef)) return;
+        if (!this.checkForm(formRef)) return;
 
-        let postData = {
+        const postData = {
           ...formRef.value,
         };
         const agentOptions = {
