@@ -36,13 +36,13 @@ export default class ReportTemplate extends TemplateClass {
       records = [], pagingInfo = {}, querying = true, children, template,
       needCount, autoQuery, showCondition, needCheck, whenCheckAction, checkedOverlay,
       needPaging, loadingCondition, height,
-      conditionOptions, isMobile, gm, keyMapper,
+      conditionOptions, isMobile, gm, columns,
       onQueryData
     } = this.props;
 
     const { checkedItems, displayFloat, tableHeight } = this.state;
 
-    // let _thumbKeyMapper = !isMobile ? keyMapper : keyMapper.filter(item => {
+    // let _thumbKeyMapper = !isMobile ? columns : columns.filter(item => {
     //   const itemKey = item.key;
     //   return !/Remark|Time|OrderId|Id|Date|Config/.test(itemKey)
     //          && !item.datetime
@@ -60,7 +60,7 @@ export default class ReportTemplate extends TemplateClass {
               <Loading loading={querying} inrow>
                 <TableBody
                   height={_tableH}
-                  keyMapper={keyMapper}
+                  columns={columns}
                   needCheck={needCheck}
                   whenCheckAction={whenCheckAction}
                   checkedOverlay={checkedOverlay}
@@ -77,7 +77,7 @@ export default class ReportTemplate extends TemplateClass {
       case 'CardTable':
         templateDOM = (
           <Loading loading={querying} inrow>
-            <RecordItemsHelper keyMapper={keyMapper} records={records}/>
+            <RecordItemsHelper columns={columns} records={records}/>
           </Loading>
         );
     }

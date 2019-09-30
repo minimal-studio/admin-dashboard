@@ -12,47 +12,46 @@ import { Services } from '../services';
 import { HOCReportRender } from '../template-engine';
 import { getTestData, keyFieldsForReport } from '../report-data';
 
-const demoGetFormFromRemote = () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        value1: '哈哈',
-        value2: '呵呵',
-        value3: '嘻嘻',
-      });
-    }, 1000);
-  });
-};
+const demoGetFormFromRemote = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve({
+      value1: '哈哈',
+      value2: '呵呵',
+      value3: '嘻嘻',
+    });
+  }, 1000);
+});
 
 class TestReportClass extends Services {
   state = {
     ...this.state,
     loadingCondition: true
   }
+
   constructor(props) {
     super(props);
 
-    this.keyMapper = [
+    this.columns = [
       ...this.getFields({
         names: keyFieldsForReport,
       }),
       {
         key: 'action',
-        filter: (str, ...other) => {
-          return this.getRecordBtns(...other);
-        }
+        filter: (str, ...other) => this.getRecordBtns(...other)
       }
     ];
   }
+
   componentDidMount() {
     // this.getFormOptions1();
     this.getFormOptions2();
   }
+
   getFormOptions1 = async () => {
     await this.reqAgent(demoGetFormFromRemote, {
       actingRef: 'loadingCondition',
       after: (remoteData) => {
-        const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
+        const options = ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"];
         const merge = {
           selectDemo: {
             values: remoteData
@@ -65,34 +64,35 @@ class TestReportClass extends Services {
       }
     })();
   }
+
   getFormOptions2 = async () => {
-    const options = ["hideDemo","dateRangeDemo","dateRangeDemo2","radioDemo","checkboxDemo","selectorDemo","inputDemo","customerFormDemo","customerFormDemo2","inputRangeDemo","refuDemo","inputSelectorDemo","switchDemo","datetimeRange","asyncCon"];
+    const options = ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"];
     const conditionOptions = await this.getConditionsSync(options);
     this.setState({
       conditionOptions,
       loadingCondition: false
     });
   }
+
   // 与 HOCReportRender 模版对接的查询接口
   queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
       actingRef: 'querying',
       id: 'queryData',
-      after: (res) => {
-        return {
-          records: res
-        };
-      },
+      after: res => ({
+        records: res
+      }),
     };
     const res = await this.reqAgent(getTestData, agentOptions)(postData);
   }
+
   showDetail(item) {
-    let ModalId = ShowModal({
+    const ModalId = ShowModal({
       title: '详情',
       width: 700,
       children: (
-        <DescHelper keyMapper={this.keyMapper} record={item} />
+        <DescHelper columns={this.columns} record={item} />
       )
     });
   }

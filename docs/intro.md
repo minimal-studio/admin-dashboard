@@ -55,7 +55,7 @@ class TestReportClass extends Services {
     ];
 
     // 模版 HOCReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
-    this.keyMapper = [
+    this.columns = [
       ...this.getFields({
         names: keyFields,
       })

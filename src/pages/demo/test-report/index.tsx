@@ -24,7 +24,7 @@ class TestReportClass extends Services {
       ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"]
     );
 
-    this.keyMapper = [
+    this.columns = [
       ...this.getFields({
         names: keyFieldsForReport,
       }),
@@ -71,7 +71,7 @@ class TestReportClass extends Services {
       title: '详情',
       width: 700,
       children: (
-        <DescHelper keyMapper={this.keyMapper} record={item} />
+        <DescHelper columns={this.columns} record={item} />
       )
     });
   }

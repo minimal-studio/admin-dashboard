@@ -199,7 +199,7 @@ class TestReportClass extends Services {
     ];
 
     // 模版 HOCReportRender 渲染表格时的接口，通过 this.getFields 生成可用的配置
-    this.keyMapper = [
+    this.columns = [
       ...this.getFields({
         names: keyFields,
       })
@@ -281,7 +281,7 @@ reqAgent: func(api, agentOptions) // 用于封装 API 请求过程的，让开�
 ```js
 recordActionBtns: [{ text: '', action: func }] // 用于表格渲染中的操作按钮们
 conditionOptions: [{}] // 用于渲染表格的查询条件
-keyMapper: [{}] // 用于渲染表格的显示的具体字段以及字段的过滤器
+columns: [{}] // 用于渲染表格的显示的具体字段以及字段的过滤器
 queryData: [{}] // 用于表格查询的默认方法，也可以自定义
 ```
 
