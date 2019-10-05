@@ -9,18 +9,18 @@ const defaultPagin = {
  * 用于包装具体业务接口的分页字段
  */
 const paginTransfer = {
-  active: 'active',
-  total: 'total',
-  pIdx: 'pIdx',
-  pSize: 'pSize'
+  active: "active",
+  total: "total",
+  pIdx: "pIdx",
+  pSize: "pSize"
 };
 
 export function getDefPagin() {
-  return {...defaultPagin};
+  return { ...defaultPagin };
 }
 
 export function getPaginMapper() {
-  return {...paginTransfer};
+  return { ...paginTransfer };
 }
 
 export function setDefPagin(nextState) {

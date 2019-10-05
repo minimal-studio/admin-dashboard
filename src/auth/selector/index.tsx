@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
 
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import LoginPanel from './login-panel';
+import LoginPanel from "./login-panel";
 
-const LoginSelector = (props) => {
+const LoginSelector = props => {
   const { children, isLogin } = props;
 
   let container;
@@ -14,16 +13,15 @@ const LoginSelector = (props) => {
       container = React.cloneElement(children, props);
       break;
     default:
-      container = (
-        <LoginPanel
-          {...props}/>
-      );
+      container = <LoginPanel {...props} />;
   }
   return (
     <TransitionGroup component={null}>
       <CSSTransition
-        key={isLogin ? 'LOGIN_SUCCESS' : 'NO_LOGIN_YET'}
-        classNames="fade" timeout={200}>
+        key={isLogin ? "LOGIN_SUCCESS" : "NO_LOGIN_YET"}
+        classNames="fade"
+        timeout={200}
+      >
         {container}
       </CSSTransition>
     </TransitionGroup>

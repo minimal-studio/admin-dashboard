@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { FormLayout, Loading } from 'ukelli-ui';
+import { FormLayout, Loading } from "ukelli-ui";
 import { Services } from "../services";
 
 /**
@@ -11,21 +11,31 @@ import { Services } from "../services";
 export class TestFormBasic extends Services {
   state = {
     ...this.state
-  }
+  };
 
   constructor(props) {
     super(props);
 
     this.formOptions = this.getForms([
-      '时间输入',
-      "hideDemo", "dateRangeDemo", "dateRangeDemo2",
-      '选择器',
-      "radioDemo", "checkboxDemo", "radioMultipleDemo", "selectorDemo", "switchDemo",
-      '输入控制',
-      "inputDemo", "inputRangeDemo", "refuDemo",
-      "inputSelectorDemo", "textDemo",
-      '自定义组件',
-      "customerFormDemo", "customerFormDemo2",
+      "时间输入",
+      "hideDemo",
+      "dateRangeDemo",
+      "dateRangeDemo2",
+      "选择器",
+      "radioDemo",
+      "checkboxDemo",
+      "radioMultipleDemo",
+      "selectorDemo",
+      "switchDemo",
+      "输入控制",
+      "inputDemo",
+      "inputRangeDemo",
+      "refuDemo",
+      "inputSelectorDemo",
+      "textDemo",
+      "自定义组件",
+      "customerFormDemo",
+      "customerFormDemo2"
     ]);
   }
 
@@ -35,33 +45,33 @@ export class TestFormBasic extends Services {
         if (!this.checkForm(formRef)) return;
 
         const postData = {
-          ...formRef.value,
+          ...formRef.value
         };
         const agentOptions = {
           actingRef
         };
         await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
       },
-      text: '按钮1',
-      actingRef: 'acting1',
-      className: 'theme'
+      text: "按钮1",
+      actingRef: "acting1",
+      className: "theme"
     },
     {
       action: async (formRef, actingRef) => {
         if (!this.checkForm(formRef)) return;
 
         const postData = {
-          ...formRef.value,
+          ...formRef.value
         };
         const agentOptions = {
           actingRef
         };
         await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
       },
-      text: '按钮2',
-      actingRef: 'acting2',
-      className: 'red'
-    },
+      text: "按钮2",
+      actingRef: "acting2",
+      className: "red"
+    }
   ];
 }
 
@@ -74,12 +84,13 @@ export class TestForm extends TestFormBasic {
         {/* 如果是已经定义好的数据，则不需要 Loading */}
         <FormLayout
           tipInfo={{
-            title: '如果是已经定义好的数据，则不需要 Loading',
-            type: 'success'
+            title: "如果是已经定义好的数据，则不需要 Loading",
+            type: "success"
           }}
           {...this.state}
           formOptions={this.formOptions}
-          btnConfig={this.btnConfig}/>
+          btnConfig={this.btnConfig}
+        />
       </div>
     );
   }

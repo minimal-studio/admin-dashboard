@@ -1,9 +1,9 @@
 // 业务相关的icon mapper，可以通过 ukelli ui 提供的接口设置对应的 icon
 
-const iconPrefix = 'fa fa-';
+const iconPrefix = "fa fa-";
 
 const iconMapper = {
-  noData: 'battery-empty'
+  noData: "battery-empty"
 };
 
-export {iconMapper, iconPrefix};
+export { iconMapper, iconPrefix };

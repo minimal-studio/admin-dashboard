@@ -4,7 +4,7 @@
 
 const FrontEndNameMappers = {
   // 前端字段映射
-  action: '操作',
+  action: "操作"
 };
 
 export default FrontEndNameMappers;

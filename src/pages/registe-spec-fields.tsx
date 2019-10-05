@@ -5,24 +5,27 @@
  * 3. TODO
  */
 
-import React from 'react';
+import React from "react";
 
-import { Link } from 'uke-admin-web-scaffold';
+import { Link } from "uke-admin-web-scaffold";
 
-import { setFields } from '../services/fields';
+import { setFields } from "../services/fields";
 
 setFields({
   username_for_user: {
-    key: 'Username',
-    fixed: 'left',
+    key: "Username",
+    fixed: "left",
     filter: (str, item, mapper, idx) => {
       return (
-        <Link to="TestLink" params={{
-          n: str
-        }}>
+        <Link
+          to="TestLink"
+          params={{
+            n: str
+          }}
+        >
           {str}
         </Link>
       );
     }
-  },
+  }
 });

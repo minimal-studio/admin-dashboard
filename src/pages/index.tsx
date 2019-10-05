@@ -5,10 +5,10 @@
 
 // import FEDeploy, { DeployManager } from 'uke-admin-web-scaffold/fe-deploy';
 
-import './registe-spec-fields';
+import "./registe-spec-fields";
 
-export * from './generate-pages-refs';
-export * from './demo';
+export * from "./generate-pages-refs";
+export * from "./demo";
 
 // export {
 //   FEDeploy, DeployManager

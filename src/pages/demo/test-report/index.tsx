@@ -5,31 +5,45 @@
  * 3. 这里都是编写 page 的业务逻辑的，更专注于模版
  */
 
-import React from 'react';
+import React from "react";
 
-import { ShowModal, CloseModal, DescHelper } from 'ukelli-ui';
-import { Services } from '../services';
-import { HOCReportRender } from '../template-engine';
-import { getTestData, keyFieldsForReport } from '../report-data';
+import { ShowModal, CloseModal, DescHelper } from "ukelli-ui";
+import { Services } from "../services";
+import { HOCReportRender } from "../template-engine";
+import { getTestData, keyFieldsForReport } from "../report-data";
 
 class TestReportClass extends Services {
   state = {
-    ...this.state,
-  }
+    ...this.state
+  };
 
   constructor(props) {
     super(props);
 
-    this.conditionOptions = this.getConditions(
-      ["hideDemo", "dateRangeDemo", "dateRangeDemo2", "radioDemo", "checkboxDemo", "selectorDemo", "inputDemo", "customerFormDemo", "customerFormDemo2", "inputRangeDemo", "refuDemo", "inputSelectorDemo", "switchDemo", "datetimeRange", "asyncCon"]
-    );
+    this.conditionOptions = this.getConditions([
+      "hideDemo",
+      "dateRangeDemo",
+      "dateRangeDemo2",
+      "radioDemo",
+      "checkboxDemo",
+      "selectorDemo",
+      "inputDemo",
+      "customerFormDemo",
+      "customerFormDemo2",
+      "inputRangeDemo",
+      "refuDemo",
+      "inputSelectorDemo",
+      "switchDemo",
+      "datetimeRange",
+      "asyncCon"
+    ]);
 
     this.columns = [
       ...this.getFields({
-        names: keyFieldsForReport,
+        names: keyFieldsForReport
       }),
       {
-        key: 'action',
+        key: "action",
         filter: (str, ...other) => this.getRecordBtns(...other)
       }
     ];
@@ -55,31 +69,29 @@ class TestReportClass extends Services {
   // ]
 
   // 与 HOCReportRender 模版对接的查询接口
-  queryData = async (reportData) => {
+  queryData = async reportData => {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
-      actingRef: 'querying',
+      actingRef: "querying",
       after: res => ({
         records: res
-      }),
+      })
     };
     await this.reqAgent(getTestData, agentOptions)(postData);
-  }
+  };
 
   showDetail(item) {
     const ModalId = ShowModal({
-      title: '详情',
+      title: "详情",
       width: 700,
-      children: (
-        <DescHelper columns={this.columns} record={item} />
-      )
+      children: <DescHelper columns={this.columns} record={item} />
     });
   }
   // 与 HOCReportRender 模版对接的按钮接口
   recordActionBtns = [
     {
-      text: '详情',
-      id: 'detail',
+      text: "详情",
+      id: "detail",
       action: (...args) => {
         this.showDetail(...args);
       }

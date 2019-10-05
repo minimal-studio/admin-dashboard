@@ -1,17 +1,33 @@
-import createStore from 'unistore';
-import { Call } from 'basic-helper';
+import createStore from "unistore";
+import { Call } from "basic-helper";
 
-import { AUTH_APIS } from './apis';
-import NAV_MENU_CONFIG from '../../config/nav-config';
+import { AUTH_APIS } from "./apis";
+import NAV_MENU_CONFIG from "../../config/nav-config";
+
+export interface AuthActions {
+  autoLogin: () => void;
+  login: (form, callback) => void;
+  logout: () => void;
+}
+export interface AuthStore {
+  userInfo: {};
+  username: string;
+  loginResDesc: string;
+  autoLoging: boolean;
+  logging: boolean;
+  logouting: boolean;
+  isLogin: boolean;
+  token: string;
+}
 
 const defaultAuthStore = {
   userInfo: {},
-  username: 'none',
-  loginResDesc: '',
+  username: "none",
+  loginResDesc: "",
   logging: false,
   logouting: false,
   isLogin: false,
-  sessID: 'none',
+  sessID: "none",
   menuStore: NAV_MENU_CONFIG
 };
 const authStore = createStore(defaultAuthStore);
@@ -29,12 +45,12 @@ function onLoginSuccess(store, resData) {
     isLogin: true,
     sessID,
     username,
-    userInfo,
+    userInfo
     // menuStore
   });
 
-  window.$GH.EventEmitter.emit('LOGIN_SUCCESS', { userInfo });
-  sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
+  window.$GH.EventEmitter.emit("LOGIN_SUCCESS", { userInfo });
+  sessionStorage.setItem("PREV_LOGIN_DATA", JSON.stringify(resData));
 }
 
 function clearPrevLoginData() {
@@ -42,7 +58,7 @@ function clearPrevLoginData() {
 }
 
 function getPrevLoginData() {
-  const res = sessionStorage.getItem('PREV_LOGIN_DATA');
+  const res = sessionStorage.getItem("PREV_LOGIN_DATA");
   let result = null;
   if (res) {
     try {
@@ -79,14 +95,12 @@ const authActions = store => ({
   },
   async logout() {
     store.setState({
-      logouting: true,
+      logouting: true
     });
     await AUTH_APIS.logout();
     store.setState(defaultAuthStore);
     clearPrevLoginData();
-  },
+  }
 });
 
-export {
-  authStore, authActions
-};
+export { authStore, authActions };

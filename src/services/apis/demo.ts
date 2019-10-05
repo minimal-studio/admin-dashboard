@@ -1,8 +1,8 @@
-import { $R } from '../req-filter';
+import { $R } from "../req-filter";
 
 const routes = {
-  test: 'dyr/test',
-  testForm: 'dyr/test-form'
+  test: "dyr/test",
+  testForm: "dyr/test-form"
 };
 
 export async function getTestData() {
@@ -13,6 +13,4 @@ export async function testSubmit() {
   return await $R.post(routes.testForm);
 }
 
-export {
-  routes
-};
+export { routes };

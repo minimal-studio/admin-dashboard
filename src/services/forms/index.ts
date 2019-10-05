@@ -1,6 +1,4 @@
-import Conditions from './condition-options';
+import Conditions from "./condition-options";
 import Forms from "./form-options";
 
-export {
-  Conditions, Forms
-};
+export { Conditions, Forms };

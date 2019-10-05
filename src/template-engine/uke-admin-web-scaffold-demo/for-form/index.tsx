@@ -1,5 +1,3 @@
-import FormRender from './form-render';
+import FormRender from "./form-render";
 
-export {
-  FormRender
-};
+export { FormRender };

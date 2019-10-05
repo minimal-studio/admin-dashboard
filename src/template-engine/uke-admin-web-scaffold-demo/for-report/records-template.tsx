@@ -4,19 +4,25 @@
  * 日期      2018-07-30
  */
 
-import React, { Component, PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PureComponent } from "react";
 
 import {
-  GetFloatLen, ToggleBasicFloatLen, HasValue, DebounceClass
-} from 'basic-helper';
+  GetFloatLen,
+  ToggleBasicFloatLen,
+  HasValue,
+  DebounceClass
+} from "basic-helper";
 import {
-  PagingBtn, RecordItemsHelper,
-  Loading, Button, Toast,
-  TableBody, ConditionGenerator
-} from 'ukelli-ui';
+  PagingBtn,
+  RecordItemsHelper,
+  Loading,
+  Button,
+  Toast,
+  TableBody,
+  ConditionGenerator
+} from "ukelli-ui";
 
-import TemplateClass from 'uke-admin-web-scaffold/template-engine/for-report/records-template';
+import TemplateClass from "uke-admin-web-scaffold/template-engine/for-report/records-template";
 
 const delayExec = new DebounceClass();
 
@@ -33,10 +39,24 @@ export default class ReportTemplate extends TemplateClass {
 
   render() {
     const {
-      records = [], pagingInfo = {}, querying = true, children, template,
-      needCount, autoQuery, showCondition, needCheck, whenCheckAction, checkedOverlay,
-      needPaging, loadingCondition, height,
-      conditionOptions, isMobile, gm, columns,
+      records = [],
+      pagingInfo = {},
+      querying = true,
+      children,
+      template,
+      needCount,
+      autoQuery,
+      showCondition,
+      needCheck,
+      whenCheckAction,
+      checkedOverlay,
+      needPaging,
+      loadingCondition,
+      height,
+      conditionOptions,
+      isMobile,
+      gm,
+      columns,
       onQueryData
     } = this.props;
 
@@ -53,9 +73,9 @@ export default class ReportTemplate extends TemplateClass {
     const _tableH = height || tableHeight;
 
     switch (template) {
-      case 'Table':
+      case "Table":
         templateDOM = (
-          <div className="table-container" ref={e => this.renderContent = e}>
+          <div className="table-container" ref={e => (this.renderContent = e)}>
             <div className="table-scroll">
               <Loading loading={querying} inrow>
                 <TableBody
@@ -64,41 +84,41 @@ export default class ReportTemplate extends TemplateClass {
                   needCheck={needCheck}
                   whenCheckAction={whenCheckAction}
                   checkedOverlay={checkedOverlay}
-                  onCheck={(nextItems) => {
+                  onCheck={nextItems => {
                     this.checkedItems = nextItems;
                   }}
                   records={records}
-                  needCount={needCount}/>
+                  needCount={needCount}
+                />
               </Loading>
             </div>
           </div>
         );
         break;
-      case 'CardTable':
+      case "CardTable":
         templateDOM = (
           <Loading loading={querying} inrow>
-            <RecordItemsHelper columns={columns} records={records}/>
+            <RecordItemsHelper columns={columns} records={records} />
           </Loading>
         );
     }
     if (!templateDOM) {
-      return (
-        <span>{gm('没有对应的模板')}</span>
-      );
+      return <span>{gm("没有对应的模板")}</span>;
     }
     const pagingDOM = needPaging ? (
       <PagingBtn
         pagingInfo={pagingInfo}
-        onPagin={(nextPagin) => {
+        onPagin={nextPagin => {
           onQueryData({
             nextPagin,
             conditionData: this.conditionHelper.value
           });
-        }}/>
+        }}
+      />
     ) : null;
     const conditionHelper = loadingCondition ? null : (
       <ConditionGenerator
-        ref={(conditionHelper) => {
+        ref={conditionHelper => {
           if (conditionHelper) {
             this.conditionHelper = conditionHelper;
             this.whenMountedQuery(conditionHelper.value);
@@ -112,39 +132,43 @@ export default class ReportTemplate extends TemplateClass {
           }, 200);
         }}
         conditionConfig={conditionOptions || []}
-        className={showCondition ? undefined : 'hide'} />
+        className={showCondition ? undefined : "hide"}
+      />
     );
     const actionArea = (
       <div className="action-area">
         <Button
           text={gm("查询")}
           loading={querying}
-          onClick={e => this.handleQueryData()}/>
+          onClick={e => this.handleQueryData()}
+        />
         <Button
-          text={gm(displayFloat ? '隐藏小数点' : '显示小数点')}
+          text={gm(displayFloat ? "隐藏小数点" : "显示小数点")}
           className="default ml10"
-          onClick={e => this.toggleFloat()}/>
+          onClick={e => this.toggleFloat()}
+        />
       </div>
     );
 
     return (
       <div className="report-table-layout">
-        <Toast ref={toast => this.toast = toast}/>
-        <div className="report-fix-con" ref={(e) => {
-          this.fixGroup = e;
-          if (this.__setHeight) return;
-          setTimeout(() => {
-            this.setTableContainerHeight(e);
-          }, 300);
-          this.__setHeight = true;
-        }}>
+        <Toast ref={toast => (this.toast = toast)} />
+        <div
+          className="report-fix-con"
+          ref={e => {
+            this.fixGroup = e;
+            if (this.__setHeight) return;
+            setTimeout(() => {
+              this.setTableContainerHeight(e);
+            }, 300);
+            this.__setHeight = true;
+          }}
+        >
           {conditionHelper}
           {actionArea}
           {children}
         </div>
-        <div>
-          {pagingDOM}
-        </div>
+        <div>{pagingDOM}</div>
         {templateDOM}
       </div>
     );

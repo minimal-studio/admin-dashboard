@@ -2,9 +2,9 @@
  * 这里是根据具体业务的处理filter
  */
 
-import { RequestClass } from 'uke-request';
+import { RequestClass } from "uke-request";
 
-import { authStore } from '../auth/actions';
+import { authStore } from "../auth/actions";
 
 const $R = new RequestClass();
 
@@ -23,7 +23,7 @@ function getCommonHeader() {
     SessId: getSessID(),
     AdminName: getUserName(),
     Platform: window.PLATFORM,
-    Device: window.DEVICE,
+    Device: window.DEVICE
   };
 
   window.COMMON_REQ_HEADER = reqHeader;
@@ -34,13 +34,18 @@ function getCommonHeader() {
  * 前端应该与服务端的接口分离
  * 通过此方法实现对接远端需要的 request 数据
  */
-const beforeReq = (options) => {
-  const {isCompress, method, data, ...params} = options;
+const beforeReq = options => {
+  const { isCompress, method, data, ...params } = options;
   return {
-    header: Object.assign({}, getCommonHeader(data), {
-      Compress: isCompress ? 1 : 0,
-      Method: method,
-    }, {...params}),
+    header: Object.assign(
+      {},
+      getCommonHeader(data),
+      {
+        Compress: isCompress ? 1 : 0,
+        Method: method
+      },
+      { ...params }
+    ),
     // path: method,
     data
   };
@@ -57,8 +62,8 @@ const beforeReq = (options) => {
  *   err: null || 'description' // 对接 response 的错误描述
  * }
  */
-const afterRes = (resData) => {
-  if(typeof resData !== 'object') resData = {};
+const afterRes = resData => {
+  if (typeof resData !== "object") resData = {};
   resData.data = resData.data || resData.Data || {};
   return resData;
 };
@@ -69,7 +74,7 @@ $R.use([beforeReq, afterRes]);
 /**
  * 设置 $R 对象的 res
  */
-function handleRes({resData, callback}) {
+function handleRes({ resData, callback }) {
   // let errcode = resData.errCode;
   // switch (errcode) {
   //   case '1':
@@ -84,10 +89,8 @@ function handleRes({resData, callback}) {
 /**
  * 监听 $R res 处理函数
  */
-$R.on('onRes', handleRes);
+$R.on("onRes", handleRes);
 
 const $request = $R;
 
-export {
-  $request, $R
-};
+export { $request, $R };

@@ -8,27 +8,15 @@
 
 import { getKeyMap } from "../config/app-config";
 
-const namesMapper = [
-  'TransferType',
-];
-const moneyMapper = [
-  'RealCost',
-];
-const abvMoneyMapper = [
-  'Bet',
-];
-const datetimeMapper = [
-  'OrderTime',
-  'loginTime',
-  'createTime',
-];
+const namesMapper = ["TransferType"];
+const moneyMapper = ["RealCost"];
+const abvMoneyMapper = ["Bet"];
+const datetimeMapper = ["OrderTime", "loginTime", "createTime"];
 const dateMapper = [
   // 'CalcEndDate',
   // 'CalcStartDate',
 ];
-const normalFields = [
-  'Account',
-];
+const normalFields = ["Account"];
 
 /**
  * 为了避免：不同的功能的同样的字段的冲突的问题
@@ -41,15 +29,18 @@ const initFields = () => {
   const commonFields = (() => {
     const resultObj = {};
     function setResultObj(key, val) {
-      if (resultObj.hasOwnProperty(key)) console.log(`重复配置了 ${key} 请检查`);
+      if (resultObj.hasOwnProperty(key))
+        console.log(`重复配置了 ${key} 请检查`);
       resultObj[key] = val;
     }
-    namesMapper.map(item => setResultObj(item, { namesMapper: getKeyMap('all') }));
+    namesMapper.map(item =>
+      setResultObj(item, { namesMapper: getKeyMap("all") })
+    );
     moneyMapper.map(item => setResultObj(item, { money: true }));
     abvMoneyMapper.map(item => setResultObj(item, { abvMoney: true }));
     dateMapper.map(item => setResultObj(item, { date: true }));
     datetimeMapper.map(item => setResultObj(item, { datetime: true }));
-    normalFields.map(item => setResultObj(item, ''));
+    normalFields.map(item => setResultObj(item, ""));
 
     return resultObj;
   })();
@@ -58,7 +49,7 @@ const initFields = () => {
   };
 };
 
-const defaultScope = 'common';
+const defaultScope = "common";
 
 function setFields(fields, scope = defaultScope) {
   if (!scopeFields[scope]) scopeFields[scope] = {};
@@ -73,15 +64,22 @@ function getFields(options = {}) {
   const result = [];
   const currScopeFieldGroup = scopeFields[scope];
 
-  _configNames.forEach((nameConfig) => {
+  _configNames.forEach(nameConfig => {
     if (!nameConfig) return;
-    const isString = typeof nameConfig == 'string';
+    const isString = typeof nameConfig == "string";
     const currConfig = isString ? currScopeFieldGroup[nameConfig] : nameConfig;
     const name = isString ? nameConfig : currConfig.key;
     const currCommonField = scopeFields.common[name];
-    result.push(Object.assign({}, {
-      key: name,
-    }, currConfig, currCommonField));
+    result.push(
+      Object.assign(
+        {},
+        {
+          key: name
+        },
+        currConfig,
+        currCommonField
+      )
+    );
   });
   if (extend) result.push(extend);
   return result;
@@ -102,6 +100,4 @@ function getFieldsConfig(scope) {
   return scope ? Object.assign({}, scopeFields[scope]) : scopeFields;
 }
 
-export {
-  getFieldsConfig, getFields, setFields, initFields
-};
+export { getFieldsConfig, getFields, setFields, initFields };

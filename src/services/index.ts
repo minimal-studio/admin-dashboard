@@ -1,4 +1,4 @@
-import Services from './service-basic';
+import Services from "./service-basic";
 // import ActionFormBasic from './action-form-basic';
 // import ActionReportBasic from './action-report-basic';
 // import {
@@ -9,6 +9,4 @@ import Services from './service-basic';
 //   ActionBasic, ActionFormBasic, ActionReportBasic
 // };
 
-export {
-  Services
-};
+export { Services };

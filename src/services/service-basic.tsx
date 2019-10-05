@@ -5,26 +5,31 @@
  * 提供 reqAgent 机制，管理请求的生命周期，管理对应的接口的状态
  */
 
-import React, { Component, PureComponent } from 'react';
+import React, { Component, PureComponent } from "react";
 
 import {
-  Call, ToBasicUnitMoney, DebounceClass, IsEmail, IsPhoneNumber, HasValue,
+  Call,
+  ToBasicUnitMoney,
+  DebounceClass,
+  IsEmail,
+  IsPhoneNumber,
+  HasValue,
   EventEmitter
-} from 'basic-helper';
-import { getUrlParams } from 'uke-request';
+} from "basic-helper";
+import { getUrlParams } from "uke-request";
 import ActionAgent from "uke-admin-web-scaffold/action-agent";
-import { Notify, ShowModal, CloseModal } from 'ukelli-ui';
+import { Notify, ShowModal, CloseModal } from "ukelli-ui";
 
-import * as APIs from './apis';
-import * as paginHelper from '../utils/pagination-helper';
+import * as APIs from "./apis";
+import * as paginHelper from "../utils/pagination-helper";
 import { Conditions, Forms } from "./forms";
-import { getFromMapper, getFromMapperSync } from './forms/utils';
-import { getFields, setFields, getFieldsConfig } from './fields';
+import { getFromMapper, getFromMapperSync } from "./forms/utils";
+import { getFields, setFields, getFieldsConfig } from "./fields";
 
-window.addEventListener('error', (e) => {
+window.addEventListener("error", e => {
   Notify({
     config: {
-      title: '未处理异常错误',
+      title: "未处理异常错误",
       text: e.message,
       timer: 0
     }
@@ -53,13 +58,13 @@ export default class Services extends ActionAgent {
 
   getFromMapperSync = getFromMapperSync;
 
-  showDesc!: Function
+  showDesc!: Function;
 
   // reportData 的默认数据
   reportData = {
     conditionData: {},
-    nextPagin: paginHelper.getDefPagin(),
-  }
+    nextPagin: paginHelper.getDefPagin()
+  };
 
   constructor(props) {
     super(props);
@@ -67,27 +72,30 @@ export default class Services extends ActionAgent {
     this.state = {
       loading: false,
       hasErr: false,
-      resDesc: '',
+      resDesc: "",
       resData: {},
       records: [],
       infoMapper: paginHelper.getPaginMapper(),
       pagingInfo: paginHelper.getDefPagin(),
       propsForTable: {
         /** 统一设置 action 为固定右边的列 */
-        fixedRightKeys: ['action'],
+        fixedRightKeys: ["action"],
         /** 返回 record.ID 作为 Table 的 row 的 key，提高 Table 的渲染性能 */
         rowKey: record => record.ID
       }
     };
   }
 
-  saveRef = ref => e => this[ref] = e;
+  saveRef = ref => e => (this[ref] = e);
 
   showResDesc(desc, message) {
-    if (desc == 'success') {
-      desc = '成功';
+    if (desc == "success") {
+      desc = "成功";
     }
-    (this.toast || this.FormRef.toast).show(desc, message == 'success' ? 'success' : 'error');
+    (this.toast || this.FormRef.toast).show(
+      desc,
+      message == "success" ? "success" : "error"
+    );
   }
 
   /**
@@ -100,19 +108,19 @@ export default class Services extends ActionAgent {
    *
    * @param {*} options
    */
-  paramsFilter = (val) => {
+  paramsFilter = val => {
     let res = decodeURIComponent(val);
     switch (true) {
       case HasValue(+val):
         res = +val;
         break;
-      case res.indexOf(',') !== -1:
-        res = res.split(',');
-        res.forEach((item, idx) => res[idx] = this.paramsFilter(item));
+      case res.indexOf(",") !== -1:
+        res = res.split(",");
+        res.forEach((item, idx) => (res[idx] = this.paramsFilter(item)));
         break;
     }
     return res;
-  }
+  };
 
   conditionFilterFromUrl(options, needMerge = true, _params?) {
     const conditionOptions = [...options];
@@ -122,13 +130,18 @@ export default class Services extends ActionAgent {
       conditionOptions.forEach((item, idx) => {
         const { ref, refForS, refs } = item;
         if (refForS && params[refForS]) {
-          conditionOptions[idx].defaultValueForS = this.paramsFilter(params[refForS]);
+          conditionOptions[idx].defaultValueForS = this.paramsFilter(
+            params[refForS]
+          );
         }
         if (ref && params[ref]) {
           conditionOptions[idx].defaultValue = this.paramsFilter(params[ref]);
         }
         if (refs && params[refs[0]]) {
-          conditionOptions[idx].range = [this.paramsFilter(params[refs[0]]), this.paramsFilter(params[refs[1]])];
+          conditionOptions[idx].range = [
+            this.paramsFilter(params[refs[0]]),
+            this.paramsFilter(params[refs[1]])
+          ];
         }
       });
     }
@@ -167,7 +180,7 @@ export default class Services extends ActionAgent {
   componentDidCatch = (error, info) => {
     Notify({
       config: {
-        title: '程序异常提示',
+        title: "程序异常提示",
         timer: -1,
         text: (
           <div>
@@ -183,29 +196,30 @@ export default class Services extends ActionAgent {
         )
       }
     });
-  }
+  };
 
   /**
    * 重写 ActionAgent 的 resStatus 接口
    * 调用顺序为接口 return 前
    * @param {object} res 远端返回的数据
    */
-  resStatus = (res) => {
-    this.showDesc && this.showDesc({
-      title: '消息提示',
-      msg: res.err,
-      type: res.err ? 'error' : 'success'
-    });
-  }
+  resStatus = res => {
+    this.showDesc &&
+      this.showDesc({
+        title: "消息提示",
+        msg: res.err,
+        type: res.err ? "error" : "success"
+      });
+  };
 
   /**
    * 重写 ActionAgent 的接口
    * 调用顺序为接口返回数据后， setState 前
    * @param {object} res 远端返回的数据
    */
-  _after = res => ({})
+  _after = res => ({});
 
-  checkForm = (formRef) => {
+  checkForm = formRef => {
     const checkRes = formRef.checkForm();
     if (!checkRes.isPass) {
       return this.stateSetter({
@@ -214,7 +228,7 @@ export default class Services extends ActionAgent {
       });
     }
     return checkRes.isPass;
-  }
+  };
 
   reportDataFilter = ({ conditionData, nextPagin }) => {
     /**
@@ -224,5 +238,5 @@ export default class Services extends ActionAgent {
       data: conditionData,
       pagin: nextPagin
     };
-  }
+  };
 }

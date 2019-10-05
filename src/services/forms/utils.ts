@@ -2,9 +2,9 @@ import { IsFunc } from "basic-helper";
 
 const defaultRetrueObj = false;
 
-const resolveParams = (params) => {
+const resolveParams = params => {
   const hasParams = params && params.length > 0;
-  if (!hasParams) return console.log('need params');
+  if (!hasParams) return console.log("need params");
 
   const isArray = Array.isArray(params);
   const names = isArray ? params : [params];
@@ -27,7 +27,7 @@ const getFromMapper = (mapper, params, merger, options = {}) => {
         ? currMapper()
         : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
     }
-    returnObj ? result[name] = res : result.push(res);
+    returnObj ? (result[name] = res) : result.push(res);
   }
   return result;
 };
@@ -43,13 +43,13 @@ const getFromMapperSync = async (mapper, params, merger, options = {}) => {
     const currMapper = mapper[name];
     let res = name;
     if (currMapper) {
-      res = IsFunc(currMapper) ? await currMapper() : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
+      res = IsFunc(currMapper)
+        ? await currMapper()
+        : Object.assign({}, currMapper, merger ? merger[name] || {} : {});
     }
-    returnObj ? result[name] = res : result.push(res);
+    returnObj ? (result[name] = res) : result.push(res);
   }
   return result;
 };
 
-export {
-  getFromMapper, getFromMapperSync
-};
+export { getFromMapper, getFromMapperSync };

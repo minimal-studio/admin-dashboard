@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import { FormLayout, Loading } from 'ukelli-ui';
+import { FormLayout, Loading } from "ukelli-ui";
 import { Services } from "../services";
 
 const demoGetFormFromRemote = () => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
-        value1: '哈哈',
-        value2: '呵呵',
-        value3: '嘻嘻',
+        value1: "哈哈",
+        value2: "呵呵",
+        value3: "嘻嘻"
       });
     }, 1000);
   });
@@ -24,24 +24,34 @@ export default class TestFormAsync extends Services {
   state = {
     ...this.state,
     querying: true
-  }
+  };
   componentDidMount() {
     this.getFormOptions();
   }
   getFormOptions() {
     const agentOptions = {
-      actingRef: 'querying',
-      after: (remoteData) => {
+      actingRef: "querying",
+      after: remoteData => {
         const options = [
-          '时间输入',
-          "hideDemo","dateRangeDemo","dateRangeDemo2",
-          '选择器',
-          "radioDemo", "checkboxDemo","radioMultipleDemo","selectorDemo","switchDemo",
-          '输入控制',
-          "inputDemo","inputRangeDemo","refuDemo",
-          "inputSelectorDemo","textDemo",
-          '自定义组件',
-          "customerFormDemo","customerFormDemo2",
+          "时间输入",
+          "hideDemo",
+          "dateRangeDemo",
+          "dateRangeDemo2",
+          "选择器",
+          "radioDemo",
+          "checkboxDemo",
+          "radioMultipleDemo",
+          "selectorDemo",
+          "switchDemo",
+          "输入控制",
+          "inputDemo",
+          "inputRangeDemo",
+          "refuDemo",
+          "inputSelectorDemo",
+          "textDemo",
+          "自定义组件",
+          "customerFormDemo",
+          "customerFormDemo2"
         ];
         const merge = {
           selectDemo: {
@@ -61,36 +71,36 @@ export default class TestFormAsync extends Services {
   btnConfig = [
     {
       action: async (formRef, actingRef) => {
-        if(!this.checkForm(formRef)) return;
+        if (!this.checkForm(formRef)) return;
 
         let postData = {
-          ...formRef.value,
+          ...formRef.value
         };
         const agentOptions = {
           actingRef
         };
         await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
       },
-      text: '按钮1',
-      actingRef: 'acting1',
-      className: 'theme'
+      text: "按钮1",
+      actingRef: "acting1",
+      className: "theme"
     },
     {
       action: async (formRef, actingRef) => {
-        if(!this.checkForm(formRef)) return;
+        if (!this.checkForm(formRef)) return;
 
         let postData = {
-          ...formRef.value,
+          ...formRef.value
         };
         const agentOptions = {
           actingRef
         };
         await this.reqAgent(this.apis.testSubmit, agentOptions)(postData);
       },
-      text: '按钮2',
-      actingRef: 'acting2',
-      className: 'red'
-    },
+      text: "按钮2",
+      actingRef: "acting2",
+      className: "red"
+    }
   ];
   render() {
     const { querying } = this.state;
@@ -99,17 +109,16 @@ export default class TestFormAsync extends Services {
       <div className="card mb10">
         {/* 如果是异步获取表单初始化数据，需要 Loading */}
         <Loading loading={querying}>
-          {
-            querying ? null : (
-              <FormLayout
-                tipInfo={{
-                  title: '如果是异步获取表单初始化数据，需要 Loading',
-                  type: 'success'
-                }}
-                {...this.state}
-                btnConfig={this.btnConfig}/>
-            )
-          }
+          {querying ? null : (
+            <FormLayout
+              tipInfo={{
+                title: "如果是异步获取表单初始化数据，需要 Loading",
+                type: "success"
+              }}
+              {...this.state}
+              btnConfig={this.btnConfig}
+            />
+          )}
         </Loading>
       </div>
     );

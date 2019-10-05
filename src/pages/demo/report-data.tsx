@@ -1,11 +1,11 @@
-import React from 'react';
-import { ShowModal, CloseModal, DescHelper } from 'ukelli-ui';
-import { SetFloatLen, SetBasicUnit } from 'basic-helper';
+import React from "react";
+import { ShowModal, CloseModal, DescHelper } from "ukelli-ui";
+import { SetFloatLen, SetBasicUnit } from "basic-helper";
 
 /** 设置金钱的浮动小数位数 */
 SetFloatLen(2);
 
-/** 
+/**
  * 设置金额的基准单位，默认为毫 10000
  * 1 元
  * 10 角
@@ -21,81 +21,79 @@ const getTestData = () => {
       resolve([
         {
           ID: 1,
-          Username: 'Name1',
-          Address: 'gd',
-          Income: '10000000000',
-          Phone: '1333333333',
-          Status: '在家',
-          Weight: 58,
+          Username: "Name1",
+          Address: "gd",
+          Income: "10000000000",
+          Phone: "1333333333",
+          Status: "在家",
+          Weight: 58
         },
         {
           ID: 2,
-          Username: 'Name2',
-          Address: 'hk',
-          Income: '20000000000',
-          Phone: '1333333334',
-          Status: '在外',
-          Weight: 58,
+          Username: "Name2",
+          Address: "hk",
+          Income: "20000000000",
+          Phone: "1333333334",
+          Status: "在外",
+          Weight: 58
         },
         {
           ID: 3,
-          Username: 'Name3',
-          Address: 'moc',
-          Income: '30000000000',
-          Phone: '1333333335',
-          Status: '在内',
-          Weight: 58,
+          Username: "Name3",
+          Address: "moc",
+          Income: "30000000000",
+          Phone: "1333333335",
+          Status: "在内",
+          Weight: 58
         },
         {
           ID: 4,
-          Username: 'Name4',
-          Address: 'ab',
-          Income: '40000000000',
-          Phone: '1333333336',
-          Status: '没有',
-          Weight: 78,
-        },
+          Username: "Name4",
+          Address: "ab",
+          Income: "40000000000",
+          Phone: "1333333336",
+          Status: "没有",
+          Weight: 78
+        }
       ]);
     }, 1000);
   });
 };
 
 const keyFieldsForReport = [
-  'username_for_user',
+  "username_for_user",
   {
-    key: 'Address',
+    key: "Address",
     labels: {
-      gd: 'red',
-      hk: 'green',
-      moc: 'orange',
+      gd: "red",
+      hk: "green",
+      moc: "orange"
     },
     namesMapper: {
-      gd: '广东',
-      hk: '香港',
-      moc: '澳门',
+      gd: "广东",
+      hk: "香港",
+      moc: "澳门"
     }
   },
   {
-    key: 'Status',
+    key: "Status",
     title: {
-      type: 'selector',
+      type: "selector",
       values: {
-        0: '在家',
-        1: '在外',
-        2: '在内',
+        0: "在家",
+        1: "在外",
+        2: "在内"
       },
-      onChange: (val) => {
+      onChange: val => {
         ShowModal({
-          title: '改变的值',
-          children: (
-            <div>{JSON.stringify(val)}</div>
-          )
+          title: "改变的值",
+          children: <div>{JSON.stringify(val)}</div>
         });
       }
     }
   },
   {
-    key: 'Income',
+    key: "Income",
     money: true,
     onSort: (mapper, isDesc) => {
       // alert('进行了排序');
@@ -103,29 +101,27 @@ const keyFieldsForReport = [
       return !isDesc;
     }
   },
-  'Phone',
-  'Nickname',
-  'Gender',
-  'Expenditure',
-  'EducationLevel',
-  'Jobs',
-  'Hobby',
-  'Placeholder1',
-  'Placeholder2',
-  'Placeholder3',
-  'Placeholder4',
-  'Placeholder5',
-  'Placeholder6',
-  'Placeholder7',
+  "Phone",
+  "Nickname",
+  "Gender",
+  "Expenditure",
+  "EducationLevel",
+  "Jobs",
+  "Hobby",
+  "Placeholder1",
+  "Placeholder2",
+  "Placeholder3",
+  "Placeholder4",
+  "Placeholder5",
+  "Placeholder6",
+  "Placeholder7",
   {
-    key: 'Weight',
+    key: "Weight",
     filter: (str, item, mapper, idx) => {
       // 这里是过滤每一条 Weight 字段的 filter 函数
-      return str + 'kg';
+      return str + "kg";
     }
   }
 ];
 
-export {
-  getTestData, keyFieldsForReport
-};
+export { getTestData, keyFieldsForReport };

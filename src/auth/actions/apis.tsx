@@ -1,13 +1,13 @@
-import { $R } from '../../services/req-filter';
+import { $R } from "../../services/req-filter";
 
 export const AUTH_APIS = {
-  LOGIN: '/auth-login',
-  LOGOUT: '/logout'
+  LOGIN: "/auth-login",
+  LOGOUT: "/logout"
 };
 
 async function login(data) {
   // return $R.post(AUTH_APIS.LOGIN, data);
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         data,
