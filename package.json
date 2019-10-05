@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "npm run setAppVersion",
     "start": "PORT=6086 PLATFORM=workspace_admin ukectl start",
     "build": "npm run setAppVersion; ukectl build",
     "deploy": "npm run build",
@@ -14,12 +15,14 @@
     "setAppVersion": "sh ./version/set-app-version.sh",
     "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
     "autoZip": "npm run build; npm run zipBuild;",
+    "prettier:base": "prettier --parser typescript",
+    "format": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W; yarn start",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "basic-helper": "^3.0.6",
+    "basic-helper": "^3.0.7",
     "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
@@ -29,14 +32,15 @@
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^4.2.1",
     "uke-admin-web-scaffold": "^1.0.0",
-    "uke-request": "^1.0.8",
+    "uke-request": "^1.1.0-rc5",
     "ukelli-ui": "^3.1.0-rc2",
     "unistore": "^3.1.0"
   },
   "devDependencies": {
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
-    "uke-scripts": "^1.0.0-rc.1"
+    "prettier": "^1.18.2",
+    "uke-scripts": "^1.0.0"
   },
   "browserslist": {
     "production": [
