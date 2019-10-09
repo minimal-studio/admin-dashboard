@@ -10,7 +10,7 @@ export async function getTestData() {
 }
 
 export async function testSubmit() {
-  return await $R.post(routes.testForm);
+  return await $R.post(routes.testForm, {});
 }
 
 export { routes };
