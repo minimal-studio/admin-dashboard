@@ -59,10 +59,10 @@ export default class LoginPanel extends Component {
     if (!loaderDOM) return;
     loaderDOM.classList.add("loaded");
     loaderDOM.parentNode.removeChild(loaderDOM);
-    setTimeout(() => {
-      process.env.NODE_ENV == "development" &&
-        document.querySelector("#freeLogin").click();
-    }, 100);
+    // setTimeout(() => {
+    //   process.env.NODE_ENV == "development" &&
+    //     document.querySelector("#freeLogin").click();
+    // }, 100);
   }
 
   render() {

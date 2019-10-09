@@ -1,27 +1,29 @@
 import { $R } from "../../services/req-filter";
 
-export const AUTH_APIS = {
-  LOGIN: "/auth-login",
-  LOGOUT: "/logout"
-};
-
-async function login(data) {
-  // return $R.post(AUTH_APIS.LOGIN, data);
-  return new Promise(resolve => {
+export function login(data) {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        data,
-        err: null
-      });
-    }, 500);
-  });
+        code: 0,
+        message: 'success'
+      })
+    }, 1000)
+  })
+  // return $R.post("/login", data);
 }
 
-async function logout() {
-  return $R.post(AUTH_APIS.LOGOUT, {});
+export function logout() {
+  return $R.post("/logout", {});
 }
 
-Object.assign(AUTH_APIS, {
-  login,
-  logout
-});
+export interface RegisterForm {
+  username: string;
+  password: string;
+}
+export function register(formData: RegisterForm) {
+  return $R.post("/register", formData);
+}
+
+export function getUsers() {
+  return $R.get("/users");
+}
