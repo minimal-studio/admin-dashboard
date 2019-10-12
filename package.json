@@ -1,6 +1,6 @@
 {
   "name": "uke-dashboard",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -21,19 +21,16 @@
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "basic-helper": "^3.0.7",
     "mousetrap": "^1.6.2",
-    "object-assign": "4.1.1",
-    "promise": "8.0.1",
     "prop-types": "^15.5.10",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^4.2.1",
-    "uke-admin-web-scaffold": "^1.0.0",
+    "uke-admin-web-scaffold": "^1.1.0-rc1",
     "uke-request": "^1.1.0-rc5",
-    "ukelli-ui": "^3.1.0-rc3",
+    "ukelli-ui": "^3.1.0-rc11",
     "unistore": "^3.1.0"
   },
   "devDependencies": {

@@ -760,14 +760,6 @@
     "@babel/helper-regex" "^7.4.4"
     regexpu-core "^4.5.4"
 
-"@babel/polyfill@^7.0.0":
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.4.4.tgz#78801cf3dbe657844eeabf31c1cae3828051e893"
-  integrity sha512-WlthFLfhQQhh+A2Gn5NSFl0Huxz36x86Jn+E9OW7ibK8edKPq+KLy4apM1yDpQ8kJOVi1OVjpP4vSDLdrI04dg==
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.2"
-
 "@babel/preset-env@7.4.3":
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.4.3.tgz#e71e16e123dc0fbf65a52cbcbcefd072fbd02880"
@@ -2776,7 +2768,7 @@ arrify@^1.0.1:
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
   integrity sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=
 
-asap@^2.0.0, asap@~2.0.3, asap@~2.0.6:
+asap@^2.0.0, asap@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
@@ -4012,7 +4004,7 @@ core-js@3.0.1:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.1.tgz#1343182634298f7f38622f95e73f54e48ddf4738"
   integrity sha512-sco40rF+2KlE0ROMvydjkrVMMG1vYilP2ALoRXcYR4obqbYIuV3Bg+51GEDW+HF8n7NRA+iaA4qD0nD9lo9mew==
 
-core-js@^2.4.0, core-js@^2.6.5:
+core-js@^2.4.0:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.9.tgz#6b4b214620c834152e179323727fc19741b084f2"
   integrity sha512-HOpZf6eXmnl7la+cUdMnLvUxKNqLUzJvgIziQ0DiF3JwSImNphIqdGqzj6hIKyX04MmV0poclQ7+wjWvxQyR2A==
@@ -5497,10 +5489,10 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatpickr@^4.6.1:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.2.tgz#50e1b4fc84fbf67c5b0919ba3ddc330221f126da"
-  integrity sha512-bRfBPyxohUQWgCTg6jPALUO1t/x+sRJ/S/RVti/NzYvHqGRpCAesKSWKLzOuLmpu+vGHfXBld4SXvOCLFgYb+g==
+flatpickr@^4.6.3:
+  version "4.6.3"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
+  integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -9910,13 +9902,6 @@ promise-retry@^1.1.1:
     err-code "^1.0.0"
     retry "^0.10.0"
 
-promise@8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.1.tgz#e45d68b00a17647b6da711bf85ed6ed47208f450"
-  integrity sha1-5F1osAoXZHttpxG/he1u1HII9FA=
-  dependencies:
-    asap "~2.0.3"
-
 promise@8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.2.tgz#9dcd0672192c589477d56891271bdc27547ae9f0"
@@ -11888,10 +11873,10 @@ uid-number@0.0.6:
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
   integrity sha1-DqEOgDXo61uOREnwbaHHMGY7qoE=
 
-uke-admin-web-scaffold@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/uke-admin-web-scaffold/-/uke-admin-web-scaffold-1.0.0.tgz#95e921aadac4f688fcde53960623d401e53265af"
-  integrity sha512-O5Am4198SiZrXxQ0d4m8LRqs790K8hSlj1Dz3f8d3M2Ycoa3jOPl0ua5ykPec2z+W9iwuvtGuYc/fiAhivCWwQ==
+uke-admin-web-scaffold@^1.1.0-rc1:
+  version "1.1.0-rc1"
+  resolved "https://registry.yarnpkg.com/uke-admin-web-scaffold/-/uke-admin-web-scaffold-1.1.0-rc1.tgz#15a49a42f325c47bfcf13508ffab11e16f73e2cd"
+  integrity sha512-Krt4JvbHnnQDYgBQ7t+pkU35yGg+XPjxWTUpxL3VM2OhynO5yvGlzhhO9RrRrJ5RR7wSO8fbSeQNxuM13VX3jw==
   dependencies:
     history "^4.7.2"
     mousetrap "^1.6.3"
@@ -11974,13 +11959,13 @@ uke-scripts@^1.0.0:
     webpack-manifest-plugin "2.0.4"
     workbox-webpack-plugin "4.2.0"
 
-ukelli-ui@^3.1.0-rc3:
-  version "3.1.0-rc3"
-  resolved "https://registry.yarnpkg.com/ukelli-ui/-/ukelli-ui-3.1.0-rc3.tgz#9d25966062ca947300a70676e2573f57b2236ae0"
-  integrity sha512-wjL/wSixjOiFMM5HI0dyMlMJs+XfbjAVS3yfrgf+1rsaZlrz9R3oTrI4jG4dH/xNyrXuFycWTfoKfG/mEOkhKQ==
+ukelli-ui@^3.1.0-rc11:
+  version "3.1.0-rc11"
+  resolved "https://registry.yarnpkg.com/ukelli-ui/-/ukelli-ui-3.1.0-rc11.tgz#a68365035cf8e315bd811c2ddd61c07b1737155a"
+  integrity sha512-YplzvhwlHkgkr8crxXfS+3+FZZ0oe6GfE9929mXxbY621hpo0CLTPe7Du89dCGCSV1pTlj3t00xPM5AP06F7/Q==
   dependencies:
     classnames "^2.2.6"
-    flatpickr "^4.6.1"
+    flatpickr "^4.6.3"
 
 umask@^1.1.0:
   version "1.1.0"
