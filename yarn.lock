@@ -11959,10 +11959,10 @@ uke-scripts@^1.0.0:
     webpack-manifest-plugin "2.0.4"
     workbox-webpack-plugin "4.2.0"
 
-ukelli-ui@^3.1.0-rc11:
-  version "3.1.0-rc11"
-  resolved "https://registry.yarnpkg.com/ukelli-ui/-/ukelli-ui-3.1.0-rc11.tgz#a68365035cf8e315bd811c2ddd61c07b1737155a"
-  integrity sha512-YplzvhwlHkgkr8crxXfS+3+FZZ0oe6GfE9929mXxbY621hpo0CLTPe7Du89dCGCSV1pTlj3t00xPM5AP06F7/Q==
+ukelli-ui@^3.1.0-rc12:
+  version "3.1.0-rc12"
+  resolved "https://registry.yarnpkg.com/ukelli-ui/-/ukelli-ui-3.1.0-rc12.tgz#6dd02260c4f59cbbc84e2f5825f6e6179086a111"
+  integrity sha512-qTbqQ+Pn5qojeMWe7ZJXZcyMWGfmupMbc7Cy/y8aZU4HDZLtCiw1YNEGRA5JcT/UP8A/Aelaa8ELeVx3elAe1A==
   dependencies:
     classnames "^2.2.6"
     flatpickr "^4.6.3"
