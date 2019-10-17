@@ -86,8 +86,7 @@ const Footer = () => {
       <a
         href="https://github.com/SANGET/uke-admin-web-scaffold"
         target="_blank"
-        className="item mr10"
-      >
+        className="item mr10">
         Github
       </a>
       <a href="https://ukelli.com" target="_blank" className="item mr10">
@@ -117,7 +116,7 @@ class LoginFilter extends React.Component {
   }
 
   render() {
-    let { isLogin, userInfo } = this.props;
+    const { isLogin, userInfo } = this.props;
     // isLogin = process.env.NODE_ENV === "development" ? true : isLogin;
     return (
       <AuthSelector
@@ -126,10 +125,10 @@ class LoginFilter extends React.Component {
         btnGColor="red"
         logo={() => <h3>Uke-Dashboard</h3>}
         isLogin={isLogin}
-        formOptions={loginFormOptions}
-      >
+        formOptions={loginFormOptions}>
         {isLogin ? (
           <AdminWebScaffold
+            versionUrl="./version.json"
             {...this.props}
             // 必须填写的
             bgStyle={
@@ -155,8 +154,7 @@ class LoginFilter extends React.Component {
               DashBoard,
               Footer
             }}
-            pageComponents={pageComponents}
-          />
+            pageComponents={pageComponents}/>
         ) : null}
       </AuthSelector>
     );
@@ -165,7 +163,7 @@ class LoginFilter extends React.Component {
 const LoginFilterWithStore = connect(
   selector,
   authActions
-)(userStore => <LoginFilter {...userStore} />);
+)((userStore) => <LoginFilter {...userStore} />);
 
 const C = () => (
   <Provider store={authStore}>
