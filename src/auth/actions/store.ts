@@ -41,10 +41,10 @@ const authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
   const userInfo = resData;
-  const username = resData.username;
+  const { username } = resData;
   userInfo.username = username;
   // let menuStore = (userInfo.Menus || {}).Child;
-  const token = resData.token;
+  const { token } = resData;
   // delete userInfo['Menus'];
 
   store.setState({
@@ -78,7 +78,7 @@ function getPrevLoginData(): AuthStore | undefined {
   return result;
 }
 
-const authActions = store => ({
+const authActions = (store) => ({
   async autoLogin() {
     const token = getPrevLoginToken();
     if (!token) return;
