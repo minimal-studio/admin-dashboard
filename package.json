@@ -8,7 +8,9 @@
   "scripts": {
     "postinstall": "npm run setAppVersion",
     "start": "PORT=6086 PLATFORM=workspace_admin ukectl start",
-    "build": "npm run setAppVersion; ukectl build",
+    "build": "npm run setAppVersion; npm run build:uke;",
+    "copy:version": "cp src/version.json build/",
+    "build:uke": "ukectl build; npm run copy:version",
     "deploy": "npm run build",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
