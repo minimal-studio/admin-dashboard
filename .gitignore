@@ -32,6 +32,3 @@ package-lock.json
 public/posts/
 public/deploy.html
 version.json
-
-packages/
-_uke-data.js

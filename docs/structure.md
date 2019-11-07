@@ -38,7 +38,7 @@
     - service-basic.js 基础服务类，大部分组件都继承于此
   - style/ 样式
   - template-engin/ 模版引擎
-    - uke-admin-web-scaffold-demo 模版 demo，可以根据实际情况编写对应的模版
+    - @deer-ui/admin-scaffold-demo 模版 demo，可以根据实际情况编写对应的模版
     - index.js 配置导出
   - utils/ 辅助函数
     - pagination-helper.js 分页辅助函数
@@ -47,9 +47,9 @@
 
 ### 模版引擎
 
-- 默认使用 uke-admin-web-scaffold/template-engine 来渲染表格和表单
+- 默认使用 @deer-ui/admin-scaffold/template-engine 来渲染表格和表单
 - 可以在 src/template-engine 下注册新的模版引擎
-- uke-admin-web-scaffold/uke-admin-web-scaffold-demo 为默认模版的例子
+- @deer-ui/admin-scaffold/@deer-ui/admin-scaffold-demo 为默认模版的例子
 
 > for-report 表格模版说明
 
@@ -151,7 +151,7 @@ class AsyncConditionDemo extends Services {
 
 > for-form 表格模版说明
 
-使用 Ukelli-UI 中的 FormLayout 组件进一步封装，提供表单渲染，状态管理等，暂时不提供额外接口，可以自行拓展
+使用 @deer-ui/core 中的 FormLayout 组件进一步封装，提供表单渲染，状态管理等，暂时不提供额外接口，可以自行拓展
 
 ### 基础服务 Services
 
@@ -164,7 +164,7 @@ services-baisc 提供一个便于编写业务的环境，封装了页面请求�
 ```js
 import React from 'react';
 
-import { ShowModal, CloseModal } from 'ukelli-ui';
+import { ShowModal, CloseModal } from '@deer-ui/core';
 import { Services } from '../services';
 import { HOCReportRender } from '../../template-engine';
 
@@ -252,7 +252,7 @@ export default TestReport;
 A. 应用程序的加载顺序，从上优先于下，左优先于右
 
 1. [app-config] 先加载配置
-2. [nav-config, page-refs, uke-admin-web-scaffold] 容器加载对应的路由, 页面引用等模块，填充脚手架的具体内容
+2. [nav-config, page-refs, @deer-ui/admin-scaffold] 容器加载对应的路由, 页面引用等模块，填充脚手架的具体内容
 
 B. Page 模块加载顺序
 
@@ -292,11 +292,11 @@ btnConfig: [{text: '', action: func, actingRef: '用于标记该按钮的状态'
 formOptions: [{}] // 用于表单对应项的渲染
 ```
 
-> 来自 uke-admin-web-scaffold 传入的 props 接口, 在实体 Page 中的 this.props 中，也可以通过 src/main.js 中传入
+> 来自 @deer-ui/admin-scaffold 传入的 props 接口, 在实体 Page 中的 this.props 中，也可以通过 src/main.js 中传入
 
 ```js
 gm: func // getMapper 的缩写，用于国际化包装，开发时需要把页面中需要做国际化的地方用这个方法包裹
-onNavigate: func // 用于导航，详情查看 uke-admin-web-scaffold 导航机制
+onNavigate: func // 用于导航，详情查看 @deer-ui/admin-scaffold 导航机制
 history: {} // 通过 history 模块对浏览器的 history 对象的封装对象
 userInfo: {} // 当前登录用户的信息，在 src/auth 模块中返回
 username: {} // 当前登录用户的用户名

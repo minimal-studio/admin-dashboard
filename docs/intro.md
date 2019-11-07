@@ -20,7 +20,7 @@ uke dashboard 提供了一种管理系统前端的解决方案
 ```js
 import React from 'react';
 
-import { ShowModal, CloseModal } from 'ukelli-ui';
+import { ShowModal, CloseModal } from '@deer-ui/core';
 import { Services } from '../services';
 import { HOCReportRender } from '../../template-engine';
 

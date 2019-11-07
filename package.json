@@ -1,5 +1,5 @@
 {
-  "name": "uke-dashboard",
+  "name": "admin-dashboard",
   "version": "1.0.0-rc.1",
   "private": true,
   "workspaces": [
@@ -7,10 +7,10 @@
   ],
   "scripts": {
     "postinstall": "npm run setAppVersion",
-    "start": "PORT=6086 PLATFORM=workspace_admin ukectl start",
+    "start": "PORT=6086 PLATFORM=workspace_admin minictl start",
     "build": "npm run setAppVersion; npm run build:uke;",
     "copy:version": "cp src/version.json build/",
-    "build:uke": "ukectl build; npm run copy:version",
+    "build:uke": "minictl build; npm run copy:version",
     "deploy": "npm run build",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
@@ -19,28 +19,29 @@
     "autoZip": "npm run build; npm run zipBuild;",
     "prettier:base": "prettier --parser typescript",
     "format": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
-    "update": "yarn add uke-request uke-admin-web-scaffold ukelli-ui -W; yarn start",
+    "update": "yarn add @mini-code/request @deer-ui/admin-scaffold @deer-ui/core -W; yarn start",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
   },
   "dependencies": {
-    "basic-helper": "^3.0.7",
+    "@deer-ui/admin-scaffold": "^2.0.0-alpha2.1",
+    "@deer-ui/core": "^4.0.0-alpha4.2",
+    "@deer-ui/enhance-ui": "^4.0.0-alpha2.1",
+    "@mini-code/base-func": "^1.0.2",
+    "@mini-code/request": "^1.0.0-alpha1",
     "mousetrap": "^1.6.2",
     "prop-types": "^15.5.10",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.3.6",
     "react-transition-group": "^4.2.1",
-    "uke-admin-web-scaffold": "^1.2.0-rc1",
-    "uke-request": "^1.1.0-rc5",
-    "ukelli-ui": "^3.1.0-rc14",
     "unistore": "^3.1.0",
-    "version-helper": "^1.0.3"
+    "version-helper": "^1.2.0-alpha1.0"
   },
   "devDependencies": {
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
-    "prettier": "^1.18.2",
-    "uke-scripts": "^1.1.0-alpha3"
+    "@mini-code/scripts": "^1.0.0-alpha0",
+    "prettier": "^1.18.2"
   },
   "browserslist": {
     "production": [

@@ -15,7 +15,7 @@
 
 React Router 只提供单个 Route 渲染，切换路由时会重新渲染组件，导致一些意料之外的问题
 
-业务系统需要支持多标签页并存的情况，所以模块 uke-admin-web-scaffold/router-multiple 提供了这种支持
+业务系统需要支持多标签页并存的情况，所以模块 @deer-ui/admin-scaffold/router-multiple 提供了这种支持
 
 ### 解决问题需要实现的功能和模块
 
@@ -30,7 +30,7 @@ React Router 只提供单个 Route 渲染，切换路由时会重新渲染组件
 
 ### 前端数据结构与远端数据结构分离
 
-[uke-request](https://github.com/SANGET/uke-request.git) 模块提供了对应的功能
+[@mini-code/request](https://github.com/SANGET/@mini-code/request.git) 模块提供了对应的功能
 
 ### 业务数据模块与数据渲染模块完全分离
 
