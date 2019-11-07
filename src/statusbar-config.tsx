@@ -46,7 +46,7 @@ const menusForTask = ({ hide }) => {
           icon: "rss-square",
           action: () => {
             hide();
-            window.open("https://ukelli.com");
+            window.open("https://thinkmore.xyz");
           }
         },
         {
@@ -54,7 +54,7 @@ const menusForTask = ({ hide }) => {
           icon: "assistive-listening-systems",
           action: () => {
             hide();
-            window.open("https://ukelli.com");
+            window.open("https://thinkmore.xyz");
           }
         }
       ]}

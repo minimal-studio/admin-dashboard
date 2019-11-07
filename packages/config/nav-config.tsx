@@ -15,7 +15,7 @@ const demoMenu = [
     child: [
       {
         title: "UI 组件",
-        code: "https://ui.ukelli.com/"
+        code: "https://ui.thinkmore.xyz/"
       }
     ]
   },

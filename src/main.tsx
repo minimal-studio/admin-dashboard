@@ -89,10 +89,10 @@ const Footer = () => {
         className="item mr10">
         Github
       </a>
-      <a href="https://ukelli.com" target="_blank" className="item mr10">
+      <a href="https://thinkmore.xyz" target="_blank" className="item mr10">
         Blog
       </a>
-      <a href="https://ukelli.com" target="_blank" className="item mr10">
+      <a href="https://thinkmore.xyz" target="_blank" className="item mr10">
         About
       </a>
     </div>

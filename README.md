@@ -6,7 +6,7 @@
 
 > 可以输入任意账号密码登入
 
-[https://admin.ukelli.com/](https://admin.ukelli.com/)
+[https://admin.thinkmore.xyz/](https://admin.thinkmore.xyz/)
 
 ## 依赖
 

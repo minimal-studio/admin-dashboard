@@ -1,4 +1,4 @@
-// 业务相关的icon mapper，可以通过 ukelli ui 提供的接口设置对应的 icon
+// 业务相关的icon mapper，可以通过 @deer-ui 提供的接口设置对应的 icon
 
 const iconPrefix = "fa fa-";
 
