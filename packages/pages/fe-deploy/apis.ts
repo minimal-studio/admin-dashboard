@@ -1,5 +1,5 @@
 /**
- * 与 uke web server 通讯的 api 接口
+ * 与 web server 通讯的 api 接口
  */
 
 import { RequestClass, urlParamsToQuery } from '@mini-code/request';

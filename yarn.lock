@@ -950,10 +950,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-9.0.1.tgz#c27b391d8457d1e893f1eddeaf5e5412d12ffbb5"
   integrity sha512-6It2EVfGskxZCQhuykrfnALg7oVeiI6KclWSmGDqB0AiInVrTGB9Jp9i4/Ad21u9Jde/voVQz6eFX/eSg/UsPA==
 
-"@deer-ui/admin-scaffold@^2.0.0-alpha2.1":
-  version "2.0.0-alpha2.1"
-  resolved "https://registry.yarnpkg.com/@deer-ui/admin-scaffold/-/admin-scaffold-2.0.0-alpha2.1.tgz#7822eb4a203aa6f43fba3adff7eb8f757500e045"
-  integrity sha512-gkKNVwyLJ2x/nccfCqGp5xGPa9eqRyVCATIotRVXh1ywJzWNGjtg7XnYfrjSY8+3pSaoUH5fOQe4aoomAfBOiw==
+"@deer-ui/admin-scaffold@^2.0.0-alpha2.2":
+  version "2.0.0-alpha2.2"
+  resolved "https://registry.yarnpkg.com/@deer-ui/admin-scaffold/-/admin-scaffold-2.0.0-alpha2.2.tgz#a4de742332ffafac1774764490c51cf5eb3b88cd"
+  integrity sha512-kC8EHwU5Spsq1bBMtOx4bLQ2z1ry0cFcjYcUJs45l89eMkiDmGxdBQRadnC0Hb+YVMueMcZqQP+Ki245kAYepQ==
   dependencies:
     history "^4.7.2"
     mousetrap "^1.6.3"

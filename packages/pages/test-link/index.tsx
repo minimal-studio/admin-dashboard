@@ -23,7 +23,7 @@ class TestLink extends Services {
           title="说明"
           texts={[
             `为了解决 React Router 不支持多标签页同时存在的问题`,
-            "uke dashboard 提供有一种管理 router 的机制",
+            "@deer-ui/admin-dashboard 提供有一种管理 router 的机制",
             "其他组件可以通过 Link 标签打开对应的路由，并且通过 url 传递参数，同时设置 history 的 state"
           ]}
         />

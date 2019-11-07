@@ -19,14 +19,10 @@ function getSessID() {
  * 获取全局的请求的 header
  */
 function getCommonHeader() {
-  let reqHeader = {
+  const reqHeader = {
     SessId: getSessID(),
     AdminName: getUserName(),
-    Platform: window.PLATFORM,
-    Device: window.DEVICE
   };
-
-  window.COMMON_REQ_HEADER = reqHeader;
   return reqHeader;
 }
 
@@ -34,8 +30,10 @@ function getCommonHeader() {
  * 前端应该与服务端的接口分离
  * 通过此方法实现对接远端需要的 request 数据
  */
-const beforeReq = options => {
-  const { isCompress, method, data, ...params } = options;
+const beforeReq = (options) => {
+  const {
+    isCompress, method, data, ...params
+  } = options;
   return {
     header: Object.assign(
       {},
@@ -62,7 +60,7 @@ const beforeReq = options => {
  *   err: null || 'description' // 对接 response 的错误描述
  * }
  */
-const afterRes = resData => {
+const afterRes = (resData) => {
   if (typeof resData !== "object") resData = {};
   resData.data = resData.data || resData.Data || {};
   return resData;

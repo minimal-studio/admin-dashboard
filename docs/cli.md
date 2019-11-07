@@ -2,10 +2,10 @@
 
 ## 安装依赖
 
-### 安装构建工具 uke-cli
+### 安装构建工具 @mini-code/page-generator
 
 ```shell
-npm i uke-cli -g
+npm i @mini-code/page-generator -g
 ```
 
 ### 构建 web server
@@ -37,10 +37,10 @@ npm start
 
 添加功能页面，以 “系统公告 xtgg” 为例
 
-同步操作 uke addp *pageName* *pageAlias* *pageTypeFlag*
+同步操作 pg addp *pageName* *pageAlias* *pageTypeFlag*
 
 ```shell
-uke addp xtgg 系统公告 -r
+pg addp xtgg 系统公告 -r
 
 # 此处是同步操作, 创建一个 report 类型的系统公告 action 和 page
 # 页面类型 -r == report | -f == form | -i == iframe(未实现) | -m == markdown(未实现)
@@ -49,7 +49,7 @@ uke addp xtgg 系统公告 -r
 分步操作
 
 ```shell
-uke add xtgg
+pg add xtgg
 
 # 此处同样是分步操作，根据提示选择页面的类型，输入页面的中文名称即可
 # 页面类型 report | form | iframe(未实现) | markdown(未实现)
@@ -61,7 +61,7 @@ uke add xtgg
 ### 手动添加页面 page
 
 ```shell
-git clone https://github.com/SANGET/uke-admin-seed.git
+git clone https://github.com/SANGET/pg-admin-seed.git
 ```
 
 -----------

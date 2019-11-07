@@ -123,7 +123,7 @@ class LoginFilter extends React.Component {
         {...this.props}
         backgroundImage="url(./images/bg/bg_3.jpg)"
         btnGColor="red"
-        logo={() => <h3>Uke-Dashboard</h3>}
+        logo={() => <h3>@deer-ui/admin-dashboard</h3>}
         isLogin={isLogin}
         formOptions={loginFormOptions}>
         {isLogin ? (
@@ -147,7 +147,7 @@ class LoginFilter extends React.Component {
               title: "title",
               icon: "icon"
             }}
-            title="uke-dashboard"
+            title="@deer-ui/admin-dashboard"
             i18nConfig={i18nConfig}
             pluginComponent={{
               Statusbar: Status,

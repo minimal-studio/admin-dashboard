@@ -8,22 +8,17 @@
   "scripts": {
     "postinstall": "npm run setAppVersion",
     "start": "PORT=6086 PLATFORM=workspace_admin minictl start",
-    "build": "npm run setAppVersion; npm run build:uke;",
+    "build": "npm run setAppVersion; minictl build; npm run copy:version",
     "copy:version": "cp src/version.json build/",
-    "build:uke": "minictl build; npm run copy:version",
     "deploy": "npm run build",
-    "initWrokspace": "node ./scripts/init-workspace",
-    "init": "git init; npm i; npm run setAppVersion",
+    "init": "git init; yarn",
     "setAppVersion": "vh gen",
-    "injectVersionToTmpl": "node ./version/inject-version-to-tmpl.js",
-    "autoZip": "npm run build; npm run zipBuild;",
     "prettier:base": "prettier --parser typescript",
     "format": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
-    "update": "yarn add @mini-code/request @deer-ui/admin-scaffold @deer-ui/core -W; yarn start",
-    "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*"
+    "update": "yarn add @mini-code/request @deer-ui/admin-scaffold @deer-ui/core -W; yarn start"
   },
   "dependencies": {
-    "@deer-ui/admin-scaffold": "^2.0.0-alpha2.1",
+    "@deer-ui/admin-scaffold": "^2.0.0-alpha2.2",
     "@deer-ui/core": "^4.0.0-alpha4.2",
     "@deer-ui/enhance-ui": "^4.0.0-alpha2.1",
     "@mini-code/base-func": "^1.0.2",

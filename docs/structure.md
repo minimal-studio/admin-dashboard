@@ -4,7 +4,7 @@
 
 ## 目录结构与功能
 
-- _template 用于 uke-cli 生产的模版，可以修改
+- _template 用于 page-generator 生产的模版，可以修改
 - build 编译后的目录
 - docs 相关文档目录
 - init-script 项目初始化脚本
@@ -12,7 +12,6 @@
 - public 公共资源目录
 - scripts 一般脚本
 - version 版本嵌入脚本
-- _uke-data.js uke-cli 给当前项目的配置，初始化是需要修改其中的 developer 的名字，不需要提交
 - src/ 源文件
   - auth/ 验证相关
   - components/ 一些通用组件
@@ -25,7 +24,7 @@
     - nav-config 导航配置
   - pages/ 渲染页面
     - 具体的业务页面
-    - generate-pages-refs.js uke-cli 生成页面时注入到此文件
+    - generate-pages-refs.js page-generator 生成页面时注入到此文件
     - index.js 注册所有页面
     - registe-spec-fields.js 注册特殊的路由页面
     - services.js 导出基础服务
