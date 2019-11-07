@@ -7,19 +7,19 @@ import React from "react";
 import { Provider, connect } from "unistore/react";
 import { hot } from "react-hot-loader";
 
-import { Call, DateFormat } from "basic-helper";
+import { Call, DateFormat } from "@mini-code/base-func";
 
 /**
  * 通用代码块
  */
 
-import { AdminWebScaffold } from "uke-admin-web-scaffold";
-import { AuthSelector } from "uke-admin-web-scaffold/auth-selector";
+import { AdminWebScaffold } from "@deer-ui/admin-scaffold";
+import { AuthSelector } from "@deer-ui/admin-scaffold/auth-selector";
 
-import "./config/app-config";
-import * as AllManagerPages from "./pages";
+import { authStore, authActions } from "@dashboard/auth/actions";
+import * as AllManagerPages from "@dashboard/pages";
+import "@dashboard/config/app-config";
 
-import { authStore, authActions } from "./auth/actions";
 import VersionInfo from "./version.json";
 import DashBoard from "./dash-board";
 import statusbarConfig from "./statusbar-config";
@@ -84,7 +84,7 @@ const Footer = () => {
         ,{" "}
       </span>
       <a
-        href="https://github.com/SANGET/uke-admin-web-scaffold"
+        href="https://github.com/SANGET/@deer-ui/admin-scaffold"
         target="_blank"
         className="item mr10">
         Github

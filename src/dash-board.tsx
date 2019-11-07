@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
-import { ChartCom, Grid, Card, CardContainer, Label } from "ukelli-ui";
+import {
+  Grid, Card, CardContainer, Label
+} from "@deer-ui/core";
+import {
+  ChartCom
+} from "@deer-ui/enhance-ui";
 
 ChartCom.setChartJSPath(
   "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"
@@ -46,7 +51,9 @@ const options = {
 
 export default class DashBoard extends React.PureComponent {
   state = {};
-  saveRef = ref => e => (this[ref] = e);
+
+  saveRef = (ref) => (e) => (this[ref] = e);
+
   componentDidMount() {
     /** 用于让出 UI 线程 */
     setTimeout(() => this.chartDOM1.renderChart(), 15);
@@ -54,6 +61,7 @@ export default class DashBoard extends React.PureComponent {
     setTimeout(() => this.chartDOM3.renderChart(), 45);
     setTimeout(() => this.chartDOM4.renderChart(), 60);
   }
+
   render() {
     return (
       <div className="dash-board">
@@ -67,8 +75,7 @@ export default class DashBoard extends React.PureComponent {
             space={10}
             style={{
               margin: -20
-            }}
-          >
+            }}>
             <Grid xl={12} lg={12} />
             <Grid xl={4} lg={6} md={12}>
               <Card className="relative" p={10}>
@@ -78,8 +85,7 @@ export default class DashBoard extends React.PureComponent {
                   ref={this.saveRef("chartDOM1")}
                   data={mockData}
                   type="bar"
-                  options={options}
-                />
+                  options={options}/>
               </Card>
             </Grid>
             <Grid xl={4} lg={6} md={12}>
@@ -90,8 +96,7 @@ export default class DashBoard extends React.PureComponent {
                   ref={this.saveRef("chartDOM2")}
                   data={mockData}
                   type="line"
-                  options={options}
-                />
+                  options={options}/>
               </Card>
             </Grid>
             <Grid xl={4} lg={6} md={12}>
@@ -102,8 +107,7 @@ export default class DashBoard extends React.PureComponent {
                   ref={this.saveRef("chartDOM3")}
                   data={mockData}
                   type="radar"
-                  options={options}
-                />
+                  options={options}/>
               </Card>
             </Grid>
             <Grid xl={4} lg={6} md={12}>
@@ -114,8 +118,7 @@ export default class DashBoard extends React.PureComponent {
                   ref={this.saveRef("chartDOM4")}
                   data={mockData}
                   type="pie"
-                  options={options}
-                />
+                  options={options}/>
               </Card>
             </Grid>
           </Grid>
