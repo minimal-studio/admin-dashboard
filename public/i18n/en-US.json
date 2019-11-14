@@ -27,5 +27,12 @@
   "checkbox控件": "Checkbox",
   "选择控件": "Selector",
   "输入": "Input",
+  "输入选择器1": "Input Selector 1",
+  "输入选择器2": "Input Selector 2",
+  "开关": "Switch",
+  "下拉选择": "Dropdown",
+  "自定义组件1": "Custom Component 1",
+  "自定义组件2": "Custom Component 2",
+  "范围": "Range",
   "查询": "Query"
 }
