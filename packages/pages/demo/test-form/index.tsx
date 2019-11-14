@@ -1,7 +1,8 @@
+/* eslint-disable max-classes-per-file */
 import React, { Component } from "react";
 
 import { FormLayout, Loading } from "@deer-ui/core";
-import { Services } from "../services";
+import { Services } from "@dashboard/services";
 
 /**
  * 说明
@@ -89,8 +90,7 @@ export class TestForm extends TestFormBasic {
           }}
           {...this.state}
           formOptions={this.formOptions}
-          btnConfig={this.btnConfig}
-        />
+          btnConfig={this.btnConfig}/>
       </div>
     );
   }

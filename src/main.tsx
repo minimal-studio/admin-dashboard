@@ -31,6 +31,8 @@ import "./app.scss";
 
 const pageComponents = { ...AllManagerPages, DashBoard };
 
+const defaultLang = navigator.language || navigator.userLanguage;
+
 const i18nConfig = {
   "zh-CN": "中文",
   "en-US": "English"

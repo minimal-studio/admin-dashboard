@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 
 import { FormLayout, Loading } from "@deer-ui/core";
-import { Services } from "../services";
+import { Services } from "@dashboard/services";
 
-const demoGetFormFromRemote = () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        value1: "哈哈",
-        value2: "呵呵",
-        value3: "嘻嘻"
-      });
-    }, 1000);
-  });
-};
+const demoGetFormFromRemote = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve({
+      value1: "哈哈",
+      value2: "呵呵",
+      value3: "嘻嘻"
+    });
+  }, 1000);
+});
 
 /**
  * 说明
@@ -25,13 +23,15 @@ export default class TestFormAsync extends Services {
     ...this.state,
     querying: true
   };
+
   componentDidMount() {
     this.getFormOptions();
   }
+
   getFormOptions() {
     const agentOptions = {
       actingRef: "querying",
-      after: remoteData => {
+      after: (remoteData) => {
         const options = [
           "时间输入",
           "hideDemo",
@@ -68,12 +68,13 @@ export default class TestFormAsync extends Services {
     // 使用 reqAgent 管理页面请求状态
     this.reqAgent(demoGetFormFromRemote, agentOptions)();
   }
+
   btnConfig = [
     {
       action: async (formRef, actingRef) => {
         if (!this.checkForm(formRef)) return;
 
-        let postData = {
+        const postData = {
           ...formRef.value
         };
         const agentOptions = {
@@ -89,7 +90,7 @@ export default class TestFormAsync extends Services {
       action: async (formRef, actingRef) => {
         if (!this.checkForm(formRef)) return;
 
-        let postData = {
+        const postData = {
           ...formRef.value
         };
         const agentOptions = {
@@ -102,6 +103,7 @@ export default class TestFormAsync extends Services {
       className: "red"
     }
   ];
+
   render() {
     const { querying } = this.state;
 
@@ -116,8 +118,7 @@ export default class TestFormAsync extends Services {
                 type: "success"
               }}
               {...this.state}
-              btnConfig={this.btnConfig}
-            />
+              btnConfig={this.btnConfig}/>
           )}
         </Loading>
       </div>

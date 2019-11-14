@@ -1,4 +1,4 @@
-import { $R } from "../../services/req-filter";
+import { $R } from '@dashboard/services';
 
 export function login(data) {
   return new Promise((resolve) => {
@@ -6,9 +6,9 @@ export function login(data) {
       resolve({
         code: 0,
         message: 'success'
-      })
-    }, 1000)
-  })
+      });
+    }, 1000);
+  });
   // return $R.post("/login", data);
 }
 

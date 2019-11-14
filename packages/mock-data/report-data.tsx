@@ -1,5 +1,5 @@
 import React from "react";
-import { ShowModal, CloseModal, DescHelper } from "@deer-ui/core";
+import { ShowModal } from "@deer-ui/core";
 import { SetFloatLen, SetBasicUnit } from "@mini-code/base-func";
 
 /** 设置金钱的浮动小数位数 */
@@ -16,7 +16,7 @@ SetFloatLen(2);
 SetBasicUnit(100);
 
 const getTestData = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
         {
@@ -84,7 +84,7 @@ const keyFieldsForReport = [
         1: "在外",
         2: "在内"
       },
-      onChange: val => {
+      onChange: (val) => {
         ShowModal({
           title: "改变的值",
           children: <div>{JSON.stringify(val)}</div>
@@ -119,7 +119,7 @@ const keyFieldsForReport = [
     key: "Weight",
     filter: (str, item, mapper, idx) => {
       // 这里是过滤每一条 Weight 字段的 filter 函数
-      return str + "kg";
+      return `${str}kg`;
     }
   }
 ];

@@ -87,7 +87,7 @@ const Conditions = {
     type: "input",
     inputType: "number",
     required: true,
-    title: "选择控件",
+    title: "输入",
     values: {
       value1: "value1",
       value2: "value2",

@@ -3,9 +3,9 @@ import { setUIConfig } from "@deer-ui/core/utils/config";
 // import { initFields } from '../lib/fields';
 import { SetFloatLen } from "@mini-code/base-func";
 
+import { $request } from "@dashboard/services/req-filter";
 import FrontEndNameMappers from "./key-mappers";
 import { iconMapper, iconPrefix } from "./icon-mapper";
-import { $request } from "../services/req-filter";
 
 import "./listener";
 

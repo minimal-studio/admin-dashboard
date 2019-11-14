@@ -9,23 +9,20 @@ import React from "react";
 
 import { Link } from "@deer-ui/admin-scaffold";
 
-import { setFields } from "../services/fields";
+import { setFields } from "@dashboard/services/fields";
 
 setFields({
   username_for_user: {
     key: "Username",
     fixed: "left",
-    filter: (str, item, mapper, idx) => {
-      return (
-        <Link
-          to="TestLink"
-          params={{
-            n: str
-          }}
-        >
-          {str}
-        </Link>
-      );
-    }
+    filter: (str, item, mapper, idx) => (
+      <Link
+        to="TestLink"
+        params={{
+          n: str
+        }}>
+        {str}
+      </Link>
+    )
   }
 });

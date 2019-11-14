@@ -7,10 +7,10 @@
 
 import React from "react";
 
-import { ShowModal, CloseModal, DescHelper } from "@deer-ui/core";
-import { Services } from "../services";
-import { HOCReportRender } from "../template-engine";
-import { getTestData, keyFieldsForReport } from "../report-data";
+import { ShowModal, CloseModal, TableRow } from "@deer-ui/core";
+import { Services } from "@dashboard/services";
+import { HOCReportRender } from "@dashboard/template-engine";
+import { getTestData, keyFieldsForReport } from "@dashboard/mock-data/report-data";
 
 class TestReportClass extends Services {
   state = {
@@ -69,11 +69,11 @@ class TestReportClass extends Services {
   // ]
 
   // 与 HOCReportRender 模版对接的查询接口
-  queryData = async reportData => {
+  queryData = async (reportData) => {
     const postData = this.reportDataFilter(reportData);
     const agentOptions = {
       actingRef: "querying",
-      after: res => ({
+      after: (res) => ({
         records: res
       })
     };
@@ -84,9 +84,10 @@ class TestReportClass extends Services {
     const ModalId = ShowModal({
       title: "详情",
       width: 700,
-      children: <DescHelper columns={this.columns} record={item} />
+      children: <TableRow columns={this.columns} record={item} />
     });
   }
+
   // 与 HOCReportRender 模版对接的按钮接口
   recordActionBtns = [
     {

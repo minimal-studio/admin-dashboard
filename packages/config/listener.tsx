@@ -1,6 +1,6 @@
 import { EventEmitter } from "@mini-code/base-func";
 // import { setFEDeployConfig } from '@deer-ui/admin-scaffold/fe-deploy';
-import { initFields } from "../services/fields";
+import { initFields } from "@dashboard/services/fields";
 
 EventEmitter.on("LOGIN_SUCCESS", ({ userInfo }) => {
   // setFEDeployConfig({

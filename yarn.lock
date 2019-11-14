@@ -950,25 +950,25 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-9.0.1.tgz#c27b391d8457d1e893f1eddeaf5e5412d12ffbb5"
   integrity sha512-6It2EVfGskxZCQhuykrfnALg7oVeiI6KclWSmGDqB0AiInVrTGB9Jp9i4/Ad21u9Jde/voVQz6eFX/eSg/UsPA==
 
-"@deer-ui/admin-scaffold@^2.0.0-alpha2.4":
-  version "2.0.0-alpha2.4"
-  resolved "https://registry.yarnpkg.com/@deer-ui/admin-scaffold/-/admin-scaffold-2.0.0-alpha2.4.tgz#b0a84ef8561071ec634952e4505897a1898ad4ec"
-  integrity sha512-bfjksvyPNNuIe33PKZ7JIjE2uLy/HZXB4ALjm1n5b85fjPf+LXpxD4AWTqnpygSC3Tt8p3ED7aUeNt7gWT358g==
+"@deer-ui/admin-scaffold@^2.0.0-alpha2.5":
+  version "2.0.0-alpha2.5"
+  resolved "https://registry.yarnpkg.com/@deer-ui/admin-scaffold/-/admin-scaffold-2.0.0-alpha2.5.tgz#b97ee25a6cbfa5fb1b1e1e75b7689266087549e5"
+  integrity sha512-dgWFN5EoJqbLXSSsZGmu1bB58R6tUMg16WCZEpP+jR9q26mruFU5Dt9N2N8JH++rD5we/2vsx+bRoUidw+kBrQ==
   dependencies:
     history "^4.7.2"
     mousetrap "^1.6.3"
 
-"@deer-ui/core@^4.0.0-alpha4.2":
-  version "4.0.0-alpha4.2"
-  resolved "https://registry.yarnpkg.com/@deer-ui/core/-/core-4.0.0-alpha4.2.tgz#7aa6b57cae829a71ecc9f3b880505735b9861e43"
-  integrity sha512-zNO/v3UlK1p/O/ioAziwISmTr5GRZFGr1FwyxRb0i+uzh+CCHpOg2h7YkpQOMLLMe29Zp+XoRzUEH2KUTdT8SA==
+"@deer-ui/core@^4.0.0-alpha4.5":
+  version "4.0.0-alpha4.6"
+  resolved "https://registry.yarnpkg.com/@deer-ui/core/-/core-4.0.0-alpha4.6.tgz#1237f6707a4bc72f94c94b01f0fec4e4e12e1077"
+  integrity sha512-nVda9entw3JuFDvGq4mDI58rhpqX2ayEyrBmkSeTDSN8xE0VB20P/WMjm9vgtm2k/OKzWbeZUv+asoDwhLVaOg==
   dependencies:
     classnames "^2.2.6"
 
-"@deer-ui/enhance-ui@^4.0.0-alpha2.1":
-  version "4.0.0-alpha2.1"
-  resolved "https://registry.yarnpkg.com/@deer-ui/enhance-ui/-/enhance-ui-4.0.0-alpha2.1.tgz#369560da56b7ae14d998a86eb6dcd4f6d2569abf"
-  integrity sha512-8m+sxXYJ+mxHt47NdiNC2xyFq8SKuQgnYiJvnE+CcC/mJz5VufaXoE8PfpFVzDQaeXEjwXqneZpLYgVKuX2xpA==
+"@deer-ui/enhance-ui@^4.0.0-alpha2.2":
+  version "4.0.0-alpha2.2"
+  resolved "https://registry.yarnpkg.com/@deer-ui/enhance-ui/-/enhance-ui-4.0.0-alpha2.2.tgz#7b14fa767349504bb02824c12d1c2c98cdf5ec28"
+  integrity sha512-w3TRS6JjWtVfoXq0+mWkAgonAQa2kfzwLJr10IqNCgscj4wKDYGV4HO3O6/y/BKw+ZF+53N6K4IN8IbIK6CB7w==
   dependencies:
     classnames "^2.2.6"
 
