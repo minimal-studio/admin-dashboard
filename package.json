@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@deer-ui/admin-scaffold": "^2.0.0-alpha2.5",
-    "@deer-ui/core": "^4.0.0-alpha4.6",
+    "@deer-ui/core": "^4.0.0-alpha5.0",
     "@deer-ui/enhance-ui": "^4.0.0-alpha2.2",
     "@mini-code/base-func": "^1.0.2",
     "@mini-code/request": "^1.0.0-alpha1",
